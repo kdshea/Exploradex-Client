@@ -20,10 +20,8 @@ const NavBar = () => {
             <Nav.Link as={Link} to='/Landing' >Landing</Nav.Link>
             <Nav.Link as={Link} to='/UserProfile' >UserProfile</Nav.Link>
             <Nav.Link as={Link} to='/Destination' >Destination</Nav.Link>
-
-
+            <Nav.Link as={Link} to='/AllDestination' >AllDestination</Nav.Link>
             
-
           </Nav>
         </Container>
       </Navbar>

@@ -9,6 +9,7 @@ import UserProfile from './components/UserProfile'
 // import Footer from './components/Footer'
 import Landing from './components/Landing'
 import Destination from './components/Destination'
+import AllDestination from './components/AllDestination'
 
 function App() {
 
@@ -33,6 +34,9 @@ function App() {
           <Route path='/Landing' element={<Landing />}  />
 
           <Route path='/Destination' element={<Destination />}  />
+
+          <Route path='/AllDestination' element={<AllDestination />}  />
+
 
         </Routes>
 
