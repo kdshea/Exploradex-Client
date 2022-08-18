@@ -9,13 +9,20 @@ const NavBar = () => {
     <div>
       
       <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">Travel Home</Navbar.Brand>
+        <Container className='nav-wrapper'>
+
+          <Navbar.Brand as={Link} to='/' >Travel Home</Navbar.Brand>
+
           <Nav className="me-auto">
             <Nav.Link as={Link} to='/' >Home</Nav.Link>
             <Nav.Link as={Link} to='/Login' >Login</Nav.Link>
             <Nav.Link as={Link} to='/Register' >Register</Nav.Link>
             <Nav.Link as={Link} to='/Landing' >Landing</Nav.Link>
+            <Nav.Link as={Link} to='/UserProfile' >UserProfile</Nav.Link>
+            <Nav.Link as={Link} to='/Destination' >Destination</Nav.Link>
+
+
+            
 
           </Nav>
         </Container>

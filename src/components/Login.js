@@ -37,13 +37,13 @@ const Login = () => {
   // }
 
   return  ( 
-    <div>
+    <div className='form-main'>
 
       <h1>Login Page</h1>
 
       {errors && <div className='error'>{errors}</div>}
 
-      <form  className='flex-column'>
+      <form  className='form-wrapper'>
 
           {/* ! inputs need text name placeholder value  */}
           <input type='text' name='userName' placeHolder='userName' value={data.userName} />
