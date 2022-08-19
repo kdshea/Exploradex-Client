@@ -2,8 +2,11 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './components/Home'
-import Login from './components/Login'
+
 import NavBar from './components/NavBar'
+
+// ! y
+import Login from './components/Login'
 import Register from './components/Register'
 import UserProfile from './components/UserProfile'
 // import Footer from './components/Footer'
