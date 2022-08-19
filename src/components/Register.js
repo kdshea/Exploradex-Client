@@ -1,65 +1,76 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import  Container from 'react-bootstrap/Container'
+import  Row  from 'react-bootstrap/Row'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
 
-  const [ user, setUser ] = useState({
-    // ! user register section 
+  const navigate = useNavigate()
+
+  // ! State
+  const [ formData, setFormData ] = useState({
+    username: '',
     email: '',
-    userName: '',
     password: '',
-    confirmPassword: '',
+    passwordConfirmation: '',
   })
   
   const [ errors, setErrors ] = useState(null)
   
   
 
-  // ! what to add! so the user register and it goes to the data base 
-  useEffect(() => {
 
-    const getData = async () => {
-      try {
-        const { data } = await axios.post('', data)
-        // ! this might need some work
-        console.log(data)
-      } catch (error) {
-        console.log(error)
-      }
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value})
+    setErrors('')
+  }
+
+
+  // ! handleSumbit
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const { data } = await axios.post('', formData)
+      setFormData(data)
+
+      navigate('/login')
+      
+    } catch (error) {
+      console.log(error)
+      setErrors(error.response.data.message)
+      // ! double check the error message location might not be the same
     }
-    getData()
-
-  }, [])
-
-  const onClick = (event) => {
-    
-    setUser({ ...user, [event.target.value]: event.target.name  })
-
   }
   
   return (
-  
-    <div>
 
-      <form className="register-Form">
-      <label htmlFor="email">Email</label>
-      <input type='text' placeholder='Enter Email' name='email' required />
-
-      <label htmlFor="userName">Username</label>
-      <input type='text' placeholder='Enter userName' name='userName' required />
-
-      <label htmlFor="password"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required />
-
-      <label htmlFor="confirmPassword"><b>confirm Password</b></label>
-      <input type="confirmPassword" placeholder="Confirm Password" name="confirmPassword" required />
-
-      <input type="button" value="Register" onclick={onClick} />
-      <input type="button" value="Sign in" onclick={onClick} />
-
-    </form>
-  </div>
+  // ! bootStrap below 
+  <main className='form-page'>
+     <Container>
+        <Row>
+          <form onSubmit={handleSubmit} className='form-register'>
+            <h3 className='text-center'>Register</h3>
+            {/* Username */}
+            <label htmlFor="username">Username</label>
+            <input onChange={handleChange} type="text" name="username" placeholder="Username" value={formData.username} />
+            {/* Email */}
+            <label htmlFor="email">Email</label>
+            <input onChange={handleChange} type="email" name="email" placeholder='Email' value={formData.email} />
+            {/* Password */}
+            <label htmlFor="password">Password</label>
+            <input onChange={handleChange} type="password" name="password" placeholder='Password' value={formData.password} />
+            {/* Password Confirmation */}
+            <label htmlFor="passwordConfirmation">Confirm Password</label>
+            <input onChange={handleChange} type="password" name="passwordConfirmation" placeholder='Confirm Password' value={formData.passwordConfirmation} />
+            {/* Error Message */}
+            { errors && <p className='text-danger'>{errors}</p>}
+            {/* Submit */}
+            <input type="submit" value="Register" className='btn dark w-100' />
+          </form>
+        </Row>
+      </Container>
+</main>
 
   )
 }
