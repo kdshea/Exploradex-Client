@@ -1,8 +1,10 @@
-// import axios from 'axios'
+import axios from 'axios'
 import { useState, useEffect } from 'react'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  // ! react function for navigation 
+  let navigate = useNavigate() 
 
   const [ data, setData ] = useState({
     userName: '',
@@ -11,30 +13,35 @@ const Login = () => {
 
   const [ errors, setErrors ] = useState()
 
-  // let navigate = useNavigate()
+  
 
-  // ! handleChange 
-  // const handleChange = (event) => {
-  //   setData({ ...data, [event.target.name]: event.target.value  })
-  // }
+    // ! handleChange 
+    const handleChange = (event) => {
+      setData({ ...data, [event.target.name]: event.target.value  })
+    }
+  
 
-  // const onSubmit = async (event) => {
-  //   event.preventDefault()
-  //   try {
+    const onSubmit = async (event) => {
+      event.preventDefault()
+      try {
+  
+      const res = await axios.post('http://localhost:4000/login', data) // insert API here! we
 
-  //   const res = await axios.post('http://localhost:4000/login', data)
-  //   const { token } = res.data
-  //   localStorage.setItem('token', token)
-  //   axios.defaults.headers.common['Aithorization'] = token
-    
-  //   console.log(res.data);
-  //   navigate('/Home')
+      const { token } = res.data
+
+      localStorage.setItem('token', token)
       
-  //   } catch (error) {
-  //     setErrors(error.response.data.message)
-  //     console.log(error)
-  //   }
-  // }
+      axios.defaults.headers.common['Authorization'] = token
+      
+      console.log(res.data);
+      navigate('/Home')
+        
+      } catch (error) {
+        setErrors(error.response.data.message)
+        console.log(error)
+      }
+    }
+  
 
   return  ( 
     <div className='form-main'>
@@ -43,12 +50,12 @@ const Login = () => {
 
       {errors && <div className='error'>{errors}</div>}
 
-      <form  className='form-wrapper'>
+      <form onSubmit={onSubmit} className='form-wrapper'>
 
           {/* ! inputs need text name placeholder value  */}
-          <input type='text' name='userName' placeHolder='userName' value={data.userName} />
+          <input type='text' name='userName' placeHolder='userName' onChange={handleChange} value={data.userName} />
           {/* Password input section  */}
-          <input type='password' name='password' placeHolder='password' value={data.password} />
+          <input type='password' name='password' placeHolder='password' onChange={handleChange} value={data.password} />
           <button type='submit'>Login</button>
       </form>
 

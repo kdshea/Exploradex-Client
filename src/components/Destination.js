@@ -1,6 +1,31 @@
+import { useEffect, useState } from "react"
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 
 const Destination = () => {
+  // const navigate = useNavigate() // function to move across pages.
+
+
+  // ! id
+  const { destinationId } = useParams()
+
+  const [ destination, setDestination ] = useState(null) 
+  const [ errors, setErrors ] = useState(false)
+
+  // ! useEffect for the single Destination 
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(`${destinationId}`)
+        setDestination(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getData()
+  }, [destinationId])
+
   
   return (
     <div>
