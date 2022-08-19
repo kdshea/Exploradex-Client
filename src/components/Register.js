@@ -10,7 +10,7 @@ const Register = () => {
 
   // ! State
   const [ formData, setFormData ] = useState({
-    username: '',
+    userName: '',
     email: '',
     password: '',
     passwordConfirmation: '',
