@@ -31,14 +31,14 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await axios.post('', formData)
+      const { data } = await axios.post('https://sei65-destinations.herokuapp.com/register', formData)
       setFormData(data)
 
       navigate('/login')
       
     } catch (error) {
       console.log(error)
-      setErrors(error.response.data.message)
+      setErrors(error.data.message)
       // ! double check the error message location might not be the same
     }
   }
@@ -49,7 +49,7 @@ const Register = () => {
   <main className='form-page'>
      <Container>
         <Row>
-          <form onSubmit={handleSubmit} className='form-register'>
+          <form className='form-register'>
             <h3 className='text-center'>Register</h3>
             {/* Username */}
             <label htmlFor="username">Username</label>
@@ -66,7 +66,7 @@ const Register = () => {
             {/* Error Message */}
             { errors && <p className='text-danger'>{errors}</p>}
             {/* Submit */}
-            <input type="submit" value="Register" className='btn dark w-100' />
+            <input onSubmit={handleSubmit} type="submit" value="Register" className='btn dark w-100' />
           </form>
         </Row>
       </Container>

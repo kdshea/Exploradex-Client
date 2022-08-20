@@ -36,7 +36,7 @@ function App() {
 
           <Route path='/Landing' element={<Landing />}  />
 
-          <Route path='/Destination' element={<Destination />}  />
+          <Route path='/Destination/:id' element={<Destination />}  />
 
           <Route path='/AllDestination' element={<AllDestination />}  />
 

@@ -27,3 +27,7 @@ body {
   justify-content: space-between;
 }
 
+.destination-row {
+  display: flex;
+  flex-wrap: wrap;
+}

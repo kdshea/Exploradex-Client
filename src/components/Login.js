@@ -25,7 +25,8 @@ const Login = () => {
       event.preventDefault()
       try {
   
-      const res = await axios.post('http://localhost:4000/login', data) // insert API here! we
+      const res = await axios.post('https://sei65-destinations.herokuapp.com/login', data) // insert API here! we
+      // ! login works that is good
 
       const { token } = res.data
 
