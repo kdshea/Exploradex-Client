@@ -4,7 +4,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Serhan from '../img/4db349_218f4014bcd97b058e8f89469dc0e5d7.webp'
-
+// import API_URL from '../config.js'
 
 
 

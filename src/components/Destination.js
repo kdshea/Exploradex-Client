@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-
+import API_URL from '../config.js'
 
 const Destination = () => {
   // const navigate = useNavigate() // function to move across pages.
@@ -17,7 +17,8 @@ const Destination = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`https://sei65-destinations.herokuapp.com/travel${id}`)
+        // const { data } = await axios.get(`https://sei65-destinations.herokuapp.com/travel${id}`)
+        const { data } = await axios.get(`${API_URL}/travel/${id}`)
         
         setDestination(data)
       } catch (error) {

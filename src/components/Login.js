@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import API_URL from '../config.js'
 
 const Login = () => {
   // ! react function for navigation 
@@ -25,7 +26,9 @@ const Login = () => {
       event.preventDefault()
       try {
   
-      const res = await axios.post('https://sei65-destinations.herokuapp.com/login', data) // insert API here! we
+      // const res = await axios.post('https://sei65-destinations.herokuapp.com/login', data)
+      const res = await axios.post(`${API_URL}/login`, data)
+
       // ! login works that is good
 
       const { token } = res.data
