@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import  Container from 'react-bootstrap/Container'
 import  Row  from 'react-bootstrap/Row'
 import { useNavigate } from 'react-router-dom'
+import API_URL from '../config.js'
 
 const Register = () => {
 
@@ -31,7 +32,8 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await axios.post('https://sei65-destinations.herokuapp.com/register', formData)
+      // const { data } = await axios.post('https://sei65-destinations.herokuapp.com/register', formData)
+      const { data } = await axios.post(`{${API_URL}/register`, formData)
       setFormData(data)
 
       navigate('/login')
