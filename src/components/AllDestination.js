@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap'
 import Serhan from '../img/4db349_218f4014bcd97b058e8f89469dc0e5d7.webp'
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom';
+import API_URL from '../config.js'
 
 
 const AllDestination = () => {
@@ -17,7 +18,8 @@ useEffect(() => {
   // ! need to see if this works now!
   const getData = async () => {
     try {
-      const { data } = await axios.get('https://sei65-destinations.herokuapp.com/travel')
+      // const { data } = await axios.get('https://sei65-destinations.herokuapp.com/travel')
+      const { data } = await axios.get(`${API_URL}/travel`)
       console.log(data)
       setDestinationData(data)
     } catch (error) {
