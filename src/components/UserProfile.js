@@ -65,7 +65,7 @@ const UserProfile = () => {
                     
                     </div>
                     
-                     <ul class="social-list">
+                    <ul class="social-list">
                         <li><i class="fa fa-facebook"></i></li>
                         <li><i class="fa fa-dribbble"></i></li>
                         <li><i class="fa fa-instagram"></i></li>
