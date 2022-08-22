@@ -9,16 +9,21 @@ const NavBar = () => {
     <Navbar expand="sm">
       <Container as="section">
         <Navbar.Brand as={Link} to="/">Test</Navbar.Brand>        
-        <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>
+        <Nav className="me-auto">
+            <Nav.Link as={Link} to='/' >Home</Nav.Link>
             <Nav.Link as={Link} to='/Login' >Login</Nav.Link>
             <Nav.Link as={Link} to='/Register' >Register</Nav.Link>
             <Nav.Link as={Link} to='/Landing' >Landing</Nav.Link>
             <Nav.Link as={Link} to='/UserProfile' >UserProfile</Nav.Link>
-            <Nav.Link as={Link} to='/Destination' >Destination</Nav.Link>
-            <Nav.Link as={Link} to='/AllDestination' >AllDestination</Nav.Link>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+            <Nav.Link as={Link} to='/travel/:travelId' >Destination</Nav.Link>
+            <Nav.Link as={Link} to='/travel' >AllDestination</Nav.Link>
+            
+          </Nav>
+        
+        </Container>
+      </Navbar>
+      
+    
   );
 }
 

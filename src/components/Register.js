@@ -32,7 +32,7 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      // const { data } = await axios.post('https://sei65-destinations.herokuapp.com/register', formData)
+      // const { data } = await axios.post('http://localhost:3000/register', formData)
       const { data } = await axios.post(`{${API_URL}/register`, formData)
       setFormData(data)
 
