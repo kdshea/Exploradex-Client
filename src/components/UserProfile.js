@@ -25,7 +25,6 @@ const UserProfile = () => {
     userName: '',
     role: '',
     createdAt: '',
-    reviews: '',
     id: '', // not sure id is needed
 // ! this will call all the information from the data user I hope 
   })
@@ -37,7 +36,7 @@ const UserProfile = () => {
     const getUser = async () => {
       try {
         // ? need to check the method of the user. 
-        const { data } = await axios.get(`${API_URL}/UserProfile/${userId}`)
+        const { data } = await axios.get(`${API_URL}/users/${userId}`)
         setUserProfile(data)
       } catch (error) {
         console.log(error)
@@ -53,7 +52,6 @@ const UserProfile = () => {
 <Container>
     <Row>
       { userProfile ? 
-        // If bread is truthy, then our API call was successful as data has been added to the bread state
         <>
           <h1>{userProfile.name}</h1>
           <Col md="6">
@@ -65,8 +63,8 @@ const UserProfile = () => {
             <p>{userProfile.userName} - {userProfile.email}</p>
             <hr />
             {/* Origin */}
-            <h2><span>🌍</span> Origin</h2>
-            <p>{userProfile.country}</p>
+            <h2><span>User-Role</span> Role:</h2>
+            <p>{userProfile.role}</p>
             <hr />
             {/* Added by */}
             <h2><span>👤</span> Added by</h2>

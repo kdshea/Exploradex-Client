@@ -15,7 +15,6 @@ const NewDestination = () => {
     description: '',
     rating: '',
     review: '',
-    imgUrl: '',
   })
 
   const [ errors, setErrors ] = useState({
@@ -24,7 +23,6 @@ const NewDestination = () => {
     description: '',
     rating: '',
     review: '',
-    imgUrl: '',
     // ! not sure about the error section 
   })
 
@@ -36,7 +34,7 @@ const NewDestination = () => {
         headers: {
           Authorization: `Bearer Token`  //! need to work on this part         
         }
-        
+      
       })
       setNewTravel(data)
     } catch (error) {

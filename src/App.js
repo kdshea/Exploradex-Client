@@ -31,9 +31,9 @@ function App() {
 
           <Route path='/Login' element={<Login />} />
 
-          <Route path='/Register' element={<Register />} />
+          <Route path='/register' element={<Register />} />
 
-          <Route path='/UserProfile/' element={<UserProfile />} />
+          <Route path='/UserProfile/:userId' element={<UserProfile />} />
           {/* userProfile page links works, need to see how to load individual page */}
           <Route path='/Landing' element={<Landing />}  />
 
@@ -42,6 +42,8 @@ function App() {
           <Route path='/travel' element={<AllDestination />}  />
 
           <Route path="/travel/new" element={<NewDestination />} />
+
+          
 
 
         </Routes>
