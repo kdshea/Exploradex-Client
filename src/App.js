@@ -15,6 +15,8 @@ import Destination from './components/Destination'
 import AllDestination from './components/AllDestination'
 import NewDestination from './components/NewDestination'
 
+import ImageTest from './components/ImageTest'
+
 function App() {
 
 
@@ -43,7 +45,7 @@ function App() {
 
           <Route path="/travel/new" element={<NewDestination />} />
 
-
+          <Route path="/images" element={<ImageTest />} />
         </Routes>
 
         {/* <Footer /> */}
