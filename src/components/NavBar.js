@@ -19,8 +19,8 @@ const NavBar = () => {
             <Nav.Link as={Link} to='/Register' >Register</Nav.Link>
             <Nav.Link as={Link} to='/Landing' >Landing</Nav.Link>
             <Nav.Link as={Link} to='/UserProfile' >UserProfile</Nav.Link>
-            <Nav.Link as={Link} to='/Destination' >Destination</Nav.Link>
-            <Nav.Link as={Link} to='/AllDestination' >AllDestination</Nav.Link>
+            <Nav.Link as={Link} to='/travel/:travelId' >Destination</Nav.Link>
+            <Nav.Link as={Link} to='/travel' >AllDestination</Nav.Link>
             
           </Nav>
         </Container>

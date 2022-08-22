@@ -5,7 +5,8 @@ import Serhan from '../img/4db349_218f4014bcd97b058e8f89469dc0e5d7.webp'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+
 import API_URL from '../config.js'
 
 
@@ -18,8 +19,8 @@ useEffect(() => {
   // ! need to see if this works now!
   const getData = async () => {
     try {
-      // const { data } = await axios.get('https://sei65-destinations.herokuapp.com/travel')
       const { data } = await axios.get(`${API_URL}/travel`)
+     
       console.log(data)
       setDestinationData(data)
     } catch (error) {
@@ -46,15 +47,17 @@ useEffect(() => {
     <Row className='destination-row'>
       { destinationData.map(item => {
           console.log(item)
+          const { _id } = item
           return (
-            <Col key={item._id} md="5" lg="4" className='mb-4'>
+            <Col key={_id} md="5" lg="4" className='mb-4'>
+             <Link to={`/travel/${_id}`}>
                 <Card>
                   <Card.Img variant='top' src={Serhan}></Card.Img>
                   <Card.Body className='bg-light'>
                     <Card.Title className='text-center mb-0'>{item.name} - {item.country}</Card.Title>
                   </Card.Body>
                 </Card>
-             
+                </Link>
             </Col>
           )
         })

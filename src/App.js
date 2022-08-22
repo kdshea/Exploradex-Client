@@ -13,6 +13,7 @@ import UserProfile from './components/UserProfile'
 import Landing from './components/Landing'
 import Destination from './components/Destination'
 import AllDestination from './components/AllDestination'
+import NewDestination from './components/NewDestination'
 
 function App() {
 
@@ -32,13 +33,15 @@ function App() {
 
           <Route path='/Register' element={<Register />} />
 
-          <Route path='/UserProfile' element={<UserProfile />} />
-
+          <Route path='/UserProfile/' element={<UserProfile />} />
+          {/* userProfile page links works, need to see how to load individual page */}
           <Route path='/Landing' element={<Landing />}  />
 
-          <Route path='/Destination/:id' element={<Destination />}  />
+          <Route path='/travel/:travelId' element={<Destination />}  />
 
-          <Route path='/AllDestination' element={<AllDestination />}  />
+          <Route path='/travel' element={<AllDestination />}  />
+
+          <Route path="/travel/new" element={<NewDestination />} />
 
 
         </Routes>
