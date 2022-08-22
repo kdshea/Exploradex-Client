@@ -13,7 +13,6 @@ useEffect(() => {
   const getData = async () => {
     try {
       const { data } = await axios.get(`${API_URL}/travel`)
-     
       console.log(data)
       setDestinationData(data)
     } catch (error) {
@@ -29,18 +28,12 @@ return (
   // ! might be better to do this in Cards but I will leave this to you Chris.
   
 <div>
-
   <h1 className='text-center mb-4'>Images</h1>
-
     { destinationData.map(item => {
         return (
-
           <div key={item._id}>
-
             <h2>{item.name}</h2>
-
             {item.imgUrl.map((url, index) => {
-              console.log('item.imgUrl', item.imgUrl)
               return (
                 <div key={index}>
                   <p>
@@ -53,13 +46,9 @@ return (
                 </div>
               )
               })}
-
           </div>
-
       )
       })}
-
-
 </div>
 )}
 
