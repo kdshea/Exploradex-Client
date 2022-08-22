@@ -6,14 +6,10 @@ import { Link } from 'react-router-dom';
 const NavBar = () => {
 
   return (
-    <div>
-      
-      <Navbar bg="dark" variant="dark">
-        <Container className='nav-wrapper'>
-
-          <Navbar.Brand as={Link} to='/'> Travel Home </Navbar.Brand>
-
-          <Nav className="me-auto">
+    <Navbar expand="sm">
+      <Container as="section">
+        <Navbar.Brand as={Link} to="/">Test</Navbar.Brand>        
+        <Nav className="me-auto">
             <Nav.Link as={Link} to='/' >Home</Nav.Link>
             <Nav.Link as={Link} to='/Login' >Login</Nav.Link>
             <Nav.Link as={Link} to='/Register' >Register</Nav.Link>
@@ -23,10 +19,11 @@ const NavBar = () => {
             <Nav.Link as={Link} to='/travel' >AllDestination</Nav.Link>
             
           </Nav>
+        
         </Container>
       </Navbar>
-      <br />
-    </div>
+      
+    
   );
 }
 

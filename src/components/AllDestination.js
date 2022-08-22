@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
-import Serhan from '../img/4db349_218f4014bcd97b058e8f89469dc0e5d7.webp'
+import Amsterdam from '../img/0c271631-545f-4f5f-8145-e59904c725ae.jpeg'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -52,7 +52,7 @@ useEffect(() => {
             <Col key={_id} md="5" lg="4" className='mb-4'>
              <Link to={`/travel/${_id}`}>
                 <Card>
-                  <Card.Img variant='top' src={Serhan}></Card.Img>
+                  <Card.Img variant='top' src={Amsterdam}></Card.Img>
                   <Card.Body className='bg-light'>
                     <Card.Title className='text-center mb-0'>{item.name} - {item.country}</Card.Title>
                   </Card.Body>
