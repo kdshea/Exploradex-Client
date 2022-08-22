@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import API_URL from '../config.js'
 
 const Login = () => {
   // ! react function for navigation 
   let navigate = useNavigate() 
+
+  const { userId } = useParams()
 
   const [ data, setData ] = useState({
     userName: '',
@@ -38,12 +40,13 @@ const Login = () => {
       axios.defaults.headers.common['Authorization'] = token
       
       console.log(res.data);
-      navigate('/')
+      navigate(`${API_URL}/UserProfile/${userId}`)
         
       } catch (error) {
-        setErrors(error.response.data.message)
+        setErrors(error.response.data.messages)
         console.log(error)
       }
+      
     }
   
 
