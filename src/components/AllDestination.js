@@ -54,7 +54,7 @@ useEffect(() => {
                 <Card>
                   <Card.Img variant='top' src={item.imgUrl[0]}></Card.Img>
                   <Card.Body className='bg-light'>
-                    <Card.Title className='text-center mb-0'>{item.name} - {item.country}</Card.Title>
+                    <Card.Title className='text-center mb-0' id='card-title'>{item.name} - {item.country}</Card.Title>
                   </Card.Body>
                 </Card>
               </Link>

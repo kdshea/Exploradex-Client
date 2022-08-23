@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  color: antiquewhite;
 }
 
 .navbar {
@@ -25,6 +24,7 @@
   padding: 30px;
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.8);
+  color: antiquewhite;
 }
 
 .App {
@@ -50,4 +50,22 @@ button {
   height: 15vw;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.destination-index {
+  color: black;
+}
+
+.spinner-wrapper {
+  text-align: center;
+}
+.spinner-wrapper img {
+  max-width: 100%;
+  width: 200px;
+  border-radius: 50%;
+  margin: 20px;
+}
+
+#card-title {
+  text-decoration: none;
 }/*# sourceMappingURL=main.css.map */
