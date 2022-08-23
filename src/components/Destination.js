@@ -7,7 +7,7 @@ import Container  from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
-import Serhan from '../img/4db349_218f4014bcd97b058e8f89469dc0e5d7.webp'
+// import Serhan from '../img/4db349_218f4014bcd97b058e8f89469dc0e5d7.webp'
 
 const Destination = () => {
   // const navigate = useNavigate() // function to move across pages.

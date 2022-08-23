@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import Serhan from '../img/4db349_218f4014bcd97b058e8f89469dc0e5d7.webp'
 import API_URL from '../config.js'
 import { useParams } from 'react-router-dom'
+import { getPayload, getToken, userIsOwner } from '../helpers/auth.js'
 
 import Container from 'react-bootstrap/Container'
 import { Link } from 'react-router-dom'
@@ -19,18 +20,15 @@ import  Col from 'react-bootstrap/Col'
 const UserProfile = () => {
   
   const { userId } = useParams()
-  console.log(userId)
+  console.log('user id', userId)
 
   const [ userProfile, setUserProfile ] = useState({
+    _id: '',
     email: '',
     userName: '',
-    role: '',
-    createdAt: '',
-    id: '', // not sure id is needed
+    reviews: [],
 // ! this will call all the information from the data user I hope 
   })
-
-
 
   // ! need to fetch the data of the user profile.
   useEffect(() => {
@@ -38,13 +36,19 @@ const UserProfile = () => {
       try {
         // ? need to check the method of the user. 
         // ! the ability to load the user login 
-        const { data } = await axios.get(`${API_URL}/UserProfile/${userId}`)
+        const { data } = await axios.get(`${API_URL}/users/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        })
+        console.log('data', data)
         setUserProfile(data)
       } catch (error) {
         console.log(error)
       }
     }
     getUser()
+
   }, [userId])
 
 
@@ -55,13 +59,13 @@ const UserProfile = () => {
     <Row>
       { userProfile ? 
         <>
-          <h1>{userProfile.email}</h1>
+          <h1>{userProfile.userName}</h1>
           <Col md="6">
-            <img className='w-100' src={Serhan} alt={userProfile.email} />
+            <img className='w-100' src={Serhan} alt={userProfile.userName} />
           </Col>
           <Col md="6">
             {/* Description */}
-            <h2><span>🍽</span> Description</h2>
+            <h2> Description</h2>
             <p>{userProfile.userName} - {userProfile.email}</p>
             <hr />
             {/* Origin */}
