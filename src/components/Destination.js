@@ -71,7 +71,7 @@ const Destination = () => {
             <p>{destination.country}</p>
             <hr />
             {/* Added by */}
-            <h2><span>👤</span> Added by</h2>
+            <h2><span>👤</span>{destination.userName}</h2>
             {/* <p>{bread.addedBy.username}</p> */}
             <hr />
             {/* Edit / Delete buttons */}

@@ -1,30 +1,24 @@
-// ? this is a template for the user to add recent destination - looks okay.
-
-
 import axios from "axios";
 import { useState } from "react";
-
-import { Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 import { getToken } from '../helpers/auth'
 
 const NewDestination = () => {
 
+  const navigate = useNavigate()
+
   const [ newTravel, setNewTravel ] = useState({
     name: '',
     country: '',
     description: '',
-    rating: '',
-    review: '',
+    createdBy: '',
   })
 
   const [ errors, setErrors ] = useState({
     name: '',
     country: '',
     description: '',
-    rating: '',
-    review: '',
-    // ! not sure about the error section 
   })
 
 
@@ -33,33 +27,60 @@ const NewDestination = () => {
     try {
       const { data } = await axios.post('http://localhost:3000/travel', newTravel, {
         headers: {
-          Authorization: `Bearer ${getToken()}`  //! need to work on this part         
-        }
+          Authorization: `Bearer ${getToken()}`,  
+        },
       
       })
-      setNewTravel(data)
+      console.log(data)
+
+      navigate('/travel')
     } catch (error) {
+      // setErrors(error)
       console.log(error);
+      // setErrors(error.data.message)
     }
+    
   } 
+
+  const handleChange = (event) => {
+    setNewTravel({ ...newTravel, [event.target.name]: event.target.value })
+    // setErrors({ ...errors, [event.target.name]: '', message: '' })
+  }
+
 
 
   return (
-    <main className="form-page">
-    <Container>
+   <main>
+ 
+    <form onSubmit={handleSubmit}>
+      <h1>Add Destination</h1>
 
-      <h1>Hello add new destination</h1>
-      {/* adding a new destination? hmm so we will need to be able to add this as a form? */}
-      {/* <BreadForm
-        errors={errors}
-        setErrors={setErrors}
-        // formData={formData}
-        // setFormData={setFormData}
-        handleSubmit={handleSubmit}
-        title="Add destination"
-      /> */}
-    </Container>
-  </main>
+      <label htmlFor="name">Name</label>
+
+      <input type="text" name="name" placeholder="name of destination" value={newTravel.name} onChange={handleChange} />
+      
+
+      <label htmlFor="origin">country</label>
+      <input type="text" name="country" placeholder="Origin" value={newTravel.country} onChange={handleChange} />
+
+      <label htmlFor="description">Description</label>
+
+      <textarea name="description" placeholder="description" value={newTravel.description} onChange={handleChange} ></textarea>
+
+      
+
+      <input type="url" name="url" id="url" placeholder="https://image.com" pattern="https://.*" size="30"
+       required />
+
+      {/* add the image as a url input */}
+      {/* <label htmlFor="imgUrl">Select image:</label>
+      <input type="file" id="img" name="imgUrl" accept="image/*" value={newTravel.imgUrl} onChange={handleChange}/> */}
+     <input type="submit"/> 
+  
+    </form>
+
+    </main>
+
   )
 }
 
