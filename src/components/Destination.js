@@ -57,7 +57,7 @@ const Destination = () => {
       { destination ? 
         // If bread is truthy, then our API call was successful as data has been added to the bread state
         <>
-          <h1>{destination.name}</h1>
+        <h1>{destination.name}</h1>
           <Col md="6">
             <img className='w-100' src={destination.imgUrl[0]} alt={destination.name} />
           </Col>

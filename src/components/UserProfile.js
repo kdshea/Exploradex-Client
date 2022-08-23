@@ -19,6 +19,7 @@ import  Col from 'react-bootstrap/Col'
 const UserProfile = () => {
   
   const { userId } = useParams()
+  console.log(userId)
 
   const [ userProfile, setUserProfile ] = useState({
     email: '',
@@ -36,7 +37,8 @@ const UserProfile = () => {
     const getUser = async () => {
       try {
         // ? need to check the method of the user. 
-        const { data } = await axios.get(`${API_URL}/users/${userId}`)
+        // ! the ability to load the user login 
+        const { data } = await axios.get(`${API_URL}/UserProfile/${userId}`)
         setUserProfile(data)
       } catch (error) {
         console.log(error)
@@ -53,9 +55,9 @@ const UserProfile = () => {
     <Row>
       { userProfile ? 
         <>
-          <h1>{userProfile.name}</h1>
+          <h1>{userProfile.email}</h1>
           <Col md="6">
-            <img className='w-100' src={Serhan} alt={userProfile.name} />
+            <img className='w-100' src={Serhan} alt={userProfile.email} />
           </Col>
           <Col md="6">
             {/* Description */}

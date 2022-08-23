@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import { Container } from "react-bootstrap";
 
+import { getToken } from '../helpers/auth'
 
 const NewDestination = () => {
 
@@ -32,7 +33,7 @@ const NewDestination = () => {
     try {
       const { data } = await axios.post('http://localhost:3000/travel', newTravel, {
         headers: {
-          Authorization: `Bearer Token`  //! need to work on this part         
+          Authorization: `Bearer ${getToken()}`  //! need to work on this part         
         }
       
       })
@@ -48,6 +49,7 @@ const NewDestination = () => {
     <Container>
 
       <h1>Hello add new destination</h1>
+      {/* adding a new destination? hmm so we will need to be able to add this as a form? */}
       {/* <BreadForm
         errors={errors}
         setErrors={setErrors}
