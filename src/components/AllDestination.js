@@ -43,7 +43,7 @@ useEffect(() => {
     // ! might be better to do this in Cards but I will leave this to you Chris.
     
     <Container as="main" className='destination-index'>
-    <h1 className='text-center mb-4'>destination</h1>
+    <h1 className='text-center mb-4'>All Destinations</h1>
     <Row className='destination-row'>
       { destinationData.map(item => {
           console.log(item)
