@@ -59,7 +59,7 @@ const Destination = () => {
         <>
           <h1>{destination.name}</h1>
           <Col md="6">
-            <img className='w-100' src={Serhan} alt={destination.name} />
+            <img className='w-100' src={destination.imgUrl[0]} alt={destination.name} />
           </Col>
           <Col md="6">
             {/* Description */}
