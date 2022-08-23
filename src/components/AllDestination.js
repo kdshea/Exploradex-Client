@@ -52,7 +52,7 @@ useEffect(() => {
             <Col key={_id} md="5" lg="4" className='mb-4'>
              <Link to={`/travel/${_id}`}>
                 <Card>
-                  <Card.Img variant='top' src={Amsterdam}></Card.Img>
+                  <Card.Img variant='top' src={item.imgUrl[0]}></Card.Img>
                   <Card.Body className='bg-light'>
                     <Card.Title className='text-center mb-0'>{item.name} - {item.country}</Card.Title>
                   </Card.Body>

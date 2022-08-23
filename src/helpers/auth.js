@@ -1,5 +1,5 @@
-import axios from 'axios'
-import Buffer  from 'buffer'
+
+import { Buffer } from 'buffer'
 
 // ! not sure this is required but it is a way of decoding the token. Look into it later
 
@@ -18,18 +18,17 @@ export const getPayLoad = () => {
   if (!token) return // If token is undefined end the function
   const splitToken = token.split('.')
   if (splitToken.length !== 3) return // If the length isn't 3, we know it's not a JWT, so it's invalid
+  console.log(splitToken)
   return JSON.parse(Buffer.from(splitToken[1], 'base64'))
 }
 
+
 export const userIsAuthenticated = () => {
   const payload = getPayLoad()
-  if (!payload) return // If payload is undefined, return undefined (falsey)
-  // If payload is truthy, we want to check the expiry date is in the future
-  const currentTime = Math.round(Date.now() / 1000) // Date.now() returns back the unix
+  if (!payload) return 
+  
+  const currentTime = Math.round(Date.now() / 1000) 
 
-  console.log('EXPIRY DATE  ->', payload.exp)
-  console.log('CURRENT TIME ->', currentTime)
-  console.log('IS EXPIRY DATE IN FUTURE', currentTime < payload.exp)
   return currentTime < payload.exp
 }
 
@@ -38,6 +37,4 @@ export const userIsOwner = (item) => {
   const payload = getPayLoad()
   if (!payload) return
   return payload.sub === item.addedBy._id
-
-  
 }

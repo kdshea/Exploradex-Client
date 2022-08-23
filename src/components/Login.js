@@ -1,15 +1,17 @@
 import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import API_URL from '../config.js'
+
+
+import { setToken } from '../helpers/auth'
 
 const Login = () => {
   // ! react function for navigation 
-  let navigate = useNavigate() 
+  const navigate = useNavigate() 
 
-  const { userId } = useParams()
 
-  const [ data, setData ] = useState({
+  const [ loginData, setLoginData ] = useState({
     userName: '',
     password: '',
   })
@@ -20,7 +22,7 @@ const Login = () => {
 
     // ! handleChange 
     const handleChange = (event) => {
-      setData({ ...data, [event.target.name]: event.target.value  })
+      setLoginData({ ...loginData, [event.target.name]: event.target.value  })
     }
   
 
@@ -29,18 +31,21 @@ const Login = () => {
       try {
   
       // const res = await axios.post('https://sei65-destinations.herokuapp.com/login', data)
-      const res = await axios.post(`${API_URL}/login`, data)
+      const { data } = await axios.post(`${API_URL}/login`, loginData)
 
       // ! login works that is good
 
-      const { token } = res.data
+      setToken(data.token)
+      console.log(data.token)
 
-      localStorage.setItem('token', token)
+      // const { token } = res.data
+
+      // localStorage.setItem('token', token)
       
-      axios.defaults.headers.common['Authorization'] = token
+      // axios.defaults.headers.common['Authorization'] = token
       
-      console.log(res.data);
-      navigate(`${API_URL}/UserProfile/${userId}`)
+      // console.log(res.data);
+      navigate('/')
         
       } catch (error) {
         setErrors(error.response.data.messages)
@@ -60,9 +65,9 @@ const Login = () => {
       <form onSubmit={onSubmit} className='form-wrapper'>
 
           {/* ! inputs need text name placeholder value  */}
-          <input type='text' name='userName' placeholder='userName' onChange={handleChange} value={data.userName} />
+          <input type='text' name='userName' placeholder='userName' onChange={handleChange} value={loginData.userName} />
           {/* Password input section  */}
-          <input type='password' name='password' placeholder='password' onChange={handleChange} value={data.password} />
+          <input type='password' name='password' placeholder='password' onChange={handleChange} value={loginData.password} />
           <button type='submit'>Login</button>
       </form>
 
