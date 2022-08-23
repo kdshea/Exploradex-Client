@@ -29,11 +29,11 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/Login' element={<Login />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/UserProfile/:userId' element={<UserProfile />} />
+          <Route path='/users/:userId' element={<UserProfile />} />
           {/* userProfile page links works, need to see how to load individual page */}
-          <Route path='/Landing' element={<Landing />}  />
+          <Route path='/landing' element={<Landing />}  />
           <Route path='/travel/:travelId' element={<Destination />}  />
           <Route path='/travel' element={<AllDestination />}  />
           <Route path="/travel/new" element={<NewDestination />} />
