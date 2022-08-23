@@ -8,6 +8,8 @@ const NewDestination = () => {
 
   const navigate = useNavigate()
 
+  const [ imageSelect, setImageSelected ] = useState('') // ? use state for the images selected 
+
   const [ newTravel, setNewTravel ] = useState({
     name: '',
     country: '',
@@ -47,6 +49,15 @@ const NewDestination = () => {
     // setErrors({ ...errors, [event.target.name]: '', message: '' })
   }
 
+  const uploadImage = async (event) => {
+    const formData = new FormData()
+    formData.append('file', imageSelect)
+    formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
+    const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
+    
+    // ! this is my (serhan miah) login for the cloudinary - for destination images
+    console.log(data);
+  }
 
 
   return (
@@ -67,14 +78,16 @@ const NewDestination = () => {
 
       <textarea name="description" placeholder="description" value={newTravel.description} onChange={handleChange} ></textarea>
 
+
+      {/* upload image that connects to the cloudinary API - API  */}
+      {/*  */}
+      <label htmlFor="image"> Upload Image</label>
+      <input type="file" id="image" className="input" onChange={(event) => {
+        setImageSelected(event.target.files[0])
+      }} />
+      <button onClick={uploadImage}> Upload image</button>
       
-
-      <input type="url" name="url" id="url" placeholder="https://image.com" pattern="https://.*" size="30"
-       required />
-
-      {/* add the image as a url input */}
-      {/* <label htmlFor="imgUrl">Select image:</label>
-      <input type="file" id="img" name="imgUrl" accept="image/*" value={newTravel.imgUrl} onChange={handleChange}/> */}
+      
      <input type="submit"/> 
   
     </form>
