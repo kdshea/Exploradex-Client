@@ -17,14 +17,21 @@ const Home = () => {
   ];
 
   return (
-    <div className="view">
-      <h1>Landing Page</h1>
-      {buttons.map((button, index) => (
-        <Link key={index} to={button.path}>
-          <button>{button.label}</button>
-        </Link>
-      ))}
-    </div>
+    <>
+      <main className="hero text-center">
+      <div className="hero-container">
+          <h1 className='display-3'>Welcome to our Travel Library</h1>
+          <p className='lead'>To add a destination please Register below</p>
+          {buttons.map((button, index) => (
+            <Link key={index} to={button.path}>
+              <button>{button.label}</button>
+            </Link>
+          ))}
+          
+        </div>
+      </main>
+    </>
+    
   )
 
 

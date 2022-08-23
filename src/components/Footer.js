@@ -4,17 +4,17 @@
 const Footer = () => {
 
   return (
-  <footer className="footer-Main">
-  <div className="footer-wrapper" >
-      <h4>Made By <h4 className="gitLink" href='https://github.com/chrainey' >Chris</h4> & <h4 className="gitLink" href='https://github.com/SyztemError' >Kate</h4>
-      <h4 className="gitLink" href='https://github.com/kdshea' >Serhan</h4>
-      
-      </h4> 
-        {/* variant="dark" */}
-
-  </div>
-
-</footer>
+    <div>
+      <ul className="footer">
+        <span className="created">Created by:</span>
+        <li><a className="gitLink" href="https://github.com/kdShea" target="_blank" rel="noreferrer" >&#xf09b;  Kate O'Shea, </a>
+        </li>
+        <li><a className="gitLink" href="https://github.com/SyztemError" target="_blank" rel="noreferrer" >&#xf09b;  Serhan Miah and </a>
+        </li>
+        <li><a className="gitLink" href="https://github.com/chrainey" target="_blank" rel="noreferrer" >&#xf09b;  Chris Rainey </a>
+        </li>
+      </ul>
+    </div>
 
   )
 }
