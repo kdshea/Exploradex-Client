@@ -56,3 +56,13 @@ button {
 .destination-index {
   color: black;
 }
+
+.spinner-wrapper{
+  text-align: center;
+  img{
+    max-width: 100%;
+    width: 200px;
+    border-radius: 50%;
+    margin: 20px;
+  }
+}
