@@ -37,7 +37,7 @@ const Register = () => {
       console.log(data)
       setFormData(data)
 
-      navigate('/Login')
+      navigate('/login')
       
     } catch (error) {
       console.log(error)
