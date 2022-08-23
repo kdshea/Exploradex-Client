@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
 
-  return (    
-      <Navbar className="test" expand="sm">
+  return (
+    <Navbar className="test" expand="sm">
         <Container as="section">
           <Navbar.Brand as={Link} to="/">Travel Logo</Navbar.Brand>        
           <Nav className="justify-content-end">
@@ -17,13 +17,12 @@ const NavBar = () => {
               <Nav.Link as={Link} to='/UserProfile' >UserProfile</Nav.Link>
               <Nav.Link as={Link} to='/travel/:travelId' >Destination</Nav.Link>
               <Nav.Link as={Link} to='/travel' >AllDestination</Nav.Link>
+              <Nav.Link as={Link} to='/images' >ImageTest</Nav.Link>
               
             </Nav>
           
           </Container>
         </Navbar>
-
-    
       
     
   );
