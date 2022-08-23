@@ -36,7 +36,8 @@ const Login = () => {
       // ! login works that is good
 
       setToken(data.token)
-      console.log(data.token)
+      console.log('token', data.token)
+      console.log('id', data.id)
 
       // const { token } = res.data
 
@@ -45,7 +46,7 @@ const Login = () => {
       // axios.defaults.headers.common['Authorization'] = token
       
       // console.log(res.data);
-      navigate('/')
+      navigate(`/users/${data.id}`)
         
       } catch (error) {
         setErrors(error.response.data.messages)
@@ -65,9 +66,9 @@ const Login = () => {
       <form onSubmit={onSubmit} className='form-wrapper'>
 
           {/* ! inputs need text name placeholder value  */}
-          <input type='text' name='userName' placeholder='userName' onChange={handleChange} value={loginData.userName} />
+          <input type='text' name='userName' placeholder='Username' onChange={handleChange} value={loginData.userName} />
           {/* Password input section  */}
-          <input type='password' name='password' placeholder='password' onChange={handleChange} value={loginData.password} />
+          <input type='password' name='password' placeholder='Password' onChange={handleChange} value={loginData.password} />
           <button type='submit'>Login</button>
       </form>
 

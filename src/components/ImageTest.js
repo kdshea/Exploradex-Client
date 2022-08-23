@@ -9,7 +9,6 @@ const [ destinationData, setDestinationData ] = useState([])
 const [ errors, setErrors ] = useState(false)
 
 useEffect(() => {
-  // ! need to see if this works now!
   const getData = async () => {
     try {
       const { data } = await axios.get(`${API_URL}/travel`)
@@ -23,10 +22,7 @@ useEffect(() => {
   getData()
 }, [])
 
-
 return (
-  // ! might be better to do this in Cards but I will leave this to you Chris.
-  
 <div>
   <h1 className='text-center mb-4'>Images</h1>
     { destinationData.map(item => {
