@@ -9,11 +9,13 @@ import NavBar from './components/NavBar'
 import Login from './components/Login'
 import Register from './components/Register'
 import UserProfile from './components/UserProfile'
-// import Footer from './components/Footer'
+import Footer from './components/Footer'
 import Landing from './components/Landing'
 import Destination from './components/Destination'
 import AllDestination from './components/AllDestination'
 import NewDestination from './components/NewDestination'
+
+import ImageTest from './components/ImageTest'
 
 function App() {
 
@@ -26,29 +28,19 @@ function App() {
       <NavBar /> 
 
         <Routes>
-
           <Route path='/' element={<Home />} />
-
           <Route path='/Login' element={<Login />} />
-
           <Route path='/register' element={<Register />} />
-
           <Route path='/UserProfile/:userId' element={<UserProfile />} />
           {/* userProfile page links works, need to see how to load individual page */}
           <Route path='/Landing' element={<Landing />}  />
-
           <Route path='/travel/:travelId' element={<Destination />}  />
-
           <Route path='/travel' element={<AllDestination />}  />
-
           <Route path="/travel/new" element={<NewDestination />} />
-
-          
-
-
+          <Route path="/images" element={<ImageTest />} />    
         </Routes>
 
-        {/* <Footer /> */}
+        <Footer />
       </BrowserRouter>
     </div>
   )

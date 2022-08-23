@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
-import Amsterdam from '../img/0c271631-545f-4f5f-8145-e59904c725ae.jpeg'
+
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -20,7 +20,7 @@ useEffect(() => {
   const getData = async () => {
     try {
       const { data } = await axios.get(`${API_URL}/travel`)
-     
+
       console.log(data)
       setDestinationData(data)
     } catch (error) {
@@ -50,14 +50,14 @@ useEffect(() => {
           const { _id } = item
           return (
             <Col key={_id} md="5" lg="4" className='mb-4'>
-             <Link to={`/travel/${_id}`}>
+              <Link to={`/travel/${_id}`}>
                 <Card>
                   <Card.Img variant='top' src={item.imgUrl[0]}></Card.Img>
                   <Card.Body className='bg-light'>
                     <Card.Title className='text-center mb-0'>{item.name} - {item.country}</Card.Title>
                   </Card.Body>
                 </Card>
-                </Link>
+              </Link>
             </Col>
           )
         })
