@@ -9,6 +9,7 @@ const Review = () => {
 
 const navigate = useNavigate()
 const { destinationId } = useParams()
+
 const [ review, setReview ] = useState(
 {
 reviewText: '',
