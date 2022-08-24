@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import API_URL from '../config.js'
-import { setToken } from '../helpers/auth'
+import { setId, setToken } from '../helpers/auth'
 
 const Login = () => {
 
@@ -21,9 +21,8 @@ const Login = () => {
     event.preventDefault()
     try {
     const { data } = await axios.post(`${API_URL}/login`, loginData)
-    setToken(data.token, data.id)
-    console.log('token', data.token)
-    console.log('id', data.userId)
+    setToken(data.token)
+    setId(data.userId)
     navigate(`/users/${data.userId}`)
 
     // axios.defaults.headers.common['Authorization'] = token
