@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import API_URL from '../config.js'
 import Container from "react-bootstrap/Container"
@@ -8,15 +8,20 @@ import Col from "react-bootstrap/Col"
 import Spinner from './Spinner.js'
 import  Card  from "react-bootstrap/Card"
 import { getToken } from "../helpers/auth.js"
-
+import  Button  from "react-bootstrap/Button"
 
 const Destination = () => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
-  const { destinationId, reviewId } = useParams()
+  const { destinationId } = useParams()
+
   const [ destination, setDestination ] = useState(null)
   const [ review, setReviews ] = useState([])
   const [ errors, setErrors ] = useState(false)
+  const [ destoryReview, setDestoryReview ] = useState({
+    _id: ''
+  })
+
 
   useEffect(() => {
     const getData = async () => {
@@ -30,6 +35,21 @@ const Destination = () => {
     getData()
     console.log(destination)
   }, [destinationId])
+
+  const deleteReview = async (event) => {
+    event.preventDefault()
+    try {
+      const { data } = await axios.delete(`${API_URL}/travel/${destinationId}`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      console.log(data);
+      navigate('/')
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
 
   
@@ -69,7 +89,11 @@ const Destination = () => {
                                 <p><span>👤</span>{destination.createdBy}</p>
                                 <p>Rating: {rating}</p>
                                 <p>Activities: {activities}</p>
-                                <p>{reviewText}</p>                              
+                                <p>{reviewText}</p>   
+                                <div className="buttons mb-4">
+                                  <Button variant="danger" onClick={deleteReview}>Delete Review</Button>
+                                  {/* <Link to={`/bread/${bread._id}/edit`} className='btn btn-primary'>Edit Review</Link> */}
+                                </div>                          
                               </Card.Body>
                             </Card>
                           </Link>
