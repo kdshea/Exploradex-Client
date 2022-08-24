@@ -40,7 +40,7 @@ const UserProfile = () => {
   }, [userId])
 
   return (
-<Container>
+<Container className='user-profilePage'>
     <Row>
       { userProfile ? 
         <>

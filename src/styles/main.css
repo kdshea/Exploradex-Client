@@ -92,4 +92,22 @@ button {
 
 .card-body {
   background-color: lightgray;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-addDestination {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-profilePage {
+  height: 100vh;
+}
+
+ul {
+  margin: 0;
 }/*# sourceMappingURL=main.css.map */

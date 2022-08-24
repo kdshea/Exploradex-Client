@@ -57,7 +57,7 @@ const uploadImage = async (event) => {
 
   return (
     <main>
-      <form onSubmit={handleSubmit}>
+      <form className="review-form" onSubmit={handleSubmit}>
       <h1>Add review</h1>
         <label htmlFor="reviewText">Review Text</label>
         <input type="text" name="reviewText" placeholder="reviewText" onChange={handleChange} />
