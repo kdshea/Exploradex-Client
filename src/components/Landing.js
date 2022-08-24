@@ -1,4 +1,3 @@
-import Card  from "react-bootstrap/Card"
 
 const Landing = () => {
   return (
@@ -11,7 +10,7 @@ const Landing = () => {
     </div>
 
     <div>
-      <h3>Welcome to the Travel Review! For an honest feedback on Destrination, register or login</h3>
+      <h3>Welcome to the Travel Review! For an honest feedback on Destination, register or login</h3>
     </div>
 
     <div>

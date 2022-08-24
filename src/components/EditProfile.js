@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import Row  from 'react-bootstrap/Row'
 import  Col from 'react-bootstrap/Col'
 import Spinner from './Spinner.js'
-// import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button'
 
 const EditProfile = () => {
 
@@ -55,6 +55,7 @@ const EditProfile = () => {
   }
 
   const uploadImage = async (event) => {
+    event.preventDefault()
     const formData = new FormData()
     formData.append('file', imageSelect)
     formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
