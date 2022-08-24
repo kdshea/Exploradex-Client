@@ -52,48 +52,37 @@ const Destination = () => {
 
 
   return (
-    <Container as="main">
-    <Row>
-      { destination ? 
-        // If bread is truthy, then our API call was successful as data has been added to the bread state
-        <>
-        <h1>{destination.name}</h1>
-          <Col md="6">
-            <img className='w-100' src={destination.imgUrl[0]} alt={destination.name} />
-          </Col>
-          <Col md="6">
-            {/* Description */}
-            <h2><span>🍽</span> Description</h2>
-            <p>{destination.description}</p>
-            <hr />
-            {/* Origin */}
-            <h2><span>🌍</span> Origin</h2>
-            <p>{destination.country}</p>
-            <hr />
-            {/* Added by */}
-            <h2><span>👤</span>{destination.userName}</h2>
-            {/* <p>{bread.addedBy.username}</p> */}
-            <hr />
-            {/* Edit / Delete buttons */}
-            {/* { userIsOwner(destination) &&
-              <div className="buttons mb-4">
-                <Button variant="danger" onClick={deleteBread}>Delete bread</Button>
-                <Link to={`/bread/${bread._id}/edit`} className='btn btn-primary'>Edit bread</Link>
-              </div>
-            } */}
-            {/* Link back to all breads */}
-            <Link to="/travel" className='btn dark'>Back to all Destination</Link>
-          </Col>
-        </>
-        :
-        // If bread is falsey, we are either still waiting for a response or there's been an error
-        // TO check whether there has been an error, we check the truthy value of errors state
-        <h2 className="text-center">
-          {/* { errors ? 'Something went wrong. Please try again later' : <Spinner />} */}
-        </h2>
-      }
-    </Row>
-  </Container>
+    <div className='destination-page'>
+      <Container className="destination-container" as="main">
+        <Row>
+          { destination ? 
+            
+            <>
+            <h1>{destination.name}</h1>
+              <Col md="6">
+                <img className='w-100' src={destination.imgUrl[0]} alt={destination.name} />
+              </Col>
+              <Col md="6">
+                <h2><span>🍽</span> Description</h2>
+                <p>{destination.description}</p>
+                <hr />            
+                <h2><span>🌍</span> Origin</h2>
+                <p>{destination.country}</p>
+                <hr />            
+                <h2><span>👤</span>{destination.userName}</h2>            
+                <hr />            
+                <Link to="/travel" className='btn dark'>Back to all Destination</Link>
+              </Col>
+            </>
+            :
+            
+            <h2 className="text-center">          
+            </h2>
+          }
+        </Row>
+      </Container>
+
+    </div>
 
   )
 

@@ -26,6 +26,7 @@
     border-radius: 8px;
     background: rgba(0, 0, 0, 0.8);
     color: antiquewhite;
+    box-shadow: 8px 8px 8px rgb(0 0 0 / 60%);
   }
 }
 
@@ -54,7 +55,7 @@ button {
 }
 
 .destination-index {
-  color: black;
+  color: black;  
 }
 
 .spinner-wrapper{
@@ -67,6 +68,14 @@ button {
   }
 }
 
-#card-title{
-  text-decoration: none;
+.all-destination-page {
+  background-image: linear-gradient(rgba(219,233,244,0.8), rgba(219,233,244,0.8)), url(../img/pexels-pixabay-210243.jpg);
+  
+}
+
+
+.destination-page {
+  background-image: linear-gradient(rgba(219,233,244,0.8), rgba(219,233,244,0.8)), url(../img/pexels-pixabay-210243.jpg);
+  height: 100vh;
+
 }
