@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import API_URL from '../config.js'
 import Container from "react-bootstrap/Container"
-import Row from "react-bootstrap/Row"
+import ListGroup from "react-bootstrap/ListGroup"
 import Col from "react-bootstrap/Col"
 import Spinner from './Spinner.js'
 import  Card  from "react-bootstrap/Card"
@@ -55,36 +55,40 @@ const Destination = () => {
   return (
     <div className='destination-page'>
       <Container as="main">
-      <Row>
         { destination ? 
-          <>
-          <h1>{destination.name}</h1>
-            <Col md="6">
-              <img className='w-100' src={destination.imgUrl[0]} alt={destination.name} />
-            </Col>
-            <Col md="6">
-              <h2> Description</h2>
-              <h2><span>🌍</span>Country</h2>
-              <p>{destination.country}</p>
-              <p>Rating: {destination.rating}</p>
-              <p>{destination.description}</p>
-              <hr />
-              <Link to={`/review/${destinationId}`}>
-                <button>Add a review</button>
-              </Link>
-              <h2>Reviews</h2>    
-              <Container className='text-center'>
-                <Row>
+          
+          <div className="kitchen-sink">
+            <h1>{destination.name}</h1>
+           <Card className="destination-card">
+              <Card.Img  variant="top" src={destination.imgUrl[0]} alt={destination.name} />
+              <Card.Body>
+                <Card.Title>{destination.name} - {destination.country}</Card.Title>
+                <Card.Text>
+                  {destination.description}
+                </Card.Text>
+              </Card.Body>
+              <ListGroup className="list-group-flush">
+                <ListGroup.Item>Country: {destination.country}</ListGroup.Item>
+                <ListGroup.Item>Rating: {destination.rating}</ListGroup.Item>
+                <ListGroup.Item>Activites: {destination.activities}</ListGroup.Item>
+              </ListGroup>
+              <Card.Body>
+                {/* <Card.Link href="#">Card Link</Card.Link>
+                <Card.Link href="#">Another Link</Card.Link> */}
+              </Card.Body>
+            </Card>
+       
+              <Container as='section' className='text-center'>
+ 
                   { destination.reviews.length > 0
                     ?
                     destination.reviews.map(review => {
                       const { _id: reviewId, reviewText, rating } = review
-                      console.log('review', review)
                       const activities = review.activities.join(', ')
-                      return (
+                      return (                       
                         <Col key={reviewId} md="6" lg="4" className='mb-4'>
                           <Link to={`/travel/${review.destinationId}`}>
-                            <Card>
+                          <Card class="card" >
                               <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
                               <Card.Body>
                                 <Card.Title className='text-center mb-0'>{review.destinationName}</Card.Title>                              
@@ -107,17 +111,16 @@ const Destination = () => {
                       { errors ? <h2>Something went wrong. Please try again later</h2> : <p>Add your first review</p>}
                     </>
                   }
-                </Row>
+             
               </Container>            
               <Link to="/travel" className='btn dark'>Back to all Destination</Link>
-            </Col>
-          </>
+          </div>
           :
           <h2 className="text-center">
             { errors ? 'Something went wrong. Please try again later' : <Spinner />}
           </h2>
         }
-      </Row>
+    
       <Link to={`/review/${destinationId}`}>
       <button>Add a review</button>
       </Link>
