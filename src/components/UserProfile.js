@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import API_URL from '../config.js'
 import { useParams } from 'react-router-dom'
 import { getToken } from '../helpers/auth.js'
-
 import Container from 'react-bootstrap/Container'
 import  Card  from "react-bootstrap/Card"
 import { Link } from 'react-router-dom'
@@ -14,8 +13,6 @@ import Spinner from './Spinner.js'
 
 const UserProfile = () => {
   const { userId } = useParams()
-  console.log('user id', userId)
-
   const [ errors, setErrors ] = useState(false)
   const [ userProfile, setUserProfile ] = useState({
     _id: '',
@@ -32,7 +29,7 @@ const UserProfile = () => {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log('data', data)
+        console.log('user profile', data)
         setUserProfile(data)
       } catch (error) {
         console.log(error)
@@ -68,7 +65,6 @@ const UserProfile = () => {
                     const { _id: reviewId, reviewText, destination: destinationId, rating } = review
                     console.log('review', review)
                     const activities = review.activities.join(', ')
-                    console.log(activities)
                     return (
                       <Col key={reviewId} md="6" lg="4" className='mb-4'>
                         <Link to={`/travel/${review.destinationId}`}>
@@ -77,7 +73,7 @@ const UserProfile = () => {
                             <Card.Body>
                               <Card.Title className='text-center mb-0'>{review.destinationName}</Card.Title>
                               <p>Rating: {rating}</p>
-                              <p>{activities}</p>
+                              <p>Activities: {activities}</p>
                               <p>{reviewText}</p>
                               {/* Edit / Delete buttons - I will work on these next
                                 <div className="buttons mb-4">
