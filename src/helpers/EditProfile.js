@@ -3,13 +3,12 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import API_URL from '../config.js'
 import { useParams } from 'react-router-dom'
-import { getToken } from '../helpers/auth.js'
+import { getToken } from './auth.js'
 import Container from 'react-bootstrap/Container'
 import { Link } from 'react-router-dom'
 import Row  from 'react-bootstrap/Row'
 import  Col from 'react-bootstrap/Col'
-import Spinner from './Spinner.js'
-import Button from 'react-bootstrap/Button'
+import Spinner from '../components/Spinner.js'
 
 const EditProfile = () => {
 
@@ -83,7 +82,7 @@ const EditProfile = () => {
   return (
 <Container>
     <Row>
-      { userProfile ? 
+      { userProfile.email ? 
         <>
           <form onSubmit={handleSubmit}>
             <h1>Name: { userProfile.displayName? userProfile.displayName : userProfile.userName}</h1>
