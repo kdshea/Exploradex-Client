@@ -92,7 +92,7 @@ const Destination = () => {
           </h2>
         }
       </Row>
-      <Link to='/review'>
+      <Link to={`/review/${destinationId}`}>
       <button>Add a review</button>
       </Link>
       
