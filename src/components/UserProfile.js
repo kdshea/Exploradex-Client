@@ -50,7 +50,7 @@ const UserProfile = () => {
         <>
           <h1>Name: { userProfile.displayName? userProfile.displayName : userProfile.userName}</h1>
           <Col md="6">
-            <img className='w-100' src={Serhan} alt={userProfile.userName} />
+            <img className='w-100' src={userProfile.profileImg} alt={userProfile.userName} />
           </Col>
           <Col md="6">
             <h2>Profile</h2>

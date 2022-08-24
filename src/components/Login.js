@@ -23,8 +23,8 @@ const Login = () => {
     const { data } = await axios.post(`${API_URL}/login`, loginData)
     setToken(data.token)
     console.log('token', data.token)
-    console.log('id', data.id)
-    navigate(`/users/${data.id}`)
+    console.log('id', data.userId)
+    navigate(`/users/${data.userId}`)
 
     // localStorage.setItem('token', token)
     // axios.defaults.headers.common['Authorization'] = token
