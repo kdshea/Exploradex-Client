@@ -114,8 +114,8 @@ const EditProfile = () => {
         </>
         :
         <h2 className="text-center">
-        { errors ? 'Something went wrong. Please try again later' : <Spinner />}
-      </h2>
+          { errors ? 'Something went wrong. Please try again later' : <Spinner />}
+        </h2>
       }
     </Row>
   </Container>
