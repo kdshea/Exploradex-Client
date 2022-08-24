@@ -79,7 +79,6 @@ const EditProfile = () => {
     }
   } 
 
-
   return (
 <Container>
     <Row>
