@@ -32,7 +32,7 @@ function App() {
           <Route path='/travel/:destinationId/:reviewId' element={<Destination />}  /> 
           <Route path='/travel' element={<AllDestination />}  />
           <Route path="/travel/new" element={<NewDestination />} />
-          <Route path='/review' element={<Review /> } />
+          <Route path='/review/:destinationId' element={<Review /> } />
         </Routes>
         <Footer />
       </BrowserRouter>

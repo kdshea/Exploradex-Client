@@ -52,10 +52,9 @@ const NewDestination = () => {
         },
       })
       console.log(data)
-
       navigate('/travel')
     } catch (error) {
-      console.log(error);
+      console.log(error)
       setErrors(error)
     }
   } 
