@@ -59,15 +59,15 @@ const Destination = () => {
           
           <div className="kitchen-sink">
             <h1>{destination.name}</h1>
-           <Card className="destination-card">
+           <Card border="dark" className="destination-card bg-transparent">
               <Card.Img  variant="top" src={destination.imgUrl[0]} alt={destination.name} />
-              <Card.Body>
+              <Card.Body className="bg-transparent">
                 <Card.Title>{destination.name} - {destination.country}</Card.Title>
                 <Card.Text>
                   {destination.description}
                 </Card.Text>
               </Card.Body>
-              <ListGroup className="list-group-flush">
+              <ListGroup className="list-group-flush ">
                 <ListGroup.Item>Country: {destination.country}</ListGroup.Item>
                 <ListGroup.Item>Rating: {destination.rating}</ListGroup.Item>
                 <ListGroup.Item>Activites: {destination.activities}</ListGroup.Item>
@@ -79,39 +79,41 @@ const Destination = () => {
             </Card>
        
               <Container as='section' className='text-center'>
- 
+                  <h3>reviews</h3>
                   { destination.reviews.length > 0
                     ?
                     destination.reviews.map(review => {
                       const { _id: reviewId, reviewText, rating } = review
                       const activities = review.activities.join(', ')
                       return (                       
-                        <Col key={reviewId} md="6" lg="4" className='mb-4'>
                           <Link to={`/travel/${review.destinationId}`}>
-                          <Card class="card" >
+                          <Card key={reviewId} className="re-card">
                               <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
                               <Card.Body>
-                                <Card.Title className='text-center mb-0'>{review.destinationName}</Card.Title>                              
-                                <p><span>👤</span>{destination.createdBy}</p>
-                                <p>Rating: {rating}</p>
-                                <p>Activities: {activities}</p>
-                                <p>{reviewText}</p>   
+                            <Card.Title className='text-center mb-0'>{review.name}</Card.Title>        
+                                <Card.Text>
+                                {reviewText}
+                              </Card.Text>  
+                                  <ListGroup className="list-group-flush">
+                                    <ListGroup.Item><span>👤</span> {review.createdBy}</ListGroup.Item>
+                                    <ListGroup.Item>Rating: {rating}</ListGroup.Item>
+                                    <ListGroup.Item>Activites: {activities}</ListGroup.Item>
+                                  </ListGroup>                    
+                        
                                 <div className="buttons mb-4">
                                   <Button variant="danger" onClick={deleteReview}>Delete Review</Button>
-                                  {/* <Link to={`/bread/${bread._id}/edit`} className='btn btn-primary'>Edit Review</Link> */}
+                                  <Link to={`/landing`} className='btn btn-primary'>Edit Review</Link>
                                 </div>                          
                               </Card.Body>
                             </Card>
-                          </Link>
-                        </Col>
-                      )
+                          </Link>             
+                        )
                     })
                     :
                     <>
                       { errors ? <h2>Something went wrong. Please try again later</h2> : <p>Add your first review</p>}
                     </>
                   }
-             
               </Container>            
               <Link to="/travel" className='btn dark'>Back to all Destination</Link>
           </div>
