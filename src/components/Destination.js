@@ -31,23 +31,8 @@ const Destination = () => {
     console.log(destination)
   }, [destinationId])
 
+
   
-  // ! add reviews to the page 
-
-  const submitReview = async (event) => {
-    try {
-      const { data } = await axios.post(`${API_URL}/travel/${destinationId}`, {
-        headers: {
-          Authorization: `Bearer ${getToken()}` //post needs to authenticate the bearer
-        },
-      } )
-      setReviews(data)
-    } catch (error) {
-      console.log(error)
-      setErrors(error)
-    }
-  }
-
   return (
     <div className='destination-page'>
       <Container as="main">
@@ -107,7 +92,10 @@ const Destination = () => {
           </h2>
         }
       </Row>
+      <Link to='/review'>
       <button>Add a review</button>
+      </Link>
+      
       </Container>
     </div>
 
