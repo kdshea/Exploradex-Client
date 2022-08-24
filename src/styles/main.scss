@@ -99,3 +99,28 @@ export default Footer
 .card-body {
   background-color: lightgray;
 }
+
+// ! added by Serhan Below
+.review-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-addDestination {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.user-profilePage {
+  height: 100vh
+}
+
+
+ul {
+  margin: 0
+}
+
+.form-login {
+  height: 100vh;
+}

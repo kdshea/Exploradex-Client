@@ -61,7 +61,7 @@ const NewDestination = () => {
 
   return (
    <main>
-      <form onSubmit={handleSubmit}>
+      <form className="form-addDestination" onSubmit={handleSubmit}>
         <h1>Add Destination</h1>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" placeholder="Name of Destination" value={newTravel.name} onChange={handleChange} />

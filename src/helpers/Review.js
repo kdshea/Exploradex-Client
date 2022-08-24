@@ -35,6 +35,7 @@ const uploadImage = async (event) => {
   formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
   const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
   // ! this is my (serhan miah) login for the cloudinary - for destination images
+
   console.log('upload image data', data.url)
   setReview({ ...review, reviewImgUrl: [ data.url ]})
 }
@@ -57,7 +58,7 @@ const handleSubmit = async (event) => {
 
   return (
     <main>
-      <form onSubmit={handleSubmit}>
+      <form className="review-form" onSubmit={handleSubmit}>
       <h1>Add review</h1>
         <label htmlFor="reviewText">Review Text</label>
         <textarea name="reviewText" placeholder="Review text" value={review.reviewText} onChange={handleChange} ></textarea>

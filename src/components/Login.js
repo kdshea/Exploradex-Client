@@ -33,7 +33,7 @@ const Login = () => {
   
 
   return  ( 
-    <div className='form-main'>
+    <div className='form-login'>
 
       <h1>Login Page</h1>
       {errors && <div className='error'>{errors}</div>}
