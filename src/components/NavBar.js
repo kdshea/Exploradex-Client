@@ -8,14 +8,13 @@ import { userIsAuthenticated, getId } from '../helpers/auth'
 const NavBar = () => {
   const navigate = useNavigate()
 
-  console.log(getId)
-  getId()
+  const userId = getId()
 
-  const handleLogout = () => {
+  const handleLogOut = () => {
     window.localStorage.removeItem('local-user-Token')
+    window.localStorage.removeItem('local-user-Id')
     navigate('/login')
   }
-
 
   return (
     <Navbar expand="sm">
@@ -29,9 +28,9 @@ const NavBar = () => {
         { userIsAuthenticated()
           ?
           <>
-            <Nav.Link as={Link} to='/users/:userId' >User Profile</Nav.Link>
+            <Nav.Link as={Link} to={`/users/${userId}`} >User Profile</Nav.Link>
             <Nav.Link as={Link} to='/travel/new' >Add Destination</Nav.Link>
-            <span onClick={handleLogout}>Logout</span>
+            <span onClick={handleLogOut}>Logout</span>
           </>
           :
           <>
