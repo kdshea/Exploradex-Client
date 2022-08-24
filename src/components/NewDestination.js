@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import API_URL from '../config.js'
 import { getToken } from '../helpers/auth'
 
 const NewDestination = () => {
@@ -42,7 +42,7 @@ const NewDestination = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await axios.post('http://localhost:3000/travel', newTravel, {
+      const { data } = await axios.post(`${API_URL}/travel`, newTravel, {
         headers: {
           Authorization: `Bearer ${getToken()}`,  
         },
