@@ -1,18 +1,18 @@
 
 import { Buffer } from 'buffer'
 
-export const setToken = (token, id) => {
+export const setToken = (token) => {
   window.localStorage.setItem('local-user-Token', token)
+}
+export const setId = (id) => {
   window.localStorage.setItem('local-user-Id', id)
 }
 
 export const getToken = () => {
-  console.log('user token', window.localStorage.getItem('local-user-Token'))
   return window.localStorage.getItem('local-user-Token')
 }
 
 export const getId = () => {
-  console.log('user id', window.localStorage.getItem('local-user-Id'))
   return window.localStorage.getItem('local-user-Id')
 }
 

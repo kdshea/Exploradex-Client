@@ -1,6 +1,6 @@
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import axios from "axios"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import API_URL from '../config.js'
 import { getToken } from '../helpers/auth'
 
@@ -8,21 +8,24 @@ const NewDestination = () => {
 
   const navigate = useNavigate()
   const [ imageSelect, setImageSelected ] = useState('')
-  const [ newTravel, setNewTravel ] = useState({
-    name: '',
-    country: '',
-    description: '',
-    rating: undefined,
-    reviews: [], 
-    createdBy: '',
-    imgUrl:[],
-  })
-
-  const [ errors, setErrors ] = useState({
-    name: '',
-    country: '',
-    description: '',
-  })
+  const [ newTravel, setNewTravel ] = useState(null
+    // {
+    // name: '',
+    // country: '',
+    // description: '',
+    // rating: undefined,
+    // reviews: [], 
+    // createdBy: '',
+    // imgUrl:[],
+  // }
+  )
+  const [ errors, setErrors ] = useState(false
+  //   {
+  //   name: '',
+  //   country: '',
+  //   description: '',
+  // }
+  )
 
   const handleChange = (event) => {
     setNewTravel({ ...newTravel, [event.target.name]: event.target.value })
