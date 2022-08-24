@@ -1,17 +1,14 @@
-
-
-
 const Footer = () => {
 
   return (
-    <div>
+    <div className="footer-container">
       <ul className="footer">
-        <span className="created">Created by:</span>
-        <li><a className="gitLink" href="https://github.com/kdShea" target="_blank" rel="noreferrer" >&#xf09b;  Kate Shea, </a>
+        <li>Created By:</li>
+        <li><a className="gitLink" href="https://github.com/kdShea" target="_blank" rel="noreferrer" >Kate Shea,</a>
         </li>
-        <li><a className="gitLink" href="https://github.com/SyztemError" target="_blank" rel="noreferrer" >&#xf09b;  Serhan Miah and </a>
+        <li><a className="gitLink" href="https://github.com/SyztemError" target="_blank" rel="noreferrer" >Serhan Miah,</a>
         </li>
-        <li><a className="gitLink" href="https://github.com/chrainey" target="_blank" rel="noreferrer" >&#xf09b;  Chris Rainey </a>
+        <li><a className="gitLink" href="https://github.com/chrainey" target="_blank" rel="noreferrer" >and Chris Rainey </a>
         </li>
       </ul>
     </div>
