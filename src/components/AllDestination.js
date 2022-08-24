@@ -41,29 +41,31 @@ useEffect(() => {
 
   return (
     // ! might be better to do this in Cards but I will leave this to you Chris.
-    
-    <Container as="main" className='destination-index'>
-    <h1 className='text-center mb-4'>All Destinations</h1>
-    <Row className='destination-row'>
-      { destinationData.map(item => {
-          console.log(item)
-          const { _id } = item
-          return (
-            <Col key={_id} md="5" lg="4" className='mb-4'>
-              <Link to={`/travel/${_id}`}>
-                <Card>
-                  <Card.Img variant='top' src={item.imgUrl[0]}></Card.Img>
-                  <Card.Body className='bg-light'>
-                    <Card.Title className='text-center mb-0'>{item.name} - {item.country}</Card.Title>
-                  </Card.Body>
-                </Card>
-              </Link>
-            </Col>
-          )
-        })
-      }
-    </Row>
-  </Container>
+    <div className='all-destination-page'>
+      <Container as="main" className='destination-index'>
+      <h1 className='text-center mb-4'>All Destinations</h1>
+      <Row className='destination-row'>
+        { destinationData.map(item => {
+            console.log(item)
+            const { _id } = item
+            return (
+              <Col key={_id} md="5" lg="4" className='mb-4'>
+                <Link style={{ textDecoration: 'none', color: 'black' }} to={`/travel/${_id}`}>
+                  <Card>
+                    <Card.Img variant='top' src={item.imgUrl[0]}></Card.Img>
+                    <Card.Body className='bg-light'>
+                      <Card.Title className='text-center mb-0 text-decoration-none'>{item.name} - {item.country}</Card.Title>
+                    </Card.Body>
+                  </Card>
+                </Link>
+              </Col>
+            )
+          })
+        }
+      </Row>
+    </Container>
+
+    </div>
   )
 }
 
