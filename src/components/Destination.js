@@ -7,13 +7,19 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Spinner from './Spinner.js'
 import  Card  from "react-bootstrap/Card"
+import { getToken } from "../helpers/auth.js"
 
 
 const Destination = () => {
   // const navigate = useNavigate()
 
-  const { travelId } = useParams()
+  const { destinationId, reviewId } = useParams()
+ 
+
   const [ destination, setDestination ] = useState(null) 
+
+  const [ review, setReviews ] = useState([])
+  
   const [ errors, setErrors ] = useState(false)
 
   useEffect(() => {
@@ -31,13 +37,15 @@ const Destination = () => {
 
   
   // ! add reviews to the page 
-  const addReview = async () => {
+
+  const submitReview = async (event) => {
     try {
-      await axios.post(`${API_URL}/travel/${travelId}`, {
+      const { data } = await axios.post(`${API_URL}/travel/${destinationId}`, {
         headers: {
-          Authorization: `Bearer `
+          Authorization: `Bearer ${getToken()}` //post needs to authenticate the bearer
         },
       } )
+      setReviews(data)
     } catch (error) {
       console.log(error)
       setErrors(error)
@@ -128,11 +136,14 @@ const Destination = () => {
         </h2>
       }
     </Row>
+
+    <button>Add a review</button>
+
+
+
   </Container>
 
   )
-
-
 }
 
 
