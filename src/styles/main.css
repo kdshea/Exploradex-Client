@@ -45,7 +45,11 @@ button {
 .footer {
   background-color: lightgray;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-  flex-grow: 1;
+  list-style-type: none;
+}
+.footer li {
+  padding: 2px;
+  text-decoration: none;
 }
 
 .card-img-top {
