@@ -81,7 +81,7 @@ const Destination = () => {
                             <Card.Body>
                               <Card.Title className='text-center mb-0'>{review.destinationName}</Card.Title>
                               {/* Change this user id to the actual user's name */}
-                              <p><span>👤</span>{destination.createdBy}</p>
+                              <p><span>👤</span> {review.displayName}</p>
                               <p>Rating: {rating}</p>
                               <p>Activities: {activities}</p>
                               <p>{reviewText}</p>
@@ -98,7 +98,7 @@ const Destination = () => {
                   })
                   :
                   <>
-                    { errors ? <h2>Something went wrong. Please try again later</h2> : <p>Add your first review</p>}
+                    { errors ? <h2>Something went wrong. Please try again later</h2> : <p>Add the first review</p>}
                   </>
                 }
               </Row>
