@@ -9,12 +9,10 @@ export const setId = (id) => {
 }
 
 export const getToken = () => {
-  console.log('user token', window.localStorage.getItem('local-user-Token'))
   return window.localStorage.getItem('local-user-Token')
 }
 
 export const getId = () => {
-  console.log('user id', window.localStorage.getItem('local-user-Id'))
   return window.localStorage.getItem('local-user-Id')
 }
 

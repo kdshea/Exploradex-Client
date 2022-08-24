@@ -30,7 +30,6 @@ const UserProfile = () => {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log('user profile', data)
         setUserProfile(data)
       } catch (error) {
         console.log(error)
@@ -64,7 +63,6 @@ const UserProfile = () => {
                   ?
                   userProfile.reviews.map(review => {
                     const { _id: reviewId, reviewText, destination: destinationId, rating } = review
-                    console.log('review', review)
                     const activities = review.activities.join(', ')
                     return (
                       <Col key={reviewId} md="6" lg="4" className='mb-4'>
@@ -95,13 +93,10 @@ const UserProfile = () => {
               </Row>
             </Container>
             <hr />
-            {/* Edit / Delete buttons for user profile*/}
-            {/* { userIsOwner(destination) &&
               <div className="buttons mb-4">
-                <Button variant="danger" onClick={deleteBread}>Delete bread</Button>
-                <Link to={`/bread/${bread._id}/edit`} className='btn btn-primary'>Edit Profile</Link>
+                {/* <Button variant="danger" onClick={deleteUser}>Delete User</Button> */}
+                <Link to={`/edit-profile/${userId}`} className='btn btn-primary'>Edit Profile</Link>
               </div>
-            } */}
             <Link to="/travel" className='btn dark'>Back to all Destination</Link>
           </Col>
         </>
