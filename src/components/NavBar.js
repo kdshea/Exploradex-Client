@@ -22,9 +22,8 @@ const NavBar = () => {
       <Navbar.Brand as={Link} to="/">HOME</Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>
-        <Nav.Link as={Link} to='/' >Home</Nav.Link>
-        <Nav.Link as={Link} to='/landing' >Landing</Nav.Link>
-        <Nav.Link as={Link} to='/travel' >AllDestination</Nav.Link>
+        <Nav.Link as={Link} to='/' >Home</Nav.Link>        
+        <Nav.Link as={Link} to='/travel' >All Destinations</Nav.Link>
         { userIsAuthenticated()
           ?
           <>
