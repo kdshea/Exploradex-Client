@@ -67,13 +67,17 @@ const UserProfile = () => {
                   userProfile.reviews.map(review => {
                     const { _id: reviewId, reviewText, destination: destinationId, rating } = review
                     console.log('review', review)
+                    const activities = review.activities.join(', ')
+                    console.log(activities)
                     return (
                       <Col key={reviewId} md="6" lg="4" className='mb-4'>
-                        <Link to={`/travel/${destinationId}`}>
+                        <Link to={`/travel/${review.destinationId}`}>
                           <Card>
-                            {/* <Card.Img variant='top' src={image}></Card.Img> */}
+                            <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
                             <Card.Body>
-                              <Card.Title className='text-center mb-0'>Rating: {rating}</Card.Title>
+                              <Card.Title className='text-center mb-0'>{review.destinationName}</Card.Title>
+                              <p>Rating: {rating}</p>
+                              <p>{activities}</p>
                               <p>{reviewText}</p>
                               {/* Edit / Delete buttons - I will work on these next
                                 <div className="buttons mb-4">
