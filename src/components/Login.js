@@ -21,19 +21,17 @@ const Login = () => {
     event.preventDefault()
     try {
     const { data } = await axios.post(`${API_URL}/login`, loginData)
-    setToken(data.token)
+    setToken(data.token, data.id)
     console.log('token', data.token)
     console.log('id', data.userId)
     navigate(`/users/${data.userId}`)
 
-    // localStorage.setItem('token', token)
     // axios.defaults.headers.common['Authorization'] = token
 
     } catch (error) {
       setErrors(error.response.data.messages)
       console.log(error.response.data.messages)
     }
-    
   }
   
 
@@ -41,14 +39,10 @@ const Login = () => {
     <div className='form-main'>
 
       <h1>Login Page</h1>
-
       {errors && <div className='error'>{errors}</div>}
 
       <form onSubmit={onSubmit} className='form-wrapper'>
-
-          {/* ! inputs need text name placeholder value  */}
           <input type='text' name='userName' placeholder='Username' onChange={handleChange} value={loginData.userName} />
-          {/* Password input section  */}
           <input type='password' name='password' placeholder='Password' onChange={handleChange} value={loginData.password} />
           <button type='submit'>Login</button>
       </form>
