@@ -1,13 +1,12 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
-
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
-
 import API_URL from '../config.js'
+import Spinner from './Spinner.js'
 
 
 const AllDestination = () => {
@@ -33,14 +32,13 @@ useEffect(() => {
 // ! onClick => functionality so that it will go to the component. 
 
 // const onClick = (event) => {
-
-
-
 // }
 
 
   return (
-    // ! might be better to do this in Cards but I will leave this to you Chris.
+    <>
+    { destinationData ?
+    // ! might be better to do this in Cards but I will leave this to you Chris
     <div className='all-destination-page'>
       <Container as="main" className='destination-index'>
       <h1 className='text-center mb-4'>All Destinations</h1>
@@ -64,8 +62,13 @@ useEffect(() => {
         }
       </Row>
     </Container>
-
     </div>
+    :
+    <h2 className="text-center">
+      { errors ? 'Something went wrong. Please try again later' : <Spinner />}
+    </h2>
+      }
+  </>
   )
 }
 

@@ -8,23 +8,23 @@ const NewDestination = () => {
 
   const navigate = useNavigate()
   const [ imageSelect, setImageSelected ] = useState('')
-  const [ newTravel, setNewTravel ] = useState(null
-    // {
-    // name: '',
-    // country: '',
-    // description: '',
-    // rating: undefined,
-    // reviews: [], 
-    // createdBy: '',
-    // imgUrl:[],
-  // }
+  const [ newTravel, setNewTravel ] = useState(
+    {
+    name: '',
+    country: '',
+    description: '',
+    rating: undefined,
+    reviews: [], 
+    createdBy: '',
+    imgUrl:[],
+  }
   )
-  const [ errors, setErrors ] = useState(false
-  //   {
-  //   name: '',
-  //   country: '',
-  //   description: '',
-  // }
+  const [ errors, setErrors ] = useState(
+    {
+    name: '',
+    country: '',
+    description: '',
+  }
   )
 
   const handleChange = (event) => {
@@ -33,6 +33,7 @@ const NewDestination = () => {
   }
 
   const uploadImage = async (event) => {
+    event.preventDefault()
     const formData = new FormData()
     formData.append('file', imageSelect)
     formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
@@ -51,10 +52,9 @@ const NewDestination = () => {
         },
       })
       console.log(data)
-
       navigate('/travel')
     } catch (error) {
-      console.log(error);
+      console.log(error)
       setErrors(error)
     }
   } 

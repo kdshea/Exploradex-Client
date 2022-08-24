@@ -1,37 +1,84 @@
-
-
-
+import axios from "axios"
+import { useState, useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import API_URL from '../config.js'
+import { getToken } from "./auth"
 
 
 const Review = () => {
-  <div>
-  <h1>Add Review</h1>
 
-  <form id="feedback" action="">
-  <div className="pinfo">Your Review</div>
-  
-  <div className="form-group">
-    <div className="input-group">
-    <div className="pinfo">Rate our overall services.</div>
-    <select className="form-control" id="rate">
-        <option value="1star">1</option>
-        <option value="2stars">2</option>
-        <option value="3stars">3</option>
-        <option value="4stars">4</option>
-        <option value="5stars">5</option>
-      </select>
-      </div>
-    </div>
+const navigate = useNavigate()
+const { destinationId } = useParams()
+const [ review, setReview ] = useState(
+{
+reviewText: '',
+rating: undefined,
+activities: [''],
+createdBy: '',
+destinationId: '',
+destinationName: '',
+reviewImgUrl: [''],
+}
+)
+const [ reviewImg, setReviewImg ] = useState('')
+const [ errors, setErrors ] = useState(false)
 
-  <div className="form-group">
-    <div className="col-md-4 inputGroupContainer">
-    <div className="pinfo">Write your feedback.</div>
-    <textarea className="form-control" id="review" rows="7"></textarea>
-      </div>
-    </div>
-  <button type="submit" className="btn btn-primary">Submit</button>
-</form>
-</div>
+const handleChange = async (event) => {
+  setReview({ ...review, [event.target.name]: event.target.value })
+  setErrors({ ...errors, [event.target.name]: '', message: '' })
+}
+
+const uploadImage = async (event) => {
+  event.preventDefault()
+  const formData = new FormData()
+  formData.append('file', reviewImg)
+  formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
+  const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
+  // ! this is my (serhan miah) login for the cloudinary - for destination images
+  console.log('upload image data', data.url)
+  setReview({ ...review, reviewImgUrl: [ data.url ]})
+}
+
+const handleSubmit = async (event) => {
+  event.preventDefault()
+  try {
+    const { data } = await axios.post(`${API_URL}/travel/${destinationId}`, review, {
+      headers: {
+        Authorization: `Bearer ${getToken()}`
+      },
+    })
+    console.log(data)
+    navigate(`/travel/${destinationId}`)
+  } catch (error) {
+    console.log(error)
+    setErrors(error)
+  }
+}
+
+  return (
+    <main>
+      <form onSubmit={handleSubmit}>
+      <h1>Add review</h1>
+        <label htmlFor="reviewText">Review Text</label>
+        <textarea name="reviewText" placeholder="Review text" value={review.reviewText} onChange={handleChange} ></textarea>
+
+        <label htmlFor="rating">rating</label>
+        <input type="number" name="rating" placeholder="From 0 to 5" value={review.ratin} onChange={handleChange} />
+
+        <label htmlFor="activities">activities</label>
+        <textarea name="activities" placeholder="Activities" value={review.activities} onChange={handleChange} ></textarea>
+
+
+        <label htmlFor="image">Upload Image</label>
+        <input type="file" id="image" className="input" onChange={(event) => {
+          setReviewImg(event.target.files[0])
+        }} />
+        <button onClick={uploadImage}> Upload image</button>
+
+        <input type="submit"/> 
+      </form>
+    </main>
+  )
 }
 
 
