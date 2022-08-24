@@ -87,7 +87,7 @@ const UserProfile = () => {
                   })
                   :
                   <>
-                    { errors ? <h2>Something went wrong. Please try again later</h2> : <p>Add your first review</p>}
+                    { errors ? <h2>Something went wrong. Please try again later</h2> : <p>No reviews yet</p>}
                   </>
                 }
               </Row>
