@@ -26,6 +26,8 @@ const NavBar = () => {
         <Nav.Link as={Link} to='/' >Home</Nav.Link>
         <Nav.Link as={Link} to='/landing' >Landing</Nav.Link>
         <Nav.Link as={Link} to='/travel' >AllDestination</Nav.Link>
+        <Nav.Link as={Link} to='/review' >review</Nav.Link>
+
         { userIsAuthenticated()
           ?
           <>
