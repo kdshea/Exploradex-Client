@@ -10,12 +10,9 @@ import Row  from 'react-bootstrap/Row'
 import  Col from 'react-bootstrap/Col'
 import Spinner from './Spinner.js'
 // import Button from 'react-bootstrap/Button'
-import { getPayLoad } from '../helpers/auth'
 
 const UserProfile = () => {
 
-  getPayLoad()
-  // console.log('payload', payLoad)
   const { userId } = useParams()
   const [ errors, setErrors ] = useState(false)
   const [ userProfile, setUserProfile ] = useState({

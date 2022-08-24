@@ -1,8 +1,10 @@
 
 import { Buffer } from 'buffer'
 
-export const setToken = (token, id) => {
+export const setToken = (token) => {
   window.localStorage.setItem('local-user-Token', token)
+}
+export const setId = (id) => {
   window.localStorage.setItem('local-user-Id', id)
 }
 
