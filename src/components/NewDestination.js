@@ -12,7 +12,10 @@ const NewDestination = () => {
     name: '',
     country: '',
     description: '',
+    rating: 0,
+    reviews: [], 
     createdBy: '',
+    imgUrl:[],
   })
 
   const [ errors, setErrors ] = useState({
