@@ -14,18 +14,14 @@ const Destination = () => {
   // const navigate = useNavigate()
 
   const { destinationId, reviewId } = useParams()
- 
-
-  const [ destination, setDestination ] = useState(null) 
-
+  const [ destination, setDestination ] = useState(null)
   const [ review, setReviews ] = useState([])
-  
   const [ errors, setErrors ] = useState(false)
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/travel/${travelId}`)
+        const { data } = await axios.get(`${API_URL}/travel/${destinationId}`)
         setDestination(data)
       } catch (err) {
         setErrors(true)
@@ -33,7 +29,7 @@ const Destination = () => {
     }
     getData()
     console.log(destination)
-  }, [travelId])
+  }, [destinationId])
 
   
   // ! add reviews to the page 
