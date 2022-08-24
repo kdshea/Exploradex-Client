@@ -7,15 +7,12 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Spinner from './Spinner.js'
 import  Card  from "react-bootstrap/Card"
-import { getToken } from "../helpers/auth.js"
-
 
 const Destination = () => {
   // const navigate = useNavigate()
 
   const { destinationId, reviewId } = useParams()
   const [ destination, setDestination ] = useState(null)
-  const [ review, setReviews ] = useState([])
   const [ errors, setErrors ] = useState(false)
 
   useEffect(() => {
@@ -50,6 +47,9 @@ const Destination = () => {
               <p>Rating: {destination.rating}</p>
               <p>{destination.description}</p>
               <hr />
+              <Link to={`/review/${destinationId}`}>
+                <button>Add a review</button>
+              </Link>
               <h2>Reviews</h2>    
               <Container className='text-center'>
                 <Row>
@@ -92,9 +92,6 @@ const Destination = () => {
           </h2>
         }
       </Row>
-      <Link to={`/review/${destinationId}`}>
-      <button>Add a review</button>
-      </Link>
       
       </Container>
     </div>
