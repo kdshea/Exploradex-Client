@@ -12,6 +12,7 @@ import Destination from './components/Destination'
 import AllDestination from './components/AllDestination'
 import NewDestination from './components/NewDestination'
 import ImageTest from './components/ImageTest'
+import Review from './helpers/Review'
 
 function App() {
 
@@ -26,10 +27,12 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/users/:userId' element={<UserProfile />} />
           <Route path='/landing' element={<Landing />}  />
-          <Route path='/travel/:travelId' element={<Destination />}  />
+          <Route path='/travel/:destinationId' element={<Destination />}  />
+          <Route path='/travel/:destinationId/:reviewId' element={<Destination />}  /> 
           <Route path='/travel' element={<AllDestination />}  />
           <Route path="/travel/new" element={<NewDestination />} />
           <Route path="/images" element={<ImageTest />} />    
+          <Route path='/review' element={<Review /> } />
         </Routes>
         <Footer />
       </BrowserRouter>
