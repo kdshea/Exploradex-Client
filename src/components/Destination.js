@@ -16,7 +16,6 @@ const Destination = () => {
   const { destinationId } = useParams()
 
   const [ destination, setDestination ] = useState(null)
-  const [ review, setReviews ] = useState([])
   const [ errors, setErrors ] = useState(false)
   const [ destoryReview, setDestoryReview ] = useState({
     _id: ''
@@ -70,6 +69,9 @@ const Destination = () => {
               <p>Rating: {destination.rating}</p>
               <p>{destination.description}</p>
               <hr />
+              <Link to={`/review/${destinationId}`}>
+                <button>Add a review</button>
+              </Link>
               <h2>Reviews</h2>    
               <Container className='text-center'>
                 <Row>

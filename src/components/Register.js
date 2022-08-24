@@ -4,55 +4,58 @@ import  Container from 'react-bootstrap/Container'
 import  Row  from 'react-bootstrap/Row'
 import { useNavigate } from 'react-router-dom'
 import API_URL from '../config.js'
+import { setId, setToken } from '../helpers/auth'
 
 const Register = () => {
 
   const navigate = useNavigate()
 
-  // ! State
   const [ formData, setFormData ] = useState({
     email: '',
 	  userName: '',
 	  password: '',
 	  confirmPassword: ''
   })
-  
+  const [ loginData, setLoginData ] = useState({
+    userName: '',
+    password: '',
+  })
   const [ errors, setErrors ] = useState('')
   
-  
-
-
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value})
-    setErrors('')
+    if (event.target.name === 'userName' || event.target.name === 'password') {
+      setLoginData({ ...loginData, [event.target.name]: event.target.value })
+    }
+    // setErrors({ ...errors, [event.target.name]: '', message: '' })
   }
 
-
-  // ! handleSumbit
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      // const { data } = await axios.post('http://localhost:3000/register', formData)
       const { data } = await axios.post(`${API_URL}/register`, formData)
       console.log(data)
-      setFormData(data)
-
-      navigate('/login')
-      
+      autoLogin()
     } catch (error) {
       console.log(error)
-      setErrors(error.response.data.message)
-      
-      // ! double check the error message location might not be the same
+      // setErrors({...errors, [event.target.name]: '', message: '' })
     }
   }
 
-  
-  
-  
-  return (
+  const autoLogin = async (event) => {
+    try {
+    const { data } = await axios.post(`${API_URL}/login`, loginData)
+    setToken(data.token)
+    setId(data.userId)
+    navigate(`/edit-profile/${data.userId}`)
+    } catch (error) {
+      // setErrors(error.response.data.messages)
+      console.log(error)
+    }
+  }
 
-  // ! bootStrap below 
+
+  return (
   <main className='form-page'>
      <Container>
         <Row>
@@ -76,9 +79,9 @@ const Register = () => {
 
             {/* Error Message */}
             { errors && <p className='text-danger'>{errors}</p>}
-            {/* Submit */}
 
-            <input type="submit" value="Register" className='btn dark w-100' />
+            {/* Submit */}
+            <input type="submit" className='btn dark w-100' />
           </form>
         </Row>
       </Container>

@@ -25,8 +25,6 @@ const Login = () => {
     setId(data.userId)
     navigate(`/users/${data.userId}`)
 
-    // axios.defaults.headers.common['Authorization'] = token
-
     } catch (error) {
       setErrors(error.response.data.messages)
       console.log(error.response.data.messages)
