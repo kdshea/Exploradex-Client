@@ -36,7 +36,7 @@ const NewDestination = () => {
     const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
     // ! this is my (serhan miah) login for the cloudinary - for destination images
     console.log('upload image data', data.url)
-    setNewTravel({ ...newTravel, imgUrl: data.url })
+    setNewTravel({ ...newTravel, imgUrl: [ data.url ]})
   }
 
   const handleSubmit = async (event) => {
@@ -70,7 +70,7 @@ const NewDestination = () => {
         <textarea name="description" placeholder="Description" value={newTravel.description} onChange={handleChange} ></textarea>
 
         <label htmlFor="rating">Rating</label>
-        <input type="number" name="Rating" placeholder="From 0 to 5" value={newTravel.rating} onChange={handleChange} />
+        <input type="number" name="rating" placeholder="From 0 to 5" value={newTravel.rating} onChange={handleChange} />
 
         {/* upload image that connects to the cloudinary */}
         <label htmlFor="image">Upload Image</label>
