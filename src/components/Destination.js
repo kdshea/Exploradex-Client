@@ -59,15 +59,15 @@ const Destination = () => {
           
           <div className="kitchen-sink">
             <h1>{destination.name}</h1>
-           <Card className="destination-card">
+           <Card border="dark" className="destination-card bg-transparent">
               <Card.Img  variant="top" src={destination.imgUrl[0]} alt={destination.name} />
-              <Card.Body>
+              <Card.Body className="bg-transparent">
                 <Card.Title>{destination.name} - {destination.country}</Card.Title>
                 <Card.Text>
                   {destination.description}
                 </Card.Text>
               </Card.Body>
-              <ListGroup className="list-group-flush">
+              <ListGroup className="list-group-flush ">
                 <ListGroup.Item>Country: {destination.country}</ListGroup.Item>
                 <ListGroup.Item>Rating: {destination.rating}</ListGroup.Item>
                 <ListGroup.Item>Activites: {destination.activities}</ListGroup.Item>
@@ -92,7 +92,7 @@ const Destination = () => {
                               <Card.Body>
                             <Card.Title className='text-center mb-0'>{review.name}</Card.Title>        
                                 <Card.Text>
-                                {review.reviewText}
+                                {reviewText}
                               </Card.Text>  
                                   <ListGroup className="list-group-flush">
                                     <ListGroup.Item><span>👤</span> {review.createdBy}</ListGroup.Item>
