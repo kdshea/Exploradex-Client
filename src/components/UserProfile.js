@@ -1,10 +1,8 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import Serhan from '../img/4db349_218f4014bcd97b058e8f89469dc0e5d7.webp'
 import API_URL from '../config.js'
 import { useParams } from 'react-router-dom'
 import { getToken } from '../helpers/auth.js'
-
 import Container from 'react-bootstrap/Container'
 import  Card  from "react-bootstrap/Card"
 import { Link } from 'react-router-dom'
@@ -12,11 +10,13 @@ import Row  from 'react-bootstrap/Row'
 import  Col from 'react-bootstrap/Col'
 import Spinner from './Spinner.js'
 // import Button from 'react-bootstrap/Button'
+import { getPayLoad } from '../helpers/auth'
 
 const UserProfile = () => {
-  const { userId } = useParams()
-  console.log('user id', userId)
 
+  getPayLoad()
+  // console.log('payload', payLoad)
+  const { userId } = useParams()
   const [ errors, setErrors ] = useState(false)
   const [ userProfile, setUserProfile ] = useState({
     _id: '',
@@ -33,7 +33,7 @@ const UserProfile = () => {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log('data', data)
+        console.log('user profile', data)
         setUserProfile(data)
       } catch (error) {
         console.log(error)
@@ -50,7 +50,7 @@ const UserProfile = () => {
         <>
           <h1>Name: { userProfile.displayName? userProfile.displayName : userProfile.userName}</h1>
           <Col md="6">
-            <img className='w-100' src={Serhan} alt={userProfile.userName} />
+            <img className='w-100' src={userProfile.profileImg} alt={userProfile.userName} />
           </Col>
           <Col md="6">
             <h2>Profile</h2>
@@ -68,13 +68,16 @@ const UserProfile = () => {
                   userProfile.reviews.map(review => {
                     const { _id: reviewId, reviewText, destination: destinationId, rating } = review
                     console.log('review', review)
+                    const activities = review.activities.join(', ')
                     return (
                       <Col key={reviewId} md="6" lg="4" className='mb-4'>
-                        <Link to={`/travel/${destinationId}`}>
+                        <Link to={`/travel/${review.destinationId}`}>
                           <Card>
-                            {/* <Card.Img variant='top' src={image}></Card.Img> */}
+                            <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
                             <Card.Body>
-                              <Card.Title className='text-center mb-0'>Rating: {rating}</Card.Title>
+                              <Card.Title className='text-center mb-0'>{review.destinationName}</Card.Title>
+                              <p>Rating: {rating}</p>
+                              <p>Activities: {activities}</p>
                               <p>{reviewText}</p>
                               {/* Edit / Delete buttons - I will work on these next
                                 <div className="buttons mb-4">
