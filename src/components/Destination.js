@@ -2,21 +2,17 @@ import { useEffect, useState } from "react"
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import API_URL from '../config.js'
-
-import Container  from "react-bootstrap/Container"
+import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import Spinner from './Spinner.js'
 
-// import Serhan from '../img/4db349_218f4014bcd97b058e8f89469dc0e5d7.webp'
 
 const Destination = () => {
   // const navigate = useNavigate() // function to move across pages.
 
-
   // ! id
   const { travelId } = useParams()
-  console.log(travelId)
-
   const [ destination, setDestination ] = useState(null) 
   const [ errors, setErrors ] = useState(false)
 
@@ -26,7 +22,6 @@ const Destination = () => {
     const getData = async () => {
       try {
         const { data } = await axios.get(`${API_URL}/travel/${travelId}`)
-        console.log(travelId);
         setDestination(data)
       } catch (err) {
         setErrors(true)
@@ -45,11 +40,10 @@ const Destination = () => {
         },
       } )
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      setErrors(error)
     }
   }
-
-
 
   return (
     <Container as="main">
@@ -86,10 +80,8 @@ const Destination = () => {
           </Col>
         </>
         :
-        // If bread is falsey, we are either still waiting for a response or there's been an error
-        // TO check whether there has been an error, we check the truthy value of errors state
         <h2 className="text-center">
-          {/* { errors ? 'Something went wrong. Please try again later' : <Spinner />} */}
+          { errors ? 'Something went wrong. Please try again later' : <Spinner />}
         </h2>
       }
     </Row>
