@@ -39,17 +39,14 @@ const EditProfile = () => {
           },
         })
         console.log('user profile', data)
-        setUserProfile(...data)
-        setUpdatedUserProfile(...data)
+        setUserProfile(data)
+        setUpdatedUserProfile(data)
       } catch (error) {
         console.log(error)
         setErrors(true)
       }
     }
     getUser()
-    console.log('user profile', userProfile)
-    console.log('updated user profile', updatedUserProfile)
-
   }, [userId])
 
   const handleChange = (event) => {
@@ -67,11 +64,6 @@ const EditProfile = () => {
     setUpdatedUserProfile({ ...updatedUserProfile, profileImg: data.url })
   }
 
-  const handleLogOut = () => {
-    window.localStorage.removeItem('local-user-Token')
-    window.localStorage.removeItem('local-user-Id')
-    navigate('/login')
-  }
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
@@ -80,15 +72,9 @@ const EditProfile = () => {
           Authorization: `Bearer ${getToken()}`,  
         },
       })
-      console.log(userProfile.userName)
-      console.log(updatedUserProfile.userName)
-      if (userProfile.userName !== updatedUserProfile.userName) {
-        handleLogOut()
-      } else {
-        navigate(`/users/${userId}`)
-      }
+      navigate(`/users/${userId}`)
     } catch (error) {
-      console.log(error);
+      console.log(error)
       setErrors(error)
     }
   } 
@@ -101,33 +87,26 @@ const EditProfile = () => {
         <>
           <form onSubmit={handleSubmit}>
             <h1>Name: { userProfile.displayName? userProfile.displayName : userProfile.userName}</h1>
-        {/* <label htmlFor="displayName">Display Name</label> */}
         <input type="text" name="displayName" placeholder="Edit display name" value={updatedUserProfile.displayName} onChange={handleChange} />
             <Col md="6">
               <img className='w-100' src={userProfile.profileImg} alt={userProfile.userName} />
             </Col>
             <Col md="6">
               <h2>Profile</h2>
-              {/* <p><span>👤</span> {userProfile.userName}</p>
-              {/* <label htmlFor="userName">User Name</label> */}
-             {/*} <input type="text" name="userName" placeholder="Edit user name" value={updatedUserProfile.userName} onChange={handleChange} /> */}
               <p><span>📧</span> {userProfile.email}</p>
-
-              {/* <label htmlFor="email">Email</label> */}
               <input type="text" name="email" placeholder="Edit email" value={updatedUserProfile.email} onChange={handleChange} />
               <hr />
               <h2>About Me</h2>
               <p>{userProfile.aboutMeText}</p>
-              {/* <label htmlFor="aboutMeText">About Me</label> */}
               <textarea name="aboutMeText" placeholder="Edit About Me" value={updatedUserProfile.aboutMeText} onChange={handleChange} ></textarea>
               <hr />
-                      {/* upload image that connects to the cloudinary */}
+              {/* upload image that connects to the cloudinary */}
               <label htmlFor="image">Upload Image</label>
               <input type="file" id="image" className="input" onChange={(event) => {
                 setImageSelected(event.target.files[0])
               }} />
               <button onClick={uploadImage}> Upload image</button>
-
+              <hr />
               <input type="submit"/> 
               <hr />
               <Link to={`/users/${userId}`} className='btn dark'>Cancel</Link>
