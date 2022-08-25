@@ -141,7 +141,7 @@ const CarouselImages = () => {
             { errors ? 'Something went wrong. Please try again later' : <Spinner />}
           </h2>
         } 
-        <Link to="/travel" className='btn dark'>Back to all Destination</Link>
+        <Link to="/travel" className='back-button btn dark'>Back to all Destination</Link>
       </Container>
     </div>
   )
