@@ -44,7 +44,7 @@ useEffect(() => {
                   <Card>
                     <Card.Img variant='top' src={item.imgUrl[0]}></Card.Img>
                     <Card.Body className='bg-light'>
-                      <Card.Title className='text-center mb-0 text-decoration-none'>{item.name} - {item.country}</Card.Title>
+                      <Card.Title className='multi-card text-center mb-0 text-decoration-none'>{item.name} - {item.country}</Card.Title>
                     </Card.Body>
                   </Card>
                 </Link>

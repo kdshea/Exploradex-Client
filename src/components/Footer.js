@@ -2,7 +2,7 @@ const Footer = () => {
 
   return (
     <div className="footer-container">
-      <ul className="footer">
+      <ul className="footer shadow p-3">
         <li>Created By:</li>
         <li><a className="gitLink" href="https://github.com/kdShea" target="_blank" rel="noreferrer" >Kate Shea,</a>
         </li>
