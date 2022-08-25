@@ -108,9 +108,9 @@ const Destination = () => {
                 <Card.Link href="#">Another Link</Card.Link> */}
               </Card.Body>
             </Card>
-       
+            <h3>reviews</h3>
               <Container as='section' className='review-card'>
-                  <h3>reviews</h3>
+                  
                   { destination.reviews.length > 0
                     ?
                     destination.reviews.map(review => {

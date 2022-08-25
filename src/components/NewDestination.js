@@ -91,7 +91,7 @@ const NewDestination = () => {
       <Form.Group className="mb-3" controlId="formBasicRating">
         <Form.Label>Rating</Form.Label>
         <Form.Control type="number" name="rating" placeholder="From 0 to 5" value={newTravel.rating} onChange={handleChange} /> 
-      
+        <Button onClick={uploadImage}>Upload a new destination image</Button>
       </Form.Group>
 
     <Form.Group className="mb-3" controlId="formBasicImage">
@@ -99,6 +99,7 @@ const NewDestination = () => {
         <input type="file" id="image" className="input" onChange={(event) => {
           setImageSelected(event.target.files[0])
         }} /> 
+
     </Form.Group> 
 
       

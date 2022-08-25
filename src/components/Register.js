@@ -65,12 +65,12 @@ const Register = () => {
         <Row>
         <Form onSubmit={handleSubmit}>
     {/* user Name */}
-    <Form.Group className="mb-3" controlId="formBasicUserName">
+    <Form.Group className="mb-3" >
         <Form.Label>User Name</Form.Label>
         <Form.Control onChange={handleChange} type="text" name="userName" placeholder="Username" value={formData.userName} /> 
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" >
         <Form.Label>Email address</Form.Label>
         <Form.Control  onChange={handleChange} type="email" name="email" placeholder='Email' value={formData.email}  />
         <Form.Text className="text-muted">
@@ -78,17 +78,17 @@ const Register = () => {
         </Form.Text>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" >
         <Form.Label>Password</Form.Label>
         <Form.Control onChange={handleChange} type="password" name="password" placeholder='Password' value={formData.password}  />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" >
         <Form.Label>Confirm Password</Form.Label>
         <Form.Control onChange={handleChange} type="password" name="confirmPassword" placeholder='Confirm Password' value={formData.confirmPassword} /> 
       </Form.Group>
       
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+      <Form.Group className="mb-3" >
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
 
