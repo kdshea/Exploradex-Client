@@ -87,7 +87,7 @@ const EditProfile = () => {
           <Form.Label>Name</Form.Label>
           <Form.Control type="text" name="displayName" placeholder="Edit display name" value={updatedUserProfile.displayName} onChange={handleChange} /> 
         </Form.Group>
-        <Col md="6">
+        <Col>
               <img className='w-100' src={userProfile.profileImg} alt={updatedUserProfile.userName} />
         </Col>
         <hr />
@@ -114,10 +114,11 @@ const EditProfile = () => {
               }} />
         <Button onClick={uploadImage}>Upload image</Button>
         </Form.Group>
+        <hr />
         <Button variant="primary" type="submit">Submit</Button>
         <hr />
         <Link to={`/users/${userId}`} className='btn dark'>Cancel</Link>
-
+        <hr />
         </Form>
         </>
         :
