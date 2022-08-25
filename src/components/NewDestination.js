@@ -1,41 +1,26 @@
 import axios from "axios"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import API_URL from '../config.js'
 import { getToken } from '../helpers/auth'
-
-
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { Input } from "reactstrap"
-import { Container } from "react-bootstrap"
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 
 const NewDestination = () => {
 
   const navigate = useNavigate()
   const [ imageSelect, setImageSelected ] = useState('')
-  const [ newTravel, setNewTravel ] = useState(
-    {
-    name: '',
-    country: '',
-    description: '',
-    rating: undefined,
-    reviews: [], 
-    createdBy: '',
-    imgUrl:[],
-  }
-  )
-  const [ errors, setErrors ] = useState(
-    {
-    name: '',
-    country: '',
-    description: '',
-  }
-  )
+  const [ errors, setErrors ] = useState(false)
+  const [ newImgUrl, setNewImgUrl ] = useState('')
+  const [ newTravel, setNewTravel ] = useState('')
+
+  useEffect(() => {
+  }, [newImgUrl])
 
   const handleChange = (event) => {
     setNewTravel({ ...newTravel, [event.target.name]: event.target.value })
     setErrors({ ...errors, [event.target.name]: '', message: '' })
+    
   }
 
   const uploadImage = async (event) => {
@@ -45,7 +30,7 @@ const NewDestination = () => {
     formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
     const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
     // ! this is my (serhan miah) login for the cloudinary - for destination images
-    console.log('upload image data', data.url)
+    setNewImgUrl(data.url)
     setNewTravel({ ...newTravel, imgUrl: [ data.url ]})
   }
 
@@ -60,13 +45,13 @@ const NewDestination = () => {
       console.log(data)
       navigate('/travel')
     } catch (error) {
-      console.log(error)
-      setErrors(error)
+      setErrors(error.message)
+      console.log(error.message)
     }
   } 
 
   return (
-   <div className="add-destinationForm">
+  <div className="add-destinationForm">
 
 <div className="add-form-wrapper">
 <Form className='add-destination-form'  onSubmit={handleSubmit}>
@@ -92,25 +77,22 @@ const NewDestination = () => {
       <Form.Group className="mb-3" >
         <Form.Label>Rating</Form.Label>
         <Form.Control type="number" name="rating" placeholder="From 0 to 5" value={newTravel.rating} onChange={handleChange} /> 
-        {/* <Button onClick={uploadImage}>Upload a new destination image</Button> */}
       </Form.Group>
       <hr />
     <Form.Group className="upload-image-destinaion mb-3"  >
-      <Form.Label htmlFor="image">Upload Image</Form.Label>
+      <Form.Label>Image</Form.Label>
+      { newImgUrl ? 
+              <img className='w-100' src={newImgUrl} alt={'User Uploaded Destination'} />
+              :
+              <></>
+              }
         <input type="file" id="image" className="input" onChange={(event) => {
           setImageSelected(event.target.files[0])
         }} /> 
         <Button onClick={uploadImage}>Upload a new destination image</Button>
-
+        <Button onClick={uploadImage}>Upload image</Button>
     </Form.Group> 
-    <hr />
-      
-      <Form.Group className="mb-3" >
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
 
-    
-      <hr />
       <Button variant="primary" type="submit">
         Submit
       </Button>
