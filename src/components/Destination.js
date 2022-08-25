@@ -4,7 +4,7 @@ import axios from 'axios'
 import API_URL from '../config.js'
 import Container from "react-bootstrap/Container"
 import ListGroup from "react-bootstrap/ListGroup"
-import Col from "react-bootstrap/Col"
+
 import Spinner from './Spinner.js'
 import  Card  from "react-bootstrap/Card"
 import { getToken } from "../helpers/auth.js"
@@ -78,7 +78,7 @@ const Destination = () => {
               </Card.Body>
             </Card>
        
-              <Container as='section' className='text-center'>
+              <Container as='section' className='review-card'>
                   <h3>reviews</h3>
                   { destination.reviews.length > 0
                     ?
