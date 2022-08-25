@@ -71,7 +71,7 @@ const NewDestination = () => {
 
       <Form.Group className="mb-3" >
         <Form.Label>Description</Form.Label>
-        <textarea name="description" placeholder="Description" value={newTravel.description} onChange={handleChange} ></textarea>
+        <Form.Control as="textarea" rows={4} name="description" placeholder="Type description here" value={newTravel.description} onChange={handleChange} />        
       </Form.Group>
       <hr />
       <Form.Group className="mb-3" >
@@ -92,7 +92,7 @@ const NewDestination = () => {
         <Button onClick={uploadImage}>Upload image</Button>
     </Form.Group> 
 
-      <Button variant="primary" type="submit">
+      <Button className ="button-submit" type="submit">
         Submit
       </Button>
       { errors && <p className='text-danger'>{errors}</p>}
