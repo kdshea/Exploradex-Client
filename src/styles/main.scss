@@ -76,8 +76,19 @@ card {
 
 .card-img-top {
   width: 100%;
-  height: 15vw;
+  // height: 15vw;
   // object-fit: cover;
+}
+
+// !maybe
+.testing-image {
+  width: 100%;
+  height: 15vw;
+}
+
+.testing-image {
+  width: 100%;
+  height: 15vw;
 }
 
 .destination-index {
@@ -227,4 +238,13 @@ div.list-group-item {
   min-width: 100%;
   padding: 30px;
 
+}
+
+
+.editReview-container{
+  // height: 100vh;
+}
+
+.re-card.card { 
+  width: 40%;
 }

@@ -1,8 +1,11 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
 import { useNavigate, useParams } from "react-router-dom"
 import API_URL from '../config.js'
 import { getToken } from "./auth"
+import { Container } from "react-bootstrap"
 
 
 const NewReview = () => {
@@ -58,33 +61,55 @@ const handleSubmit = async (event) => {
 }
 
   return (
-    <main>
-      <form className="review-form" onSubmit={handleSubmit}>
+
+    
+    
+    <Container as='main'>
+      <Form className="review-form" onSubmit={handleSubmit}>
       <h1>Add review</h1>
-        <label htmlFor="reviewText">Review Text</label>
+      
+      <Form.Group>
+        <Form.Label htmlFor="reviewText" >Review Text</Form.Label>
         <textarea name="reviewText" placeholder="Review text" value={review.reviewText} onChange={handleChange} ></textarea>
+      </Form.Group>
 
-        <label htmlFor="rating">Rating</label>
-        <input type="number" name="rating" placeholder="From 0 to 5" value={review.ratin} onChange={handleChange} />
+      <Form.Group>
+        <Form.Label>Rating</Form.Label>
+        <Form.Control type="number" name="rating" placeholder="From 0 to 5" value={review.rating} onChange={handleChange} />
+      </Form.Group>
 
-        <label htmlFor="activities">Activities</label>
+      <Form.Group>
+        <Form.Label>Activities</Form.Label>
         <textarea name="activities" placeholder="Activities" value={review.activities} onChange={handleChange} ></textarea>
+      </Form.Group>
 
-        <label htmlFor="image">Image</label>
-        { reviewImg ? 
+      <Form.Group className="upload-image-destinaion mb-3"  >
+      <Form.Label>Image</Form.Label>
+      { reviewImg ? 
               <img className='w-100' src={reviewImg} alt={'User Uploaded Destination'} />
               :
               <></>
               }
         <input type="file" id="image" className="input" onChange={(event) => {
           setReviewImg(event.target.files[0])
-        }} />
-        <button onClick={uploadImage}> Upload image</button>
+        }} /> 
+        <Button onClick={uploadImage}>Upload image</Button>
+    </Form.Group> 
 
-        <input type="submit"/> 
-      </form>
-    </main>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+      
+      {/* { errors && <p className='text-danger'>{errors}</p>} */}
+    </Form>
+
+    </Container>
   )
+
+
+
+
+  
 }
 
 export default NewReview

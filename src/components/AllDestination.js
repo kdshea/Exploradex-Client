@@ -40,8 +40,8 @@ useEffect(() => {
             return (
               <Col key={_id} md="5" lg="4" className='mb-4'>
                 <Link style={{ textDecoration: 'none', color: 'black' }} to={`/travel/${_id}`}>
-                  <Card>
-                    <Card.Img variant='top' src={item.imgUrl[0]}></Card.Img>
+                  <Card >
+                    <Card.Img className='testing-image' variant='top' src={item.imgUrl[0]}></Card.Img>
                     <Card.Body className='bg-light'>
                       <Card.Title className='multi-card text-center mb-0 text-decoration-none'>{item.name} - {item.country}</Card.Title>
                     </Card.Body>
