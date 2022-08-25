@@ -95,12 +95,8 @@ const NewDestination = () => {
       <Button variant="primary" type="submit">
         Submit
       </Button>
-      {/* { errors && <p className='text-danger'>{errors}</p>} */}
+      { errors && <p className='text-danger'>{errors}</p>}
     </Form>
-
-
-
-
         </div>
     </div>
   )
