@@ -4,6 +4,12 @@ import { useNavigate } from "react-router-dom"
 import API_URL from '../config.js'
 import { getToken } from '../helpers/auth'
 
+
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { Input } from "reactstrap"
+import { Container } from "react-bootstrap"
+
 const NewDestination = () => {
 
   const navigate = useNavigate()
@@ -55,31 +61,59 @@ const NewDestination = () => {
   } 
 
   return (
-   <main>
-      <form className="form-addDestination" onSubmit={handleSubmit}>
-        <h1>Add Destination</h1>
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" placeholder="Name of Destination" value={newTravel.name} onChange={handleChange} />
+   <div className="add-destinationForm">
 
-        <label htmlFor="country">Country</label>
-        <input type="text" name="country" placeholder="Country" value={newTravel.country} onChange={handleChange} />
+<Form onSubmit={handleSubmit}>
+  <h1>Add Destination</h1>
+  
+    {/* user Name */}
+    <Form.Group className="mb-3" controlId="formBasicName">
+        <Form.Label>Name</Form.Label>
+        <Form.Control type="text" name="name" placeholder="Name of Destination" value={newTravel.name} onChange={handleChange} /> 
+      </Form.Group>
 
-        <label htmlFor="description">Description</label>
+      <Form.Group className="mb-3" controlId="formBasicCountry">
+        <Form.Label>Country</Form.Label>
+        <Form.Control type="text" name="country" placeholder="Country" value={newTravel.country} onChange={handleChange} />
+     
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicDescription">
+        <Form.Label>Description</Form.Label>
         <textarea name="description" placeholder="Description" value={newTravel.description} onChange={handleChange} ></textarea>
+      </Form.Group>
 
-        <label htmlFor="rating">Rating</label>
-        <input type="number" name="rating" placeholder="From 0 to 5" value={newTravel.rating} onChange={handleChange} />
+      <Form.Group className="mb-3" controlId="formBasicRating">
+        <Form.Label>Rating</Form.Label>
+        <Form.Control type="number" name="rating" placeholder="From 0 to 5" value={newTravel.rating} onChange={handleChange} /> 
+      
+      </Form.Group>
 
-        {/* upload image that connects to the cloudinary */}
-        <label htmlFor="image">Upload Image</label>
+    <Form.Group className="mb-3" controlId="formBasicImage">
+      <Form.Label htmlFor="image">Upload Image</Form.Label>
         <input type="file" id="image" className="input" onChange={(event) => {
           setImageSelected(event.target.files[0])
-        }} />
-        <button onClick={uploadImage}> Upload image</button>
+        }} /> 
+    </Form.Group> 
 
-        <input type="submit"/> 
-      </form>
-    </main>
+      
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check type="checkbox" label="Check me out" />
+      </Form.Group>
+
+    
+
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+      {/* { errors && <p className='text-danger'>{errors}</p>} */}
+    </Form>
+
+
+
+
+
+    </div>
   )
 }
 
