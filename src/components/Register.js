@@ -16,14 +16,15 @@ const Register = () => {
 
   const [ formData, setFormData ] = useState('')
   const [ loginData, setLoginData ] = useState('')
-  const [ errors, setErrors ] = useState('')
+  const [ errors, setErrors ] = useState(false)
   
-  const handleChange = (event) => {
+  const handleChange = (event, error) => {
     setFormData({ ...formData, [event.target.name]: event.target.value})
     if (event.target.name === 'userName' || event.target.name === 'password') {
       setLoginData({ ...loginData, [event.target.name]: event.target.value })
     }
-    setErrors({ ...errors, [event.target.name]: '', message: '' })
+    setErrors(true)
+    console.log(error.message)
   }
 
   const handleSubmit = async (event) => {
