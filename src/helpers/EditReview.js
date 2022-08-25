@@ -115,6 +115,8 @@ const EditReview = () => {
 
                 </ListGroup>
 
+                {/* Image doesnt seem to change. */}
+
                 { newReviewImg ? 
                 <img className='w-100' src={newReviewImg} alt={'User Uploaded Review'} />
                 :
@@ -123,9 +125,9 @@ const EditReview = () => {
                 <Form.Control type="file" id="image" className="input" onChange={(event) => {
                   setImageSelected(event.target.files[0])
                 }} />
-                <Button onClick={uploadImage}>Upload image</Button>
+                <Button className='btn btn-primary' onClick={uploadImage}>Upload image</Button>
                 <hr />
-                <Button variant="primary" type="submit">Submit</Button>
+                <Button  className='btn btn-primary' variant="primary" type="submit">Submit</Button>
                 <hr />
                 <div className="buttons mb-4">
                   <Link to={`/travel/${destinationId}`} className='btn btn-primary'>Cancel</Link>
@@ -145,3 +147,5 @@ const EditReview = () => {
 }
 
 export default EditReview
+
+
