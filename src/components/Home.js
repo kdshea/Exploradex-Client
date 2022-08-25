@@ -22,9 +22,9 @@ const Home = () => {
       <div className="hero-container">
           <h1 className='display-3'>Welcome to our Travel Library</h1>
           <Link to='/travel'>
-              <button>Explore</button>
+              <button>Explore the World's Best Destinations</button>
             </Link>
-          <p className='lead'>To add destinations and reviews, please register below</p>
+          <p className='lead'>To add destinations and reviews, please register below or login</p>
           {buttons.map((button, index) => (
             <Link key={index} to={button.path}>
               <button>{button.label}</button>
