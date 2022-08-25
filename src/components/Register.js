@@ -14,16 +14,8 @@ const Register = () => {
 
   const navigate = useNavigate()
 
-  const [ formData, setFormData ] = useState({
-    email: '',
-	  userName: '',
-	  password: '',
-	  confirmPassword: ''
-  })
-  const [ loginData, setLoginData ] = useState({
-    userName: '',
-    password: '',
-  })
+  const [ formData, setFormData ] = useState('')
+  const [ loginData, setLoginData ] = useState('')
   const [ errors, setErrors ] = useState('')
   
   const handleChange = (event) => {

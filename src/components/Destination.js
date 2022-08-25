@@ -60,6 +60,8 @@ const CarouselImages = () => {
   const deleteReview = async (event, destinationId, reviewId) => {
     event.preventDefault()
     try {
+      console.log('destination', destinationId)
+      console.log('review', reviewId)
       const { data } = await axios.delete(`${API_URL}/travel/${destinationId}/${reviewId}`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,

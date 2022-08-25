@@ -52,7 +52,6 @@ const EditReview = () => {
     formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
     const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
     // ! this is my (serhan miah) login for the cloudinary - for destination images
-    console.log('upload image data', data.url)
     setNewReviewImg(data.url)
     setUpdatedReview({ ...updatedReview, reviewImg: data.url })
   }
@@ -105,7 +104,7 @@ const EditReview = () => {
                 <input type="file" id="image" className="input" onChange={(event) => {
                   setImageSelected(event.target.files[0])
                 }} />
-                <button onClick={uploadImage}>Upload an image</button>
+                <button onClick={uploadImage}>Upload image</button>
                 <hr />
                 <input type="submit"/> 
                 <hr />
