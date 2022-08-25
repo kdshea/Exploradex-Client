@@ -1,4 +1,4 @@
-import Container from 'react-bootstrap/Container';
+
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
@@ -17,31 +17,42 @@ const NavBar = () => {
   }
 
   return (
-    <Navbar expand="sm">
-    <Container as="section">
-      <Navbar.Brand as={Link} to="/">🌍</Navbar.Brand>
-      <Navbar.Toggle aria-controls='basic-navbar-nav' />
-      <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>
-        <Nav.Link as={Link} to='/' >Home</Nav.Link>        
+    <Nav variant="tabs" defaultActiveKey="/home">
+      <Nav.Item>
+        <Navbar.Brand as={Link} to="/">🌍</Navbar.Brand>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link as={Link} to='/' >Home</Nav.Link> 
+      </Nav.Item>
+      <Nav.Item>
         <Nav.Link as={Link} to='/travel' >All Destinations</Nav.Link>
-        { userIsAuthenticated()
-          ?
-          <>
+      </Nav.Item>
+      { userIsAuthenticated()
+        ?
+        <>
+          <Nav.Item>
             <Nav.Link as={Link} to={`/users/${userId}`} >User Profile</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
             <Nav.Link as={Link} to='/travel/new' >Add Destination</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
             <span onClick={handleLogOut}>Logout</span>
-          </>
-          :
-          <>
+          </Nav.Item>
+        </>
+        :
+        <>
+          <Nav.Item>
             <Nav.Link as={Link} to='/register'>Register</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
             <Nav.Link as={Link} to='/login'>Login</Nav.Link>
-          </>
-        }
-      </Navbar.Collapse>
-    </Container>
-  </Navbar>
-      
+          </Nav.Item>
+        </>      
+      }      
+    </Nav>
   );
 }
-
+  
+  
 export default NavBar;

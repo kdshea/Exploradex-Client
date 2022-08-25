@@ -1,14 +1,16 @@
+
 import { useEffect, useState } from "react"
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import API_URL from '../config.js'
 import Container from "react-bootstrap/Container"
 import ListGroup from "react-bootstrap/ListGroup"
-
 import Spinner from './Spinner.js'
-import  Card  from "react-bootstrap/Card"
+import Card  from "react-bootstrap/Card"
 import { getToken } from "../helpers/auth.js"
-import  Button  from "react-bootstrap/Button"
+import Button  from "react-bootstrap/Button"
+import Carousel  from "react-bootstrap/Carousel";
+
 
 const Destination = () => {
   const navigate = useNavigate()
@@ -50,6 +52,35 @@ const Destination = () => {
     }
   }
 
+  const CarouselImages = () => {
+  
+    return (
+      <Carousel>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={destination.imgUrl[0]}
+            alt={destination.name}
+          />        
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={destination.imgUrl[1]}
+            alt={destination.name}
+          />        
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={destination.imgUrl[2]}
+            alt={destination.name}
+          />        
+        </Carousel.Item>
+      </Carousel>
+    );
+  }
+
 
   
   return (
@@ -59,8 +90,8 @@ const Destination = () => {
           
           <div className="kitchen-sink">
             <h1>{destination.name}</h1>
-           <Card border="dark" className="destination-card bg-transparent">
-              <Card.Img  variant="top" src={destination.imgUrl[0]} alt={destination.name} />
+            <Card border="dark" className="destination-card bg-transparent">
+              <CarouselImages />
               <Card.Body className="bg-transparent">
                 <Card.Title>{destination.name} - {destination.country}</Card.Title>
                 <Card.Text>
