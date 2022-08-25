@@ -16,20 +16,8 @@ const EditProfile = () => {
   const navigate = useNavigate()
   const [ imageSelect, setImageSelected ] = useState('')
   const [ errors, setErrors ] = useState(false)
-  const [ userProfile, setUserProfile ] = useState({
-    displayName: '',
-    email: '',
-    userName: '',
-    aboutMeText: '',
-    profileImg: '',
-  })
-  const [ updatedUserProfile, setUpdatedUserProfile ] = useState(({
-    displayName: '',
-    email: '',
-    userName: '',
-    aboutMeText: '',
-    profileImg: '',
-  }))
+  const [ userProfile, setUserProfile ] = useState('')
+  const [ updatedUserProfile, setUpdatedUserProfile ] = useState('')
   const [ newProfileImg, setNewProfileImg ] = useState('')
 
   useEffect(() => {
@@ -40,7 +28,6 @@ const EditProfile = () => {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log('user profile', data)
         setUserProfile(data)
         setUpdatedUserProfile(data)
       } catch (error) {
@@ -49,7 +36,11 @@ const EditProfile = () => {
       }
     }
     getUser()
-  }, [userId, newProfileImg])
+  }, [userId])
+
+  useEffect(() => {
+    console.log(updatedUserProfile)
+  }, [newProfileImg])
 
   const handleChange = (event) => {
     setUpdatedUserProfile({ ...updatedUserProfile, [event.target.name]: event.target.value })
@@ -77,7 +68,7 @@ const EditProfile = () => {
           Authorization: `Bearer ${getToken()}`,  
         },
       })
-
+      console.log('handle submit data', data)
     } catch (error) {
       setErrors(error.message)
       console.log(error.message)
