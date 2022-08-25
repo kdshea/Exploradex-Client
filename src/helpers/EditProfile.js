@@ -39,7 +39,6 @@ const EditProfile = () => {
   }, [userId])
 
   useEffect(() => {
-    console.log(updatedUserProfile)
   }, [newProfileImg])
 
   const handleChange = (event) => {
@@ -54,7 +53,6 @@ const EditProfile = () => {
     formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
     const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
     // ! this is my (serhan miah) login for the cloudinary - for destination images
-    console.log('upload image data', data.url)
     setNewProfileImg(data.url)
     setUpdatedUserProfile({ ...updatedUserProfile, profileImg: data.url })
   }
@@ -62,13 +60,13 @@ const EditProfile = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      console.log('updated profile', updatedUserProfile)
       const { data } = await axios.put(`${API_URL}/users/${userId}`, updatedUserProfile, {
         headers: {
           Authorization: `Bearer ${getToken()}`,  
         },
       })
-      console.log('handle submit data', data)
+      console.log(data)
+      navigate(`/users/${userId}`)
     } catch (error) {
       setErrors(error.message)
       console.log(error.message)
@@ -105,7 +103,7 @@ const EditProfile = () => {
               <input type="file" id="image" className="input" onChange={(event) => {
                 setImageSelected(event.target.files[0])
               }} />
-              <button onClick={uploadImage}>Upload a profile image</button>
+              <button onClick={uploadImage}>Upload profile image</button>
               <hr />
               <input type="submit"/> 
               <hr />

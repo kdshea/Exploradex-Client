@@ -1,19 +1,18 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
 import API_URL from '../config.js'
-import { useParams } from 'react-router-dom'
-// import { getToken } from './auth.js'
-// import Container from 'react-bootstrap/Container'
-// import { Link } from 'react-router-dom'
-// import Row  from 'react-bootstrap/Row'
-// import  Col from 'react-bootstrap/Col'
-// import Spinner from '../components/Spinner.js'
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import { getToken } from './auth.js'
+import Container from 'react-bootstrap/Container'
+import Row  from 'react-bootstrap/Row'
+import Card  from "react-bootstrap/Card"
+import ListGroup from "react-bootstrap/ListGroup"
+import Spinner from '../components/Spinner.js'
 
 const EditReview = () => {
 
   const { destinationId, reviewId } = useParams()
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   const [ imageSelect, setImageSelected ] = useState('')
   const [ errors, setErrors ] = useState(false)
   const [ review, setReview ] = useState('')
@@ -23,7 +22,7 @@ const EditReview = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/${destinationId}/${reviewId}`, {
+        const { data } = await axios.get(`${API_URL}/travel/${destinationId}/${reviewId}`, {
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },
@@ -36,10 +35,9 @@ const EditReview = () => {
       }
     }
     getUser()
-  }, [reviewId])
+  }, [])
 
   useEffect(() => {
-    console.log('new review image uploaded', updatedReview)
   }, [newReviewImg])
 
   const handleChange = (event) => {
@@ -59,67 +57,73 @@ const EditReview = () => {
     setUpdatedReview({ ...updatedReview, reviewImg: data.url })
   }
 
-//   const handleSubmit = async (event) => {
-//     event.preventDefault()
-//     try {
-//       console.log('updated review', updatedReview)
-//       const { data } = await axios.put(`${API_URL}/${destinationId}/${reviewId}`, updatedUserProfile, {
-//         headers: {
-//           Authorization: `Bearer ${getToken()}`,  
-//         },
-//       })
-//     } catch (error) {
-//       setErrors(error.message)
-//       console.log(error.message)
-//     }
-//   } 
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const { data } = await axios.put(`${API_URL}/travel/${destinationId}/${reviewId}`, updatedReview, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,  
+        },
+      })
+      console.log(data)
+      navigate(`/travel/${destinationId}`)
+    } catch (error) {
+      setErrors(error.message)
+      console.log(error.message)
+    }
+  } 
 
-//   return (
-// <Container>
-//     <Row>
-//       { userProfile.email ? 
-        // <>
-        //   <form onSubmit={handleSubmit}>
-        //     <h1>Name: { userProfile.displayName? userProfile.displayName : userProfile.userName}</h1>
-        // <input type="text" name="displayName" placeholder="Edit display name" value={updatedUserProfile.displayName} onChange={handleChange} />
-        //     <Col md="6">
-        //       <img className='w-100' src={userProfile.profileImg} alt={userProfile.userName} />
-        //     </Col>
-        //     <Col md="6">
-        //       <h2>Profile</h2>
-        //       <p><span>📧</span> {userProfile.email}</p>
-        //       <input type="text" name="email" placeholder="Edit email" value={updatedUserProfile.email} onChange={handleChange} />
-        //       <hr />
-        //       <h2>About Me</h2>
-        //       <p>{userProfile.aboutMeText}</p>
-        //       <textarea name="aboutMeText" placeholder="Edit About Me" value={updatedUserProfile.aboutMeText} onChange={handleChange} ></textarea>
-        //       <hr />
-        //       {/* upload image that connects to the cloudinary */}
-        //       <label htmlFor="image">Upload Image</label>
-        //       { newProfileImg ? 
-        //       <img className='w-100' src={newProfileImg} alt={'User Uploaded Profile'} />
-        //       :
-        //       <></>
-        //       }
-        //       <input type="file" id="image" className="input" onChange={(event) => {
-        //         setImageSelected(event.target.files[0])
-        //       }} />
-        //       <button onClick={uploadImage}>Upload a profile image</button>
-        //       <hr />
-        //       <input type="submit"/> 
-        //       <hr />
-        //       <Link to={`/users/${userId}`} className='btn dark'>Cancel</Link>
-        //     </Col>
-        //   </form>
-        // </>
-//         :
-//         <h2 className="text-center">
-//           { errors ? 'Something went wrong. Please try again later' : <Spinner />}
-//         </h2>
-//       }
-//     </Row>
-//   </Container>
-  // )
+  return (
+  <Container>
+    <Row>
+      { review.reviewText ? 
+        <>
+          <form onSubmit={handleSubmit}>
+            <Card key={reviewId} className="re-card">
+              <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
+              <Card.Body>
+                <Card.Title className='text-center mb-0'>{/*{reviewText}*/}</Card.Title>        
+                <Card.Text>
+                  {review.reviewText}
+                  <label htmlFor="reviewText">Review Text</label>
+                  <textarea name="reviewText" placeholder="Edit review text" value={updatedReview.reviewText} onChange={handleChange} ></textarea>
+                </Card.Text>  
+                <ListGroup className="list-group-flush">
+                  <ListGroup.Item><span>👤</span> {review.displayName}</ListGroup.Item>
+                  <ListGroup.Item>Rating: {review.rating}</ListGroup.Item>
+                  <input type="number" name="rating" placeholder="Edit rating" value={updatedReview.rating} onChange={handleChange} />
+                  <ListGroup.Item>Activites: {review.activities.join(', ')}</ListGroup.Item>
+                  <textarea name="activities" placeholder="Edit activities" value={updatedReview.activities} onChange={handleChange} ></textarea>
+                </ListGroup>
+                {/* upload image that connects to the cloudinary */}
+                <label htmlFor="image">Upload Image</label>
+                { newReviewImg ? 
+                <img className='w-100' src={newReviewImg} alt={'User Uploaded Review'} />
+                :
+                <></>
+                }
+                <input type="file" id="image" className="input" onChange={(event) => {
+                  setImageSelected(event.target.files[0])
+                }} />
+                <button onClick={uploadImage}>Upload an image</button>
+                <hr />
+                <input type="submit"/> 
+                <hr />
+                <div className="buttons mb-4">
+                  <Link to={`/travel/${destinationId}`} className='btn btn-primary'>Cancel</Link>
+                </div>                          
+              </Card.Body>
+            </Card> 
+          </form>
+      </>
+        :
+        <h2 className="text-center">
+          { errors ? 'Something went wrong. Please try again later' : <Spinner />}
+        </h2>
+      }
+    </Row>
+  </Container>
+  )
 }
 
 export default EditReview

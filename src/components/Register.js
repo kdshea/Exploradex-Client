@@ -41,8 +41,8 @@ const Register = () => {
       console.log(data)
       autoLogin()
     } catch (error) {
-      console.log(error)
-      // setErrors({...errors, [event.target.name]: '', message: '' })
+      setErrors({...errors, [event.target.name]: '', message: '' })
+      console.log(error.mesage)
     }
   }
 
@@ -53,8 +53,8 @@ const Register = () => {
     setId(data.userId)
     navigate(`/edit-profile/${data.userId}`)
     } catch (error) {
-      // setErrors(error.response.data.messages)
-      console.log(error)
+      setErrors(error.message)
+      console.log(error.message)
     }
   }
 
@@ -83,13 +83,9 @@ const Register = () => {
         <Form.Control onChange={handleChange} type="password" name="password" placeholder='Password' value={formData.password}  />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
         <Form.Label>Confirm Password</Form.Label>
         <Form.Control onChange={handleChange} type="password" name="confirmPassword" placeholder='Confirm Password' value={formData.confirmPassword} /> 
-      </Form.Group>
-      
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
 
       { errors && <p className='text-danger'>{errors}</p>}

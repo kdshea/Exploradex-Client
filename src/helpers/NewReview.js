@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import API_URL from '../config.js'
 import { getToken } from "./auth"
@@ -22,6 +22,9 @@ reviewImgUrl: [''],
 const [ reviewImg, setReviewImg ] = useState('')
 const [ errors, setErrors ] = useState(false)
 
+useEffect(() => {
+}, [reviewImg])
+
 const handleChange = async (event) => {
   setReview({ ...review, [event.target.name]: event.target.value })
   setErrors({ ...errors, [event.target.name]: '', message: '' })
@@ -34,7 +37,7 @@ const uploadImage = async (event) => {
   formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
   const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
   // ! this is my (serhan miah) login for the cloudinary - for destination images
-  console.log('upload image data', data.url)
+  setReviewImg(data.url)
   setReview({ ...review, reviewImgUrl: [ data.url ]})
 }
 
@@ -61,14 +64,18 @@ const handleSubmit = async (event) => {
         <label htmlFor="reviewText">Review Text</label>
         <textarea name="reviewText" placeholder="Review text" value={review.reviewText} onChange={handleChange} ></textarea>
 
-        <label htmlFor="rating">rating</label>
+        <label htmlFor="rating">Rating</label>
         <input type="number" name="rating" placeholder="From 0 to 5" value={review.ratin} onChange={handleChange} />
 
-        <label htmlFor="activities">activities</label>
+        <label htmlFor="activities">Activities</label>
         <textarea name="activities" placeholder="Activities" value={review.activities} onChange={handleChange} ></textarea>
 
-
-        <label htmlFor="image">Upload Image</label>
+        <label htmlFor="image">Image</label>
+        { reviewImg ? 
+              <img className='w-100' src={reviewImg} alt={'User Uploaded Destination'} />
+              :
+              <></>
+              }
         <input type="file" id="image" className="input" onChange={(event) => {
           setReviewImg(event.target.files[0])
         }} />

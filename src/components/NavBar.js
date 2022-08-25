@@ -11,7 +11,7 @@ const NavBar = () => {
   const handleLogOut = () => {
     window.localStorage.removeItem('local-user-Token')
     window.localStorage.removeItem('local-user-Id')
-    navigate('/login')
+    navigate('/')
   }
 
   return (
