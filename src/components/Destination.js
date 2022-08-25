@@ -12,44 +12,39 @@ import  Button  from "react-bootstrap/Button"
 
 const Destination = () => {
   const navigate = useNavigate()
-
   const { destinationId } = useParams()
-
   const [ destination, setDestination ] = useState(null)
   const [ errors, setErrors ] = useState(false)
-  const [ destoryReview, setDestoryReview ] = useState({
-    _id: ''
-  })
-
+  const [ reviewsRemoved, setReviewsRemoved ] = useState(0)
 
   useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await axios.get(`${API_URL}/travel/${destinationId}`)
         setDestination(data)
-      } catch (err) {
-        setErrors(true)
+      } catch (error) {
+        setErrors(error.message)
+        console.log(error.message)
       }
     }
     getData()
-    console.log(destination)
-  }, [destinationId])
+  }, [destinationId, reviewsRemoved])
 
-  const deleteReview = async (event) => {
+  const deleteReview = async (event, destinationId, reviewId) => {
     event.preventDefault()
     try {
-      const { data } = await axios.delete(`${API_URL}/travel/${destinationId}`, {
+      const { data } = await axios.delete(`${API_URL}/travel/${destinationId}/${reviewId}`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log(data);
-      navigate('/')
-    } catch (err) {
-      console.log(err)
+      console.log(data)
+      setReviewsRemoved(reviewsRemoved + 1)
+    } catch (error) {
+      setErrors(error.message)
+      console.log(error.message)
     }
   }
-
 
   
   return (
@@ -59,7 +54,7 @@ const Destination = () => {
           
           <div className="kitchen-sink">
             <h1>{destination.name}</h1>
-           <Card border="dark" className="destination-card bg-transparent">
+            <Card border="dark" className="destination-card bg-transparent">
               <Card.Img  variant="top" src={destination.imgUrl[0]} alt={destination.name} />
               <Card.Body className="bg-transparent">
                 <Card.Title>{destination.name} - {destination.country}</Card.Title>
@@ -76,37 +71,33 @@ const Destination = () => {
                 {/* <Card.Link href="#">Card Link</Card.Link>
                 <Card.Link href="#">Another Link</Card.Link> */}
               </Card.Body>
-            </Card>
-       
+              </Card>
               <Container as='section' className='text-center'>
-                  <h3>reviews</h3>
+                  <h3>Reviews</h3>
                   { destination.reviews.length > 0
                     ?
                     destination.reviews.map(review => {
-                      const { _id: reviewId, reviewText, rating } = review
-                      const activities = review.activities.join(', ')
+                      console.log(destination)
+                      const { reviewId, reviewText, rating, displayName, reviewImgUrl, activities } = review
                       return (                       
-                          <Link to={`/travel/${review.destinationId}`}>
-                          <Card key={reviewId} className="re-card">
-                              <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
-                              <Card.Body>
-                            <Card.Title className='text-center mb-0'>{review.name}</Card.Title>        
-                                <Card.Text>
+                        <Card key={reviewId} className="re-card">
+                            <Card.Img variant='top' src={reviewImgUrl[0] ? reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
+                            <Card.Body>
+                          <Card.Title className='text-center mb-0'>{/*{reviewText}*/}</Card.Title>        
+                              <Card.Text>
                                 {reviewText}
                               </Card.Text>  
-                                  <ListGroup className="list-group-flush">
-                                    <ListGroup.Item><span>👤</span> {review.createdBy}</ListGroup.Item>
-                                    <ListGroup.Item>Rating: {rating}</ListGroup.Item>
-                                    <ListGroup.Item>Activites: {activities}</ListGroup.Item>
-                                  </ListGroup>                    
-                        
-                                <div className="buttons mb-4">
-                                  <Button variant="danger" onClick={deleteReview}>Delete Review</Button>
-                                  <Link to={`/landing`} className='btn btn-primary'>Edit Review</Link>
-                                </div>                          
-                              </Card.Body>
-                            </Card>
-                          </Link>             
+                                <ListGroup className="list-group-flush">
+                                  <ListGroup.Item><span>👤</span> {displayName}</ListGroup.Item>
+                                  <ListGroup.Item>Rating: {rating}</ListGroup.Item>
+                                  <ListGroup.Item>Activites: {activities.join(', ')}</ListGroup.Item>
+                                </ListGroup>                    
+                              <div className="buttons mb-4">
+                                <Button variant="danger" onClick={event => deleteReview(event, destinationId, reviewId)}>Delete Review</Button>
+                                <Link to={`/edit-review/${destinationId}/${reviewId}`} className='btn btn-primary'>Edit Review</Link>
+                              </div>                          
+                            </Card.Body>
+                          </Card>          
                         )
                     })
                     :

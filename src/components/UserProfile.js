@@ -1,20 +1,20 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import API_URL from '../config.js'
-import { useParams } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { getToken } from '../helpers/auth.js'
 import Container from 'react-bootstrap/Container'
 import  Card  from "react-bootstrap/Card"
-import { Link } from 'react-router-dom'
 import Row  from 'react-bootstrap/Row'
 import  Col from 'react-bootstrap/Col'
 import Spinner from './Spinner.js'
-// import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button'
 
 const UserProfile = () => {
-
+  const navigate = useNavigate()
   const { userId } = useParams()
   const [ errors, setErrors ] = useState(false)
+  const [ reviewsRemoved, setReviewsRemoved ] = useState(0)
   const [ userProfile, setUserProfile ] = useState({
     _id: '',
     email: '',
@@ -32,12 +32,28 @@ const UserProfile = () => {
         })
         setUserProfile(data)
       } catch (error) {
-        console.log(error)
-        setErrors(true)
+        setErrors(error.message)
+        console.log(error.message)
       }
     }
     getUser()
-  }, [userId])
+  }, [userId, reviewsRemoved])
+
+  const deleteReview = async (event, destinationId, reviewId) => {
+    event.preventDefault()
+    try {
+      const { data } = await axios.delete(`${API_URL}/travel/${destinationId}/${reviewId}`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      console.log(data)
+      setReviewsRemoved(reviewsRemoved + 1)
+    } catch (error) {
+      setErrors(error.message)
+      console.log(error.message)
+    }
+  }
 
   return (
 <Container className='user-profilePage'>
@@ -62,26 +78,24 @@ const UserProfile = () => {
                 { userProfile.reviews.length > 0
                   ?
                   userProfile.reviews.map(review => {
-                    const { _id: reviewId, reviewText, destination: destinationId, rating } = review
-                    const activities = review.activities.join(', ')
+                    const { reviewId, reviewText, destinationId, destinationName, rating, reviewImgUrl, activities } = review
                     return (
                       <Col key={reviewId} md="6" lg="4" className='mb-4'>
-                        <Link to={`/travel/${review.destinationId}`}>
-                          <Card>
-                            <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
-                            <Card.Body>
-                              <Card.Title className='text-center mb-0'>{review.destinationName}</Card.Title>
-                              <p>Rating: {rating}</p>
-                              <p>Activities: {activities}</p>
-                              <p>{reviewText}</p>
-                              {/* Edit / Delete buttons - I will work on these next
-                                <div className="buttons mb-4">
-                                  <Button variant="danger" onClick={deleteReview}>Delete Review</Button>
-                                  <Link to={`/bread/${bread._id}/edit`} className='btn btn-primary'>Edit Review</Link>
-                                </div> */}
-                            </Card.Body>
-                          </Card>
-                        </Link>
+                        <Card>
+                          <Card.Img variant='top' src={reviewImgUrl[0] ? reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
+                          <Card.Body>
+                            <Link to={`/travel/${destinationId}`}>
+                              <Card.Title className='text-center mb-0'>{destinationName}</Card.Title>
+                            </Link>
+                            <p>Rating: {rating}</p>
+                            <p>Activities: {activities.join(', ')}</p>
+                            <p>{reviewText}</p>
+                            <div className="buttons mb-4">
+                              <Button variant="danger" onClick={event => deleteReview(event, destinationId, reviewId)}>Delete Review</Button>
+                              <Link to={`/edit-review/${destinationId}/${reviewId}`} className='btn btn-primary'>Edit Review</Link>
+                            </div>   
+                          </Card.Body>
+                        </Card>
                       </Col>
                     )
                   })

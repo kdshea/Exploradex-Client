@@ -10,7 +10,7 @@ import Row  from 'react-bootstrap/Row'
 import  Col from 'react-bootstrap/Col'
 import Spinner from '../components/Spinner.js'
 
-const EditProfile = () => {
+const EditReview = () => {
 
   const { userId } = useParams()
   const navigate = useNavigate()
@@ -132,4 +132,4 @@ const EditProfile = () => {
   )
 }
 
-export default EditProfile
+export default EditReview

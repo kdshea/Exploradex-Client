@@ -24,26 +24,22 @@ const Login = () => {
     setToken(data.token)
     setId(data.userId)
     navigate(`/users/${data.userId}`)
-
     } catch (error) {
-      setErrors(error.response.data.messages)
-      console.log(error.response.data.messages)
+      setErrors(error.message)
+      console.log(error.message)
     }
   }
   
 
   return  ( 
     <div className='form-login'>
-
       <h1>Login Page</h1>
       {errors && <div className='error'>{errors}</div>}
-
       <form onSubmit={onSubmit} className='form-wrapper'>
           <input type='text' name='userName' placeholder='Username' onChange={handleChange} value={loginData.userName} />
           <input type='password' name='password' placeholder='Password' onChange={handleChange} value={loginData.password} />
           <button type='submit'>Login</button>
       </form>
-
   </div>
   )
 }

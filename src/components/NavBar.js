@@ -1,15 +1,13 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { Link, useNavigate } from 'react-router-dom';
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import { Link, useNavigate } from 'react-router-dom'
 import { userIsAuthenticated, getId } from '../helpers/auth'
 
 
 const NavBar = () => {
   const navigate = useNavigate()
-
   const userId = getId()
-
   const handleLogOut = () => {
     window.localStorage.removeItem('local-user-Token')
     window.localStorage.removeItem('local-user-Id')
@@ -27,8 +25,8 @@ const NavBar = () => {
         { userIsAuthenticated()
           ?
           <>
-            <Nav.Link as={Link} to={`/users/${userId}`} >User Profile</Nav.Link>
             <Nav.Link as={Link} to='/travel/new' >Add Destination</Nav.Link>
+            <Nav.Link as={Link} to={`/users/${userId}`} >User Profile</Nav.Link>
             <span onClick={handleLogOut}>Logout</span>
           </>
           :
@@ -40,8 +38,7 @@ const NavBar = () => {
       </Navbar.Collapse>
     </Container>
   </Navbar>
-      
-  );
+  )
 }
 
 export default NavBar;

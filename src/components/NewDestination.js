@@ -19,17 +19,12 @@ const NewDestination = () => {
     imgUrl:[],
   }
   )
-  const [ errors, setErrors ] = useState(
-    {
-    name: '',
-    country: '',
-    description: '',
-  }
-  )
+  const [ errors, setErrors ] = useState(false)
 
   const handleChange = (event) => {
     setNewTravel({ ...newTravel, [event.target.name]: event.target.value })
     setErrors({ ...errors, [event.target.name]: '', message: '' })
+    
   }
 
   const uploadImage = async (event) => {
@@ -54,8 +49,8 @@ const NewDestination = () => {
       console.log(data)
       navigate('/travel')
     } catch (error) {
-      console.log(error)
-      setErrors(error)
+      setErrors(error.message)
+      console.log(error.message)
     }
   } 
 

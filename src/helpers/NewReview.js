@@ -5,11 +5,10 @@ import API_URL from '../config.js'
 import { getToken } from "./auth"
 
 
-const Review = () => {
+const NewReview = () => {
 
 const navigate = useNavigate()
 const { destinationId } = useParams()
-
 const [ review, setReview ] = useState(
 {
 reviewText: '',
@@ -19,8 +18,7 @@ createdBy: '',
 destinationId: '',
 destinationName: '',
 reviewImgUrl: [''],
-}
-)
+})
 const [ reviewImg, setReviewImg ] = useState('')
 const [ errors, setErrors ] = useState(false)
 
@@ -36,7 +34,6 @@ const uploadImage = async (event) => {
   formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
   const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
   // ! this is my (serhan miah) login for the cloudinary - for destination images
-
   console.log('upload image data', data.url)
   setReview({ ...review, reviewImgUrl: [ data.url ]})
 }
@@ -83,5 +80,4 @@ const handleSubmit = async (event) => {
   )
 }
 
-
-export default Review
+export default NewReview

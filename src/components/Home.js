@@ -1,9 +1,7 @@
 
 import { Link } from "react-router-dom"
-// import Container from "react-bootstrap/Container"
 
 const Home = () => {
-
 
   const buttons = [
     {
@@ -34,14 +32,6 @@ const Home = () => {
         </div>
       </main>
     </>
-    
-  )
-
-
-
-  }
-
-  
-
+  )}
 
 export default Home

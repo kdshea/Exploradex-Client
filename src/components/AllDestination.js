@@ -13,30 +13,23 @@ const AllDestination = () => {
 
 const [ destinationData, setDestinationData ] = useState([])
 const [ errors, setErrors ] = useState(false)
-
 useEffect(() => {
-  // ! need to see if this works now!
   const getData = async () => {
     try {
       const { data } = await axios.get(`${API_URL}/travel`)
       setDestinationData(data)
     } catch (error) {
-      console.log(error)
+      setErrors(error.message)
+      console.log(error.message)
     }
   } 
   getData()
 }, [])
 
-// ! onClick => functionality so that it will go to the component. 
-
-// const onClick = (event) => {
-// }
-
 
   return (
     <>
     { destinationData[0] ?
-    // ! might be better to do this in Cards but I will leave this to you Chris
     <div className='all-destination-page'>
       <Container as="main" className='destination-index'>
       <h1 className='text-center mb-4'>All Destinations</h1>
