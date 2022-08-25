@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import API_URL from '../config.js'
 import Container from "react-bootstrap/Container"
@@ -11,16 +11,10 @@ import  Button  from "react-bootstrap/Button"
 import Carousel from "react-bootstrap/Carousel"
 
 const Destination = () => {
-  const navigate = useNavigate()
-
   const { destinationId } = useParams()
-
   const [ destination, setDestination ] = useState(null)
   const [ errors, setErrors ] = useState(false)
-  const [ destoryReview, setDestoryReview ] = useState({
-    _id: ''
-  })
-
+  const [ reviewsRemoved, setReviewsRemoved ] = useState(0)
 const CarouselImages = () => {
   return (
     <Carousel>
@@ -55,26 +49,29 @@ const CarouselImages = () => {
       try {
         const { data } = await axios.get(`${API_URL}/travel/${destinationId}`)
         setDestination(data)
-      } catch (err) {
-        setErrors(true)
+      } catch (error) {
+        setErrors(error.message)
+        console.log(error.message)
       }
     }
     getData()
-    console.log(destination)
-  }, [destinationId])
+  }, [destinationId, reviewsRemoved])
 
-  const deleteReview = async (event) => {
+  const deleteReview = async (event, destinationId, reviewId) => {
     event.preventDefault()
     try {
-      const { data } = await axios.delete(`${API_URL}/travel/${destinationId}`, {
+      console.log('destination', destinationId)
+      console.log('review', reviewId)
+      const { data } = await axios.delete(`${API_URL}/travel/${destinationId}/${reviewId}`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log(data);
-      navigate('/')
-    } catch (err) {
-      console.log(err)
+      console.log(data)
+      setReviewsRemoved(reviewsRemoved + 1)
+    } catch (error) {
+      setErrors(error.message)
+      console.log(error.message)
     }
   }
 
@@ -90,7 +87,7 @@ const CarouselImages = () => {
             <Card border="dark" className="destination-card bg-transparent">
               <CarouselImages />
               <Card.Body className="bg-light-gray">
-                <Card.Title className="single-card">{destination.name} - {destination.country}</Card.Title>
+                <Card.Title className="single-card">{destination.name}</Card.Title>
                 <Card.Text>
                   {destination.description}
                 </Card.Text>
@@ -98,63 +95,51 @@ const CarouselImages = () => {
               <ListGroup className="list-group-flush">
                 <ListGroup.Item>Country: {destination.country}</ListGroup.Item>
                 <ListGroup.Item>Rating: {destination.rating}</ListGroup.Item>
-                <ListGroup.Item>Activites: {destination.activities}</ListGroup.Item>
+                <ListGroup.Item>Activities: {destination.activities}</ListGroup.Item>
               </ListGroup>
-              <Card.Body>
-                {/* <Card.Link href="#">Card Link</Card.Link>
-                <Card.Link href="#">Another Link</Card.Link> */}
-              </Card.Body>
             </Card>
-            <h3>reviews</h3>
               <Container as='section' className='review-card'>
-                  
+                  <h3>Reviews</h3>
                   { destination.reviews.length > 0
                     ?
                     destination.reviews.map(review => {
-                      const { _id: reviewId, reviewText, rating } = review
-                      const activities = review.activities.join(', ')
+                      const { destinationId, reviewId, reviewText, rating, displayName, reviewImgUrl, activities } = review
                       return (                       
-                          <Link to={`/travel/${review.destinationId}`}>
-                          <Card key={reviewId} className="re-card">
-                              <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
-                              <Card.Body>
-                            <Card.Title className='text-center mb-0'>{review.name}</Card.Title>        
-                                <Card.Text>
+                        <Card key={reviewId} className="re-card">
+                            <Card.Img variant='top' src={reviewImgUrl[0] ? reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
+                            <Card.Body>      
+                              <Card.Text>
                                 {reviewText}
                               </Card.Text>  
-                                  <ListGroup className="list-group-flush">
-                                    <ListGroup.Item><span>👤</span> {review.createdBy}</ListGroup.Item>
-                                    <ListGroup.Item>Rating: {rating}</ListGroup.Item>
-                                    <ListGroup.Item>Activites: {activities}</ListGroup.Item>
-                                  </ListGroup>                    
-                        
-                                <div className="buttons mb-4">
-                                  <Button variant="danger" onClick={deleteReview}>Delete Review</Button>
-                                  <Link to={`/landing`} className='btn btn-primary'>Edit Review</Link>
-                                </div>                          
-                              </Card.Body>
-                            </Card>
-                          </Link>             
+                                <ListGroup className="list-group-flush">
+                                  <ListGroup.Item><span>👤</span> {displayName}</ListGroup.Item>
+                                  <ListGroup.Item>Rating: {rating}</ListGroup.Item>
+                                  <ListGroup.Item>Activities: {activities.join(', ')}</ListGroup.Item>
+                                </ListGroup>                    
+                              <div className="buttons mb-4">
+                                <Button variant="danger" onClick={event => deleteReview(event, destinationId, reviewId)}>Delete</Button>
+                                <Link to={`/edit-review/${destinationId}/${reviewId}`} className='btn btn-primary'>Edit Review</Link>
+                              </div>                          
+                            </Card.Body>
+                          </Card>          
                         )
                     })
                     :
                     <>
-                      { errors ? <h2>Something went wrong. Please try again later</h2> : <p>Add your first review</p>}
+                      { errors ? <h2>Something went wrong. Please try again later</h2> : <p>No reviews yet</p>}
                     </>
                   }
-              </Container>            
-              <Link to="/travel" className='btn dark'>Back to all Destination</Link>
+              </Container>
+              <Link to={`/review/${destinationId}`}>
+                <button>Add a review</button>
+              </Link>            
           </div>
           :
           <h2 className="text-center">
             { errors ? 'Something went wrong. Please try again later' : <Spinner />}
           </h2>
-        }
-    
-      <Link to={`/review/${destinationId}`}>
-      <button>Add a review</button>
-      </Link>
-      
+        } 
+        <Link to="/travel" className='btn dark'>Back to all Destination</Link>
       </Container>
     </div>
 

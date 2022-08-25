@@ -14,16 +14,8 @@ const Register = () => {
 
   const navigate = useNavigate()
 
-  const [ formData, setFormData ] = useState({
-    email: '',
-	  userName: '',
-	  password: '',
-	  confirmPassword: ''
-  })
-  const [ loginData, setLoginData ] = useState({
-    userName: '',
-    password: '',
-  })
+  const [ formData, setFormData ] = useState('')
+  const [ loginData, setLoginData ] = useState('')
   const [ errors, setErrors ] = useState('')
   
   const handleChange = (event) => {
@@ -31,7 +23,7 @@ const Register = () => {
     if (event.target.name === 'userName' || event.target.name === 'password') {
       setLoginData({ ...loginData, [event.target.name]: event.target.value })
     }
-    // setErrors({ ...errors, [event.target.name]: '', message: '' })
+    setErrors({ ...errors, [event.target.name]: '', message: '' })
   }
 
   const handleSubmit = async (event) => {
@@ -41,8 +33,8 @@ const Register = () => {
       console.log(data)
       autoLogin()
     } catch (error) {
-      console.log(error)
-      // setErrors({...errors, [event.target.name]: '', message: '' })
+      setErrors({...errors, [event.target.name]: '', message: '' })
+      console.log(error.mesage)
     }
   }
 
@@ -53,8 +45,8 @@ const Register = () => {
     setId(data.userId)
     navigate(`/edit-profile/${data.userId}`)
     } catch (error) {
-      // setErrors(error.response.data.messages)
-      console.log(error)
+      setErrors(error.message)
+      console.log(error.message)
     }
   }
 
@@ -86,10 +78,6 @@ const Register = () => {
       <Form.Group className="mb-3" >
         <Form.Label>Confirm Password</Form.Label>
         <Form.Control onChange={handleChange} type="password" name="confirmPassword" placeholder='Confirm Password' value={formData.confirmPassword} /> 
-      </Form.Group>
-      
-      <Form.Group className="mb-3" >
-        <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
 
       { errors && <p className='text-danger'>{errors}</p>}

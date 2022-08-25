@@ -18,20 +18,8 @@ const EditProfile = () => {
   const navigate = useNavigate()
   const [ imageSelect, setImageSelected ] = useState('')
   const [ errors, setErrors ] = useState(false)
-  const [ userProfile, setUserProfile ] = useState({
-    displayName: '',
-    email: '',
-    userName: '',
-    aboutMeText: '',
-    profileImg: '',
-  })
-  const [ updatedUserProfile, setUpdatedUserProfile ] = useState(({
-    displayName: '',
-    email: '',
-    userName: '',
-    aboutMeText: '',
-    profileImg: '',
-  }))
+  const [ userProfile, setUserProfile ] = useState('')
+  const [ updatedUserProfile, setUpdatedUserProfile ] = useState('')
   const [ newProfileImg, setNewProfileImg ] = useState('')
 
   useEffect(() => {
@@ -42,16 +30,18 @@ const EditProfile = () => {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log('user profile', data)
         setUserProfile(data)
         setUpdatedUserProfile(data)
       } catch (error) {
-        console.log(error)
-        setErrors(true)
+        setErrors(error.message)
+        console.log(error.message)
       }
     }
     getUser()
-  }, [userId, newProfileImg])
+  }, [userId])
+
+  useEffect(() => {
+  }, [newProfileImg])
 
   const handleChange = (event) => {
     setUpdatedUserProfile({ ...updatedUserProfile, [event.target.name]: event.target.value })
@@ -65,7 +55,6 @@ const EditProfile = () => {
     formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
     const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
     // ! this is my (serhan miah) login for the cloudinary - for destination images
-    console.log('upload image data', data.url)
     setNewProfileImg(data.url)
     setUpdatedUserProfile({ ...updatedUserProfile, profileImg: data.url })
   }
@@ -73,16 +62,16 @@ const EditProfile = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      console.log('updated profile', updatedUserProfile)
       const { data } = await axios.put(`${API_URL}/users/${userId}`, updatedUserProfile, {
         headers: {
           Authorization: `Bearer ${getToken()}`,  
         },
       })
-
+      console.log(data)
+      navigate(`/users/${userId}`)
     } catch (error) {
-      console.log(error)
-      setErrors(error)
+      setErrors(error.message)
+      console.log(error.message)
     }
   } 
 
@@ -123,7 +112,7 @@ const EditProfile = () => {
           <Form.Control type="file" id="image" className="input" onChange={(event) => {
                 setImageSelected(event.target.files[0])
               }} />
-        <Button onClick={uploadImage}>Upload a new profile image</Button>
+        <Button onClick={uploadImage}>Upload image</Button>
         </Form.Group>
         <Button variant="primary" type="submit">Submit</Button>
         <hr />
