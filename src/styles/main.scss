@@ -39,7 +39,7 @@
     padding: 30px;
     border-radius: 8px;
     background: rgba(0, 0, 0, 0.8);
-    color: antiquewhite;
+    color: lightgray;
     box-shadow: 8px 8px 8px rgb(0 0 0 / 60%);
   }
 }
@@ -120,9 +120,17 @@ card {
   h3 {
     padding: 20px;
     color: antiquewhite;
+    font-size: 50px;
+    margin: 20px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 8px;
+    border: solid black;
   }
 }
 
+p {
+  color: antiquewhite;
+}
 
 .multi-card {
   color: black;
@@ -185,7 +193,8 @@ div.list-group-item {
 .add-destinationForm {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  background-image: linear-gradient(rgba(219,233,244,0.3), rgba(219,233,244,0.3)), url(../img/mountain.jpg);
+  padding-top: 100px;
 }
 
 
@@ -223,8 +232,18 @@ div.list-group-item {
 }
 
 .add-destination-form{
-  border: 5px solid;
-  min-width: 100%;
-  padding: 30px;
+  border: 3px solid black;
+  min-width: 100%; 
+  background-color: rgba(0,0,0,0.5);
+  padding: 20px;
+  color: antiquewhite;
+  border-radius: 8px;
+}
 
+
+
+.back-button {
+  background-color: lightgray;
+  margin: 20px;
+  border: solid black
 }
