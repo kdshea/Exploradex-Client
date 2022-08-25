@@ -6,6 +6,10 @@ import { useNavigate } from 'react-router-dom'
 import API_URL from '../config.js'
 import { setId, setToken } from '../helpers/auth'
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
+
 const Register = () => {
 
   const navigate = useNavigate()
@@ -57,32 +61,44 @@ const Register = () => {
 
   return (
   <main className='form-page'>
-     <Container>
+     <Container className='register-form' as='main'>
         <Row>
-          <form onSubmit={handleSubmit}  className='form-register'>
-            <h3 className='text-center'>Register</h3>
-            {/* Username */}
-            <label htmlFor="userName">UserName</label>
-            <input onChange={handleChange} type="text" name="userName" placeholder="Username" value={formData.userName} />
-          
-            {/* Email */}
-            <label htmlFor="email">Email</label>
-            <input onChange={handleChange} type="email" name="email" placeholder='Email' value={formData.email} />
+        <Form onSubmit={handleSubmit}>
+    {/* user Name */}
+    <Form.Group className="mb-3" controlId="formBasicUserName">
+        <Form.Label>User Name</Form.Label>
+        <Form.Control onChange={handleChange} type="text" name="userName" placeholder="Username" value={formData.userName} /> 
+      </Form.Group>
 
-            {/* Password */}
-            <label htmlFor="password">Password</label>
-            <input onChange={handleChange} type="password" name="password" placeholder='Password' value={formData.password} />
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control  onChange={handleChange} type="email" name="email" placeholder='Email' value={formData.email}  />
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        </Form.Text>
+      </Form.Group>
 
-            {/* Password Confirmation */}
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input onChange={handleChange} type="password" name="confirmPassword" placeholder='Confirm Password' value={formData.confirmPassword} />
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control onChange={handleChange} type="password" name="password" placeholder='Password' value={formData.password}  />
+      </Form.Group>
 
-            {/* Error Message */}
-            { errors && <p className='text-danger'>{errors}</p>}
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Confirm Password</Form.Label>
+        <Form.Control onChange={handleChange} type="password" name="confirmPassword" placeholder='Confirm Password' value={formData.confirmPassword} /> 
+      </Form.Group>
+      
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check type="checkbox" label="Check me out" />
+      </Form.Group>
 
-            {/* Submit */}
-            <input type="submit" className='btn dark w-100' />
-          </form>
+      { errors && <p className='text-danger'>{errors}</p>}
+
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
+
         </Row>
       </Container>
 </main>

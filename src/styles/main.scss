@@ -100,7 +100,7 @@ button {
     padding: 25px;
   }
   img {
-    height: 500px;      
+    height: 100%;      
   }
 }
 
@@ -119,7 +119,7 @@ button {
 }
 
 .user-profilePage {
-  height: 100vh
+  // height: 100vh
 }
 
 ul {
@@ -133,4 +133,28 @@ ul {
 div.list-group-item {
   background-color: transparent;
   border: darkblue;
+}
+
+
+.add-destinationForm {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+
+.userProfileCard {
+  height: 100%;
+}
+
+
+.re-card.card {
+  height: 100%;
+}
+
+.register-form {
+  display: flex;
+  justify-content: center;
+  border: 1px solid;
+  padding: 10px;
 }

@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import API_URL from '../config.js'
 import { setId, setToken } from '../helpers/auth'
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
+
 const Login = () => {
 
   const navigate = useNavigate() 
@@ -35,14 +39,23 @@ const Login = () => {
   return  ( 
     <div className='form-login'>
 
+      <Form onSubmit={onSubmit} className='login-form'>
       <h1>Login Page</h1>
-      {errors && <div className='error'>{errors}</div>}
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>User Name</Form.Label>
+        <Form.Control type='text' name='userName' placeholder='Username' onChange={handleChange} value={loginData.userName} />   
+      </Form.Group>
 
-      <form onSubmit={onSubmit} className='form-wrapper'>
-          <input type='text' name='userName' placeholder='Username' onChange={handleChange} value={loginData.userName} />
-          <input type='password' name='password' placeholder='Password' onChange={handleChange} value={loginData.password} />
-          <button type='submit'>Login</button>
-      </form>
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type='password' name='password' placeholder='Password' onChange={handleChange} value={loginData.password} />
+      </Form.Group>
+   
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+      {errors && <div className='error'>{errors}</div>}
+    </Form>
 
   </div>
   )

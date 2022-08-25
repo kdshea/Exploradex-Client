@@ -107,8 +107,9 @@ const Destination = () => {
                 {/* <Card.Link href="#">Card Link</Card.Link>
                 <Card.Link href="#">Another Link</Card.Link> */}
               </Card.Body>
-            </Card>       
-              <Container as='section' className='text-center'>
+            </Card>
+       
+              <Container as='section' className='review-card'>
                   <h3>reviews</h3>
                   { destination.reviews.length > 0
                     ?
