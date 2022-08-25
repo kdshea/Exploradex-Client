@@ -74,10 +74,10 @@ const UserProfile = () => {
             </Card>
             {/* <img className='w-100' src={userProfile.profileImg} alt={userProfile.userName} /> */}
 
-          <Col md="6">
+          <div className='user-Review'>
           <hr />
           <h3>User Reviews</h3>
-            <Container as='section' className='text-center'>
+            <Container as='section' className='user-reviewCard'>
               <Row>
                 { userProfile.reviews.length > 0
                   ?
@@ -120,7 +120,7 @@ const UserProfile = () => {
                 {/* <Link to={`/edit-profile/${userId}`} className='btn btn-primary'>Edit Profile</Link> */}
               </div>
             <Link to="/travel" className='btn dark'>Back to all Destination</Link>
-          </Col>
+          </div>
         </>
         :
         <h2 className="text-center">

@@ -104,9 +104,10 @@ const CarouselImages = () => {
                 {/* <Card.Link href="#">Card Link</Card.Link>
                 <Card.Link href="#">Another Link</Card.Link> */}
               </Card.Body>
-            </Card>       
-              <Container as='section' className='text-center'>
-                  <h3>reviews</h3>
+            </Card>
+            <h3>reviews</h3>
+              <Container as='section' className='review-card'>
+                  
                   { destination.reviews.length > 0
                     ?
                     destination.reviews.map(review => {

@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom'
 import Row  from 'react-bootstrap/Row'
 import  Col from 'react-bootstrap/Col'
 import Spinner from '../components/Spinner.js'
+import Form from 'react-bootstrap/Form'
+import { Button } from 'react-bootstrap'
 
 const EditProfile = () => {
 
@@ -85,49 +87,59 @@ const EditProfile = () => {
   } 
 
   return (
-<Container>
-    <Row>
+<Container className='editUserContainer'>
+
       { userProfile.email ? 
         <>
-          <form onSubmit={handleSubmit}>
-            <h1>Name: { userProfile.displayName? userProfile.displayName : userProfile.userName}</h1>
-        <input type="text" name="displayName" placeholder="Edit display name" value={updatedUserProfile.displayName} onChange={handleChange} />
-            <Col md="6">
-              <img className='w-100' src={userProfile.profileImg} alt={userProfile.userName} />
-            </Col>
-            <Col md="6">
-              <h2>Profile</h2>
-              <p><span>📧</span> {userProfile.email}</p>
-              <input type="text" name="email" placeholder="Edit email" value={updatedUserProfile.email} onChange={handleChange} />
-              <hr />
-              <h2>About Me</h2>
-              <p>{userProfile.aboutMeText}</p>
-              <textarea name="aboutMeText" placeholder="Edit About Me" value={updatedUserProfile.aboutMeText} onChange={handleChange} ></textarea>
-              <hr />
-              {/* upload image that connects to the cloudinary */}
-              <label htmlFor="image">Upload Image</label>
-              { newProfileImg ? 
+        <Form onSubmit={handleSubmit}>
+        <h1>Name: { userProfile.displayName? userProfile.displayName : userProfile.userName}</h1>
+        <h2>Profile</h2>
+        <Form.Group className="mb-3" >
+          <Form.Label>Name</Form.Label>
+          <Form.Control type="text" name="displayName" placeholder="Edit display name" value={updatedUserProfile.displayName} onChange={handleChange} /> 
+        </Form.Group>
+        <Col md="6">
+              <img className='w-100' src={userProfile.profileImg} alt={updatedUserProfile.userName} />
+        </Col>
+        <hr />
+        <Form.Group className="mb-3" >
+          <Form.Label>{userProfile.email}</Form.Label>
+          <Form.Control type="text" name="email" placeholder="Edit email" value={updatedUserProfile.email} onChange={handleChange} /> 
+        </Form.Group>
+        <hr />
+        <Form.Group className="mb-3" >
+          <Form.Label><h2>About Me</h2></Form.Label>
+          <textarea name="aboutMeText" placeholder="Edit About Me" value={updatedUserProfile.aboutMeText} onChange={handleChange} ></textarea>
+        </Form.Group>
+        <hr />
+        <Form.Group className="mb-3" >
+        { newProfileImg ? 
               <img className='w-100' src={newProfileImg} alt={'User Uploaded Profile'} />
               :
               <></>
               }
-              <input type="file" id="image" className="input" onChange={(event) => {
+          <Form.Label><h2>Upload Image</h2></Form.Label>
+          
+          <Form.Control type="file" id="image" className="input" onChange={(event) => {
                 setImageSelected(event.target.files[0])
               }} />
-              <button onClick={uploadImage}>Upload a profile image</button>
-              <hr />
-              <input type="submit"/> 
-              <hr />
-              <Link to={`/users/${userId}`} className='btn dark'>Cancel</Link>
-            </Col>
-          </form>
+        <Button onClick={uploadImage}>Upload a new profile image</Button>
+        </Form.Group>
+        <Button variant="primary" type="submit">Submit</Button>
+        <hr />
+        <Link to={`/users/${userId}`} className='btn dark'>Cancel</Link>
+
+        </Form>
         </>
         :
         <h2 className="text-center">
           { errors ? 'Something went wrong. Please try again later' : <Spinner />}
         </h2>
+
       }
-    </Row>
+    
+
+
   </Container>
   )
 }
