@@ -7,13 +7,11 @@ import { userIsAuthenticated, getId } from '../helpers/auth'
 
 const NavBar = () => {
   const navigate = useNavigate()
-
   const userId = getId()
-
   const handleLogOut = () => {
     window.localStorage.removeItem('local-user-Token')
     window.localStorage.removeItem('local-user-Id')
-    navigate('/login')
+    navigate('/')
   }
 
   return (

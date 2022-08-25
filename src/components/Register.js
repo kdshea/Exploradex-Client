@@ -14,24 +14,17 @@ const Register = () => {
 
   const navigate = useNavigate()
 
-  const [ formData, setFormData ] = useState({
-    email: '',
-	  userName: '',
-	  password: '',
-	  confirmPassword: ''
-  })
-  const [ loginData, setLoginData ] = useState({
-    userName: '',
-    password: '',
-  })
-  const [ errors, setErrors ] = useState('')
+  const [ formData, setFormData ] = useState('')
+  const [ loginData, setLoginData ] = useState('')
+  const [ errors, setErrors ] = useState(false)
   
-  const handleChange = (event) => {
+  const handleChange = (event, error) => {
     setFormData({ ...formData, [event.target.name]: event.target.value})
     if (event.target.name === 'userName' || event.target.name === 'password') {
       setLoginData({ ...loginData, [event.target.name]: event.target.value })
     }
-    // setErrors({ ...errors, [event.target.name]: '', message: '' })
+    setErrors(true)
+    console.log(error.message)
   }
 
   const handleSubmit = async (event) => {
@@ -41,8 +34,8 @@ const Register = () => {
       console.log(data)
       autoLogin()
     } catch (error) {
-      console.log(error)
-      // setErrors({...errors, [event.target.name]: '', message: '' })
+      setErrors({...errors, [event.target.name]: '', message: '' })
+      console.log(error.mesage)
     }
   }
 
@@ -53,8 +46,8 @@ const Register = () => {
     setId(data.userId)
     navigate(`/edit-profile/${data.userId}`)
     } catch (error) {
-      // setErrors(error.response.data.messages)
-      console.log(error)
+      setErrors(error.message)
+      console.log(error.message)
     }
   }
 
@@ -65,12 +58,12 @@ const Register = () => {
         <Row>
         <Form onSubmit={handleSubmit}>
     {/* user Name */}
-    <Form.Group className="mb-3" controlId="formBasicUserName">
+    <Form.Group className="mb-3" >
         <Form.Label>User Name</Form.Label>
         <Form.Control onChange={handleChange} type="text" name="userName" placeholder="Username" value={formData.userName} /> 
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" >
         <Form.Label>Email address</Form.Label>
         <Form.Control  onChange={handleChange} type="email" name="email" placeholder='Email' value={formData.email}  />
         <Form.Text className="text-muted">
@@ -78,18 +71,14 @@ const Register = () => {
         </Form.Text>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" >
         <Form.Label>Password</Form.Label>
         <Form.Control onChange={handleChange} type="password" name="password" placeholder='Password' value={formData.password}  />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" >
         <Form.Label>Confirm Password</Form.Label>
         <Form.Control onChange={handleChange} type="password" name="confirmPassword" placeholder='Confirm Password' value={formData.confirmPassword} /> 
-      </Form.Group>
-      
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
 
       { errors && <p className='text-danger'>{errors}</p>}

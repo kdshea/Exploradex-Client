@@ -28,10 +28,9 @@ const Login = () => {
     setToken(data.token)
     setId(data.userId)
     navigate(`/users/${data.userId}`)
-
     } catch (error) {
-      setErrors(error.response.data.messages)
-      console.log(error.response.data.messages)
+      setErrors(error.message)
+      console.log(error.message)
     }
   }
   
