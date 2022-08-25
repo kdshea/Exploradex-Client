@@ -5,7 +5,6 @@ import API_URL from '../config.js'
 import { getToken } from '../helpers/auth'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-// import { Input } from "react-bootstrap/Input"
 
 const NewDestination = () => {
 
