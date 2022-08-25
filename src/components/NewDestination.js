@@ -68,47 +68,49 @@ const NewDestination = () => {
   return (
    <div className="add-destinationForm">
 
-<Form onSubmit={handleSubmit}>
+<div className="add-form-wrapper">
+<Form className='add-destination-form'  onSubmit={handleSubmit}>
   <h1>Add Destination</h1>
   
     {/* user Name */}
-    <Form.Group className="mb-3" controlId="formBasicName">
+    <Form.Group className="mb-3" >
         <Form.Label>Name</Form.Label>
         <Form.Control type="text" name="name" placeholder="Name of Destination" value={newTravel.name} onChange={handleChange} /> 
       </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicCountry">
+      <hr />
+      <Form.Group className="mb-3" >
         <Form.Label>Country</Form.Label>
         <Form.Control type="text" name="country" placeholder="Country" value={newTravel.country} onChange={handleChange} />
-     
+        <hr />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicDescription">
+      <Form.Group className="mb-3" >
         <Form.Label>Description</Form.Label>
         <textarea name="description" placeholder="Description" value={newTravel.description} onChange={handleChange} ></textarea>
       </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicRating">
+      <hr />
+      <Form.Group className="mb-3" >
         <Form.Label>Rating</Form.Label>
         <Form.Control type="number" name="rating" placeholder="From 0 to 5" value={newTravel.rating} onChange={handleChange} /> 
-        <Button onClick={uploadImage}>Upload a new destination image</Button>
+        {/* <Button onClick={uploadImage}>Upload a new destination image</Button> */}
       </Form.Group>
-
-    <Form.Group className="mb-3" controlId="formBasicImage">
+      <hr />
+    <Form.Group className="upload-image-destinaion mb-3"  >
       <Form.Label htmlFor="image">Upload Image</Form.Label>
         <input type="file" id="image" className="input" onChange={(event) => {
           setImageSelected(event.target.files[0])
         }} /> 
+        <Button onClick={uploadImage}>Upload a new destination image</Button>
 
     </Form.Group> 
-
+    <hr />
       
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+      <Form.Group className="mb-3" >
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
 
     
-
+      <hr />
       <Button variant="primary" type="submit">
         Submit
       </Button>
@@ -118,7 +120,7 @@ const NewDestination = () => {
 
 
 
-
+        </div>
     </div>
   )
 }

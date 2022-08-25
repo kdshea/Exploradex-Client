@@ -146,6 +146,10 @@ card {
   flex-direction: column;
 }
 
+.add-destinationForm {
+  min-height: 100vh;
+}
+
 .user-profilePage {
   // height: 100vh
 }
@@ -199,4 +203,17 @@ div.list-group-item {
 
 .editUserContainer {
   min-height: 100vh;
+}
+
+
+.upload-image-destinaion {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-destination-form{
+  border: 5px solid;
+  min-width: 100%;
+  padding: 30px;
+
 }

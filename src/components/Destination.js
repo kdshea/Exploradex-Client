@@ -115,7 +115,7 @@ const CarouselImages = () => {
                       const activities = review.activities.join(', ')
                       return (                       
                           <Link to={`/travel/${review.destinationId}`}>
-                          <Card key={reviewId} className="re-card">
+                          <Card key={reviewId} className="re-card ">
                               <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
                               <Card.Body>
                             <Card.Title className='text-center mb-0'>{review.name}</Card.Title>        
