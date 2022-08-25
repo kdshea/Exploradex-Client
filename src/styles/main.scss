@@ -16,14 +16,11 @@
   --bs-nav-link-padding-y: 0.5rem;
 }
 
-
-
 .nav-tabs {
   justify-content: center;
   --bs-nav-tabs-border-width: 2px;
   --bs-nav-tabs-border-color: darkgray;
   --bs-nav-tabs-link-hover-border-color: darkgray;
-
 }
 
 .hero {
@@ -112,7 +109,6 @@ card {
   }
 }
 
-
 .destination-page {
   background-image: linear-gradient(rgba(219,233,244,0.3), rgba(219,233,244,0.3)), url(../img/mountain.jpg);
   // height: 100vh;
@@ -166,7 +162,6 @@ p {
   height: 15vw;
 }
 
-
 .review-form {
   display: flex;
   flex-direction: column;
@@ -174,7 +169,6 @@ p {
 min-width: 100%;
 padding: 30px;
 }
-
 
 .form-addDestination {
   display: flex;
@@ -204,19 +198,17 @@ div.list-group-item {
 
 }
 
-
 .add-destinationForm {
   display: flex;
   justify-content: center;
   background-image: linear-gradient(rgba(219,233,244,0.3), rgba(219,233,244,0.3)), url(../img/mountain.jpg);
   padding-top: 100px;
+  background-size: cover;
 }
-
 
 .userProfileCard {
   height: 100%;
 }
-
 
 .re-card.card {
   height: 100%; 
@@ -235,11 +227,9 @@ div.list-group-item {
   justify-content: space-evenly;
 }
 
-
 .editUserContainer {
   min-height: 100vh;
 }
-
 
 .upload-image-destinaion {
   display: flex;
@@ -255,23 +245,15 @@ div.list-group-item {
   border-radius: 8px;
 }
 
-
-
 .back-button {
   background-color: lightgray;
   margin: 20px;
   border: solid black
 }
 
-
-.editReview-container{
-  // height: 100vh;
-}
-
 .re-card.card { 
   width: 40%;
 }
-
 
 .recard {
   margin-bottom: 20px;
@@ -281,5 +263,17 @@ div.list-group-item {
   border: 5px solid;
   min-width: 100%;
   padding: 30px;
+}
 
+.profile-page-wrapper {
+  background-image: url(../img/water.jpg);
+  h1 {
+    padding: 30px;
+    font-size: 70px;
+    color: antiquewhite;
+  }
+}
+
+.user-profilePage {
+  max-width: 50%;
 }
