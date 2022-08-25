@@ -80,7 +80,7 @@ const UserProfile = () => {
       <Col md="6">
       <hr />
       <h3>User Reviews</h3>
-        <Container as='section' className='text-center'>
+        <Container as='section' className='user-reviewCard'>
           <Row>
             { userProfile.reviews.length > 0
               ?

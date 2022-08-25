@@ -20,31 +20,31 @@ const NavBar = () => {
         <Navbar.Brand as={Link} to="/">🌍</Navbar.Brand>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link as={Link} to='/' >Home</Nav.Link> 
+        <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to='/' >Home</Nav.Link> 
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link as={Link} to='/travel' >All Destinations</Nav.Link>
+        <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to='/travel' >All Destinations</Nav.Link>
       </Nav.Item>
       { userIsAuthenticated()
         ?
         <>
           <Nav.Item>
-            <Nav.Link as={Link} to={`/users/${userId}`} >User Profile</Nav.Link>
+            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/users/${userId}`} >User Profile</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link as={Link} to='/travel/new' >Add Destination</Nav.Link>
+            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to='/travel/new' >Add Destination</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <span onClick={handleLogOut}>Logout</span>
+            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}  onClick={handleLogOut}>Logout</Nav.Link>
           </Nav.Item>
         </>
         :
         <>
           <Nav.Item>
-            <Nav.Link as={Link} to='/register'>Register</Nav.Link>
+            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to='/register'>Register</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link as={Link} to='/login'>Login</Nav.Link>
+            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to='/login'>Login</Nav.Link>
           </Nav.Item>
         </>      
       }      

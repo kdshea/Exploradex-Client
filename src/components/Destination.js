@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react"
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
@@ -6,17 +5,44 @@ import API_URL from '../config.js'
 import Container from "react-bootstrap/Container"
 import ListGroup from "react-bootstrap/ListGroup"
 import Spinner from './Spinner.js'
-import Card  from "react-bootstrap/Card"
+import  Card  from "react-bootstrap/Card"
 import { getToken } from "../helpers/auth.js"
-import Button  from "react-bootstrap/Button"
-import Carousel  from "react-bootstrap/Carousel";
-
+import  Button  from "react-bootstrap/Button"
+import Carousel from "react-bootstrap/Carousel"
 
 const Destination = () => {
   const { destinationId } = useParams()
   const [ destination, setDestination ] = useState(null)
   const [ errors, setErrors ] = useState(false)
   const [ reviewsRemoved, setReviewsRemoved ] = useState(0)
+const CarouselImages = () => {
+  return (
+    <Carousel>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={destination.imgUrl[0]}
+          alt={destination.name}
+        />        
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={destination.imgUrl[1]}
+          alt={destination.name}
+        />        
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={destination.imgUrl[2]}
+          alt={destination.name}
+        />        
+      </Carousel.Item>
+    </Carousel>
+  );
+}
+
 
   useEffect(() => {
     const getData = async () => {
@@ -47,35 +73,6 @@ const Destination = () => {
     }
   }
 
-  const CarouselImages = () => {
-  
-    return (
-      <Carousel>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={destination.imgUrl[0]}
-            alt={destination.name}
-          />        
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={destination.imgUrl[1]}
-            alt={destination.name}
-          />        
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={destination.imgUrl[2]}
-            alt={destination.name}
-          />        
-        </Carousel.Item>
-      </Carousel>
-    );
-  }
-
 
   
   return (
@@ -87,13 +84,13 @@ const Destination = () => {
             <h1>{destination.name}</h1>
             <Card border="dark" className="destination-card bg-transparent">
               <CarouselImages />
-              <Card.Body className="bg-transparent">
-                <Card.Title>{destination.name}</Card.Title>
+              <Card.Body className="bg-light-gray">
+                <Card.Title className="single-card">{destination.name}</Card.Title>
                 <Card.Text>
                   {destination.description}
                 </Card.Text>
               </Card.Body>
-              <ListGroup className="list-group-flush ">
+              <ListGroup className="list-group-flush">
                 <ListGroup.Item>Country: {destination.country}</ListGroup.Item>
                 <ListGroup.Item>Rating: {destination.rating}</ListGroup.Item>
                 <ListGroup.Item>Activities: {destination.activities}</ListGroup.Item>
