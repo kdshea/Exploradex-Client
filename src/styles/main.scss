@@ -80,6 +80,12 @@ card {
   // object-fit: cover;
 }
 
+// !maybe
+.testing-image {
+  width: 100%;
+  height: 15vw;
+}
+
 .testing-image {
   width: 100%;
   height: 15vw;
@@ -116,9 +122,18 @@ card {
     padding: 25px;
   }
   img {
-    height: 45vh;      
+    height: 45vh;
+      
   }
 }
+
+.review-card {
+  h3 {
+    padding: 20px;
+    color: antiquewhite;
+  }
+}
+
 
 .multi-card {
   color: black;
@@ -137,6 +152,10 @@ card {
 .card-body {
   background-color: rgba(0,0,0,0.5);
   color: black;
+}
+
+.single-image {
+  height: 15vw;
 }
 
 
@@ -187,8 +206,7 @@ div.list-group-item {
 
 
 .re-card.card {
-  height: 100%;
- 
+  height: 100%; 
 }
 
 .register-form {
