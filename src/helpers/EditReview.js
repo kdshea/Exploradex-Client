@@ -1,58 +1,49 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import API_URL from '../config.js'
 import { useParams } from 'react-router-dom'
-import { getToken } from './auth.js'
-import Container from 'react-bootstrap/Container'
-import { Link } from 'react-router-dom'
-import Row  from 'react-bootstrap/Row'
-import  Col from 'react-bootstrap/Col'
-import Spinner from '../components/Spinner.js'
+// import { getToken } from './auth.js'
+// import Container from 'react-bootstrap/Container'
+// import { Link } from 'react-router-dom'
+// import Row  from 'react-bootstrap/Row'
+// import  Col from 'react-bootstrap/Col'
+// import Spinner from '../components/Spinner.js'
 
 const EditReview = () => {
 
-  const { userId } = useParams()
-  const navigate = useNavigate()
+  const { destinationId, reviewId } = useParams()
+  // const navigate = useNavigate()
   const [ imageSelect, setImageSelected ] = useState('')
   const [ errors, setErrors ] = useState(false)
-  const [ userProfile, setUserProfile ] = useState({
-    displayName: '',
-    email: '',
-    userName: '',
-    aboutMeText: '',
-    profileImg: '',
-  })
-  const [ updatedUserProfile, setUpdatedUserProfile ] = useState(({
-    displayName: '',
-    email: '',
-    userName: '',
-    aboutMeText: '',
-    profileImg: '',
-  }))
-  const [ newProfileImg, setNewProfileImg ] = useState('')
+  const [ review, setReview ] = useState('')
+  const [ updatedReview, setUpdatedReview ] = useState('')
+  const [ newReviewImg, setNewReviewImg ] = useState('')
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/users/${userId}`, {
+        const { data } = await axios.get(`${API_URL}/${destinationId}/${reviewId}`, {
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log('user profile', data)
-        setUserProfile(data)
-        setUpdatedUserProfile(data)
+        setReview(data)
+        setUpdatedReview(data)
       } catch (error) {
         setErrors(error.message)
         console.log(error.message)
       }
     }
     getUser()
-  }, [userId, newProfileImg])
+  }, [reviewId])
+
+  useEffect(() => {
+    console.log('new review image uploaded', updatedReview)
+  }, [newReviewImg])
 
   const handleChange = (event) => {
-    setUpdatedUserProfile({ ...updatedUserProfile, [event.target.name]: event.target.value })
+    setUpdatedReview({ ...updatedReview, [event.target.name]: event.target.value })
     setErrors({ ...errors, [event.target.name]: '', message: '' })
   }
 
@@ -64,30 +55,29 @@ const EditReview = () => {
     const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
     // ! this is my (serhan miah) login for the cloudinary - for destination images
     console.log('upload image data', data.url)
-    setNewProfileImg(data.url)
-    setUpdatedUserProfile({ ...updatedUserProfile, profileImg: data.url })
+    setNewReviewImg(data.url)
+    setUpdatedReview({ ...updatedReview, reviewImg: data.url })
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    try {
-      console.log('updated profile', updatedUserProfile)
-      const { data } = await axios.put(`${API_URL}/users/${userId}`, updatedUserProfile, {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,  
-        },
-      })
+//   const handleSubmit = async (event) => {
+//     event.preventDefault()
+//     try {
+//       console.log('updated review', updatedReview)
+//       const { data } = await axios.put(`${API_URL}/${destinationId}/${reviewId}`, updatedUserProfile, {
+//         headers: {
+//           Authorization: `Bearer ${getToken()}`,  
+//         },
+//       })
+//     } catch (error) {
+//       setErrors(error.message)
+//       console.log(error.message)
+//     }
+//   } 
 
-    } catch (error) {
-      setErrors(error.message)
-      console.log(error.message)
-    }
-  } 
-
-  return (
-<Container>
-    <Row>
-      { userProfile.email ? 
+//   return (
+// <Container>
+//     <Row>
+//       { userProfile.email ? 
         <>
           <form onSubmit={handleSubmit}>
             <h1>Name: { userProfile.displayName? userProfile.displayName : userProfile.userName}</h1>
@@ -122,14 +112,14 @@ const EditReview = () => {
             </Col>
           </form>
         </>
-        :
-        <h2 className="text-center">
-          { errors ? 'Something went wrong. Please try again later' : <Spinner />}
-        </h2>
-      }
-    </Row>
-  </Container>
-  )
+//         :
+//         <h2 className="text-center">
+//           { errors ? 'Something went wrong. Please try again later' : <Spinner />}
+//         </h2>
+//       }
+//     </Row>
+//   </Container>
+  // )
 }
 
-export default EditReview
+export default EditProfile
