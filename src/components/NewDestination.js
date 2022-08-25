@@ -89,7 +89,6 @@ const NewDestination = () => {
         <input type="file" id="image" className="input" onChange={(event) => {
           setImageSelected(event.target.files[0])
         }} /> 
-        <Button onClick={uploadImage}>Upload a new destination image</Button>
         <Button onClick={uploadImage}>Upload image</Button>
     </Form.Group> 
 

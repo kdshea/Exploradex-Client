@@ -116,12 +116,12 @@ const CarouselImages = () => {
                                   <ListGroup.Item>Rating: {rating}</ListGroup.Item>
                                   <ListGroup.Item>Activities: {activities.join(', ')}</ListGroup.Item>
                                 </ListGroup>       
-                            { userIsOwner(review) &&             
+                            {/* { userIsOwner(review) &&              */}
                               <div className="buttons mb-4">
                                 <Button variant="danger" onClick={event => deleteReview(event, destinationId, reviewId)}>Delete</Button>
                                 <Link to={`/edit-review/${destinationId}/${reviewId}`} className='btn btn-primary'>Edit Review</Link>
                               </div>  
-                              }                        
+                              {/*}                         */}
                             </Card.Body>
                           </Card>          
                         )
