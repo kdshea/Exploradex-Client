@@ -12,16 +12,7 @@ const NewReview = () => {
 
 const navigate = useNavigate()
 const { destinationId } = useParams()
-const [ review, setReview ] = useState(
-{
-reviewText: '',
-rating: undefined,
-activities: [''],
-createdBy: '',
-destinationId: '',
-destinationName: '',
-reviewImgUrl: [''],
-})
+const [ review, setReview ] = useState('')
 const [ reviewImg, setReviewImg ] = useState('')
 const [ errors, setErrors ] = useState(false)
 
