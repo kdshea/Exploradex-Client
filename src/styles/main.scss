@@ -77,17 +77,6 @@ card {
   // object-fit: cover;
 }
 
-// !maybe
-.testing-image {
-  width: 100%;
-  height: 15vw;
-}
-
-.testing-image {
-  width: 100%;
-  height: 15vw;
-}
-
 .destination-index {
   color: black;  
 }
@@ -107,6 +96,11 @@ card {
     font-size: 80px;
     padding: 25px;
   }
+}
+
+.card-images {
+  width: 100%;
+  height: 15vh;
 }
 
 .destination-page {
@@ -179,31 +173,58 @@ padding: 30px;
   min-height: 100vh;
 }
 
-.user-profilePage {
-  // height: 100vh
-}
-
 ul {
   margin: 0
-}
-
-.form-login {
-  height: 100vh;
 }
 
 div.list-group-item {
   background-color: rgba(0,0,0,0.5);
   color: antiquewhite;
   border: black;
-
+  
 }
 
 .add-destinationForm {
   display: flex;
   justify-content: center;
   background-image: linear-gradient(rgba(219,233,244,0.3), rgba(219,233,244,0.3)), url(../img/mountain.jpg);
+  
+  background-size: cover;
+}
+
+.add-destination-form{
+  border: 3px solid black;
+  min-width: 100%; 
+  background-color: rgba(0,0,0,0.5);
+  padding: 20px;
+  color: antiquewhite;
+  border-radius: 8px;
+}
+
+.add-form-wrapper {
+  align-items: center;
+  padding-top: 100px;
+}
+
+
+.form-page {
+  background-image: linear-gradient(rgba(219,233,244,0.3), rgba(219,233,244,0.3)), url(../img/mountain.jpg);
   padding-top: 100px;
   background-size: cover;
+  display: flex;
+  align-items: center;
+  
+}
+
+.register-form {
+  display: flex;
+  justify-content: center;
+  border: 3px solid;
+  padding: 10px;
+  color: antiquewhite;
+  border-radius: 8px;
+  background-color: rgba(0,0,0,0.5);
+  width: 30rem;
 }
 
 .userProfileCard {
@@ -214,15 +235,32 @@ div.list-group-item {
   height: 100%; 
 }
 
-.register-form {
+.form-login {
+  background-image: linear-gradient(rgba(219,233,244,0.3), rgba(219,233,244,0.3)), url(../img/mountain.jpg);
+  padding-top: 100px;
+  background-size: cover;
   display: flex;
-  justify-content: center;
-  border: 1px solid;
-  padding: 10px;
+  align-items: center;
+  
 }
 
-.review-card {
-  display: grid;
+.login-form {
+  border: 5px solid;
+  width: 30rem;
+  padding: 30px;
+  background-color: rgba(0,0,0,0.5);
+  color: antiquewhite;
+  border-radius: 8px;
+  border: 3px solid black;
+
+}
+
+//.text-muted {
+  //  color: antiquewhite;
+  //}
+  
+  .review-card {
+    display: grid;
   flex-direction: row;
   justify-content: space-evenly;
 }
@@ -236,14 +274,6 @@ div.list-group-item {
   flex-direction: column;
 }
 
-.add-destination-form{
-  border: 3px solid black;
-  min-width: 100%; 
-  background-color: rgba(0,0,0,0.5);
-  padding: 20px;
-  color: antiquewhite;
-  border-radius: 8px;
-}
 
 .back-button {
   background-color: lightgray;
@@ -259,11 +289,7 @@ div.list-group-item {
   margin-bottom: 20px;
 }
 
-.login-form {
-  border: 5px solid;
-  min-width: 100%;
-  padding: 30px;
-}
+
 
 .profile-page-wrapper {
   background-image: url(../img/water.jpg);
