@@ -162,10 +162,6 @@ p {
   flex-direction: column;
 }
 
-.add-destinationForm {
-  min-height: 100vh;
-}
-
 ul {
   margin: 0
 }
@@ -181,8 +177,9 @@ div.list-group-item {
   display: flex;
   justify-content: center;
   background-image: linear-gradient(rgba(219,233,244,0.3), rgba(219,233,244,0.3)), url(../img/mountain.jpg);
-  
+  align-items: center;
   background-size: cover;
+  
 }
 
 .add-destination-form{
@@ -196,7 +193,7 @@ div.list-group-item {
 
 .add-form-wrapper {
   align-items: center;
-  padding-top: 100px;
+  
 }
 
 
@@ -301,8 +298,7 @@ div.list-group-item {
 }
 
 .edit-review-form {
-  border: 3px solid black;
-  min-width: 100%; 
+  border: 3px solid black;  
   background-color: rgba(0,0,0,0.5);
   padding: 20px;
   color: antiquewhite;
