@@ -6,7 +6,8 @@ import Container from "react-bootstrap/Container"
 import ListGroup from "react-bootstrap/ListGroup"
 import Spinner from './Spinner.js'
 import  Card  from "react-bootstrap/Card"
-import { getToken, userIsOwner, getPayLoad } from "../helpers/auth.js"
+import { getToken } from "../helpers/auth.js"
+// import { getToken, userIsOwner, getPayLoad } from "../helpers/auth.js"
 import  Button  from "react-bootstrap/Button"
 import Carousel from "react-bootstrap/Carousel"
 

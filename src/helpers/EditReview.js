@@ -40,7 +40,7 @@ const EditReview = () => {
       }
     }
     getUser()
-  }, [])
+  })
 
   useEffect(() => {
   }, [newReviewImg])
