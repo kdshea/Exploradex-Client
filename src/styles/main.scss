@@ -156,13 +156,6 @@ p {
   height: 15vw;
 }
 
-.review-form {
-  display: flex;
-  flex-direction: column;
-  border: 5px solid;
-min-width: 100%;
-padding: 30px;
-}
 
 .form-addDestination {
   display: flex;
@@ -240,8 +233,7 @@ div.list-group-item {
   padding-top: 100px;
   background-size: cover;
   display: flex;
-  align-items: center;
-  
+  align-items: center;  
 }
 
 .login-form {
@@ -252,15 +244,32 @@ div.list-group-item {
   color: antiquewhite;
   border-radius: 8px;
   border: 3px solid black;
-
 }
 
-//.text-muted {
-  //  color: antiquewhite;
-  //}
-  
-  .review-card {
-    display: grid;
+.add-review-page {
+  background-image: linear-gradient(rgba(219,233,244,0.3), rgba(219,233,244,0.3)), url(../img/mountain.jpg);
+  padding-top: 100px;
+  background-size: cover;
+  display: flex;
+  align-items: center; 
+}
+
+.review-form {
+  display: flex;
+  border: 5px solid;
+  flex-direction: column;
+  width: 30rem;
+  padding: 30px;
+  background-color: rgba(0,0,0,0.5);
+  color: antiquewhite;
+  border-radius: 8px;
+  border: 3px solid black;
+}
+
+
+
+.review-card {
+  display: grid;
   flex-direction: row;
   justify-content: space-evenly;
 }
@@ -281,15 +290,24 @@ div.list-group-item {
   border: solid black
 }
 
-.re-card.card { 
-  width: 40%;
+.edit-review-container {
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(rgba(219,233,244,0.3), rgba(219,233,244,0.3)), url(../img/mountain.jpg);
+  background-size: cover;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
 }
 
-.recard {
-  margin-bottom: 20px;
-}
-
-
+.edit-review-form {
+  border: 3px solid black;
+  min-width: 100%; 
+  background-color: rgba(0,0,0,0.5);
+  padding: 20px;
+  color: antiquewhite;
+  border-radius: 8px;
+} 
 
 .profile-page-wrapper {
   background-image: url(../img/water.jpg);
