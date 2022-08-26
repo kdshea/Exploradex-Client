@@ -60,7 +60,7 @@ const UserProfile = () => {
     { userProfile.email ?
     <div className="profile-page-wrapper">
       <Container className='user-profilePage'>
-        <h1>Name: { userProfile.displayName? userProfile.displayName : userProfile.userName}</h1>
+        <h1>{ userProfile.displayName? userProfile.displayName : userProfile.userName}</h1>
         <Card border="dark" className="user-card bg-transparent ">
             <Card.Img className='userProfileCard' variant="top" src={userProfile.profileImg} alt={userProfile.userName} />
             <Card.Body className="bg-transparent">

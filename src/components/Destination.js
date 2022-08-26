@@ -6,8 +6,7 @@ import Container from "react-bootstrap/Container"
 import ListGroup from "react-bootstrap/ListGroup"
 import Spinner from './Spinner.js'
 import  Card  from "react-bootstrap/Card"
-// import { getToken } from "../helpers/auth.js"
-import { getToken, userIsOwner, getPayLoad } from "../helpers/auth.js"
+import { getToken, userIsOwner, getPayLoad, userIsAuthenticated } from "../helpers/auth.js"
 import  Button  from "react-bootstrap/Button"
 import Carousel from "react-bootstrap/Carousel"
 
@@ -131,9 +130,15 @@ const CarouselImages = () => {
                     </>
                   }
               </Container>
+            { userIsAuthenticated() ? 
               <Link to={`/review/${destinationId}`}>
                 <button>Add a review</button>
-              </Link>            
+              </Link>
+              :
+              <Link to={'/'}>
+                <button>Login to add a review</button>
+              </Link>
+}               
           </div>
           :
           <h2 className="text-center">

@@ -86,26 +86,18 @@ const EditReview = () => {
             <Card key={reviewId} className="recard">
               <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
               <Card.Body>
-                <Card.Title className='text-center mb-0'>{/*{reviewText}*/}</Card.Title>    
-
                 <Card.Text>
                   {review.reviewText}
                   <Form.Label htmlFor="reviewText">Review Text</Form.Label>
                   <textarea name="reviewText" placeholder="Edit review text" value={updatedReview.reviewText} onChange={handleChange} ></textarea>
                 </Card.Text>  
-
                 <ListGroup className="list-group-flush">
                   <ListGroup.Item><span>👤</span> {review.displayName}</ListGroup.Item>
-
                   <ListGroup.Item>Rating: {review.rating}</ListGroup.Item>
                   <Form.Control type="number" name="rating" placeholder="Edit rating" value={updatedReview.rating} onChange={handleChange} />
-
                   <ListGroup.Item>Activites: {review.activities.join(', ')}</ListGroup.Item>
-
                   <textarea name="activities" placeholder="Edit activities" value={updatedReview.activities} onChange={handleChange} ></textarea>        
-
                 </ListGroup>
-
                 { newReviewImg ? 
                 <img className='w-100' src={newReviewImg} alt={'User Uploaded Review'} />
                 :
@@ -116,8 +108,7 @@ const EditReview = () => {
                 }} />
                 <Button className='btn btn-primary' onClick={uploadImage}>Upload image</Button>
                 <hr />
-                <input type="submit"/> 
-                {/* <Button  className='btn btn-primary' variant="primary" type="submit">Submit</Button> */}
+                <input className = "btn btn-primary" type="submit"/> 
                 <hr />
                 <div className="buttons mb-4">
                   <Link to={`/travel/${destinationId}`} className='btn btn-primary'>Cancel</Link>

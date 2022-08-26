@@ -91,9 +91,7 @@ const NewDestination = () => {
         <Button onClick={uploadImage}>Upload image</Button>
     </Form.Group> 
 
-      <Button className ="button-submit" type="submit">
-        Submit
-      </Button>
+      <Button className ="button-submit" type="submit">Submit</Button>
       { errors && <p className='text-danger'>{errors}</p>}
     </Form>
         </div>
