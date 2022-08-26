@@ -74,53 +74,54 @@ const EditReview = () => {
   } 
 
   return (
-  <Container className='editReview-container' >
-    <h1>Edit Review</h1>
+    <main className='edit-review-container' >
 
       { review.reviewText ? 
-        <>
-          <Form onSubmit={handleSubmit}>
-            <Card key={reviewId} className="recard">
-              <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
-              <Card.Body>
-                <Card.Text>
-                  {review.reviewText}
-                  <Form.Label htmlFor="reviewText">Review Text</Form.Label>
-                  <textarea name="reviewText" placeholder="Edit review text" value={updatedReview.reviewText} onChange={handleChange} ></textarea>
-                </Card.Text>  
-                <ListGroup className="list-group-flush">
-                  <ListGroup.Item><span>👤</span> {review.displayName}</ListGroup.Item>
-                  <ListGroup.Item>Rating: {review.rating}</ListGroup.Item>
-                  <Form.Control type="number" name="rating" placeholder="Edit rating" value={updatedReview.rating} onChange={handleChange} />
-                  <ListGroup.Item>Activites: {review.activities.join(', ')}</ListGroup.Item>
-                  <textarea name="activities" placeholder="Edit activities" value={updatedReview.activities} onChange={handleChange} ></textarea>        
-                </ListGroup>
-                { newReviewImg ? 
-                <img className='w-100' src={newReviewImg} alt={'User Uploaded Review'} />
-                :
-                <></>
-                }
-                <Form.Control type="file" id="image" className="input" onChange={(event) => {
-                  setImageSelected(event.target.files[0])
-                }} />
-                <Button className='btn btn-primary' onClick={uploadImage}>Upload image</Button>
-                <hr />
-                <input className = "btn btn-primary" type="submit"/> 
-                <hr />
-                <div className="buttons mb-4">
-                  <Link to={`/travel/${destinationId}`} className='btn btn-primary'>Cancel</Link>
-                </div>                          
-              </Card.Body>
-            </Card> 
-          </Form>
+      <>
+        <Form className="edit-review-form" onSubmit={handleSubmit}>
+          <h1>Edit Review</h1>
+          <Card key={reviewId} className="edit-review-card">
+            <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
+            <Card.Body>
+              <Card.Title className='text-center mb-0'>{/*{reviewText}*/}</Card.Title>
+              <Card.Text>
+                {review.reviewText}
+                <Form.Label htmlFor="reviewText">Review Text</Form.Label>
+                <textarea name="reviewText" placeholder="Edit review text" value={updatedReview.reviewText} onChange={handleChange} ></textarea>
+              </Card.Text>  
+              <ListGroup className="list-group-flush">
+                <ListGroup.Item><span>👤</span> {review.displayName}</ListGroup.Item>
+                <ListGroup.Item>Rating: {review.rating}</ListGroup.Item>
+                <Form.Control type="number" name="rating" placeholder="Edit rating" value={updatedReview.rating} onChange={handleChange} />
+                <ListGroup.Item>Activites: {review.activities.join(', ')}</ListGroup.Item>
+                <textarea name="activities" placeholder="Edit activities" value={updatedReview.activities} onChange={handleChange} ></textarea>
+              </ListGroup>
+              { newReviewImg ? 
+              <img className='w-100' src={newReviewImg} alt={'User Uploaded Review'} />
+              :
+              <></>
+              }
+              <Form.Control type="file" id="image" className="input" onChange={(event) => {
+                setImageSelected(event.target.files[0])
+              }} />
+              <Button className='btn btn-primary' onClick={uploadImage}>Upload image</Button>
+              <hr />
+              <input className ="bnt btn-primary" type="submit"/> 
+              {/* <Button  className='btn btn-primary' variant="primary" type="submit">Submit</Button> */}
+              <hr />
+              <div className="buttons mb-4">
+                <Link to={`/travel/${destinationId}`} className='btn btn-primary'>Cancel</Link>
+              </div>                          
+            </Card.Body>
+          </Card> 
+        </Form>
       </>
-        :
-        <h2 className="text-center">
-          { errors ? 'Something went wrong. Please try again later' : <Spinner />}
-        </h2>
+      :
+      <h2 className="text-center">
+        { errors ? 'Something went wrong. Please try again later' : <Spinner />}
+      </h2>
       }
-
-  </Container>
+    </main>
   )
 }
 
