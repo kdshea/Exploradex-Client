@@ -87,7 +87,7 @@ const EditReview = () => {
               <Card.Text>
                 {review.reviewText}
                 <Form.Label htmlFor="reviewText">Review Text</Form.Label>
-                <textarea name="reviewText" placeholder="Edit review text" value={updatedReview.reviewText} onChange={handleChange} ></textarea>
+                <Form.Control as="textarea" rows={4} name="reviewText" placeholder="Edit review text" value={updatedReview.reviewText} onChange={handleChange} />
               </Card.Text>  
               <ListGroup className="list-group-flush">
                 <ListGroup.Item><span>👤</span> {review.displayName}</ListGroup.Item>
