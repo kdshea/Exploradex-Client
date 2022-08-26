@@ -32,7 +32,6 @@ export const userIsAuthenticated = () => {
 }
 
 export const userIsOwner = (item) => {
-  console.log('in user is owner')
   const payload = getPayLoad()
   if (!payload) return
   return payload.userId === item.createdBy.toString()
