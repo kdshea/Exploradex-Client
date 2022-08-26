@@ -132,11 +132,11 @@ const CarouselImages = () => {
               </Container>
             { userIsAuthenticated() ? 
               <Link to={`/review/${destinationId}`}>
-                <button>Add a review</button>
+                <button className='back-button btn btn-primary'>Add a review</button>
               </Link>
               :
               <Link to={'/'}>
-                <button>Login to add a review</button>
+                <button className='btn btn-primary'>Login to add a review</button>
               </Link>
 }               
           </div>
@@ -145,7 +145,7 @@ const CarouselImages = () => {
             { errors ? 'Something went wrong. Please try again later' : <Spinner />}
           </h2>
         } 
-        <Link to="/travel" className='back-button btn dark'>Back to all Destination</Link>
+        <Link to="/travel" className='back-button btn btn-primary'>Back to all destinations</Link>
       </Container>
     </div>
   )

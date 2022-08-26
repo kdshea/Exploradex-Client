@@ -117,7 +117,7 @@ const UserProfile = () => {
           </Container>
         </Col>
         <hr />
-        <Link to="/travel" className='btn dark'>Back to all destinations</Link>
+        <Link to="/travel" className='back-button btn btn-primary'>Back to all destinations</Link>
       </Container>
     </div>
       :
