@@ -55,12 +55,14 @@ const EditReview = () => {
     const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
     // ! this is my (serhan miah) login for the cloudinary - for destination images
     setNewReviewImg(data.url)
-    setUpdatedReview({ ...updatedReview, reviewImg: data.url })
+    setUpdatedReview({ ...updatedReview, reviewImgUrl: [data.url] })
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    console.log('submit')
     try {
+      console.log('updated review', updatedReview)
       const { data } = await axios.put(`${API_URL}/travel/${destinationId}/${reviewId}`, updatedReview, {
         headers: {
           Authorization: `Bearer ${getToken()}`,  
@@ -75,7 +77,6 @@ const EditReview = () => {
   } 
 
   return (
-
   <Container className='editReview-container' >
     <h1>Edit Review</h1>
 
@@ -84,9 +85,7 @@ const EditReview = () => {
           <Form onSubmit={handleSubmit}>
             <Card key={reviewId} className="recard">
               <Card.Img variant='top' src={review.reviewImgUrl[0] ? review.reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
-
               <Card.Body>
-
                 <Card.Title className='text-center mb-0'>{/*{reviewText}*/}</Card.Title>    
 
                 <Card.Text>
@@ -96,7 +95,6 @@ const EditReview = () => {
                 </Card.Text>  
 
                 <ListGroup className="list-group-flush">
-
                   <ListGroup.Item><span>👤</span> {review.displayName}</ListGroup.Item>
 
                   <ListGroup.Item>Rating: {review.rating}</ListGroup.Item>
@@ -108,8 +106,6 @@ const EditReview = () => {
 
                 </ListGroup>
 
-                {/* Image doesnt seem to change. */}
-
                 { newReviewImg ? 
                 <img className='w-100' src={newReviewImg} alt={'User Uploaded Review'} />
                 :
@@ -120,7 +116,8 @@ const EditReview = () => {
                 }} />
                 <Button className='btn btn-primary' onClick={uploadImage}>Upload image</Button>
                 <hr />
-                <Button  className='btn btn-primary' variant="primary" type="submit">Submit</Button>
+                <input type="submit"/> 
+                {/* <Button  className='btn btn-primary' variant="primary" type="submit">Submit</Button> */}
                 <hr />
                 <div className="buttons mb-4">
                   <Link to={`/travel/${destinationId}`} className='btn btn-primary'>Cancel</Link>

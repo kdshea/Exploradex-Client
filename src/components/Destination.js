@@ -115,7 +115,7 @@ const CarouselImages = () => {
                                 <ListGroup className="list-group-flush">
                                   <ListGroup.Item><span>👤</span> {displayName}</ListGroup.Item>
                                   <ListGroup.Item>Rating: {rating}</ListGroup.Item>
-                                  <ListGroup.Item>Activities: {activities.join(', ')}</ListGroup.Item>
+                                  {/* <ListGroup.Item>Activities: {activities.join(', ')}</ListGroup.Item> */}
                                 </ListGroup>       
                             {/* { userIsOwner(review) &&              */}
                               <div className="buttons mb-4">
