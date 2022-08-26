@@ -6,8 +6,8 @@ import Container from "react-bootstrap/Container"
 import ListGroup from "react-bootstrap/ListGroup"
 import Spinner from './Spinner.js'
 import  Card  from "react-bootstrap/Card"
-import { getToken } from "../helpers/auth.js"
-// import { getToken, userIsOwner, getPayLoad } from "../helpers/auth.js"
+// import { getToken } from "../helpers/auth.js"
+import { getToken, userIsOwner, getPayLoad } from "../helpers/auth.js"
 import  Button  from "react-bootstrap/Button"
 import Carousel from "react-bootstrap/Carousel"
 
@@ -75,8 +75,6 @@ const CarouselImages = () => {
       console.log(error.message)
     }
   }
-
-
   
   return (
     <div className='destination-page'>
@@ -117,12 +115,12 @@ const CarouselImages = () => {
                                   <ListGroup.Item>Rating: {rating}</ListGroup.Item>
                                   <ListGroup.Item>Activities: {activities.join(', ')}</ListGroup.Item>
                                 </ListGroup>       
-                            {/* { userIsOwner(review) &&              */}
+                              { userIsOwner(review) &&              
                               <div className="buttons mb-4">
                                 <Button variant="danger" onClick={event => deleteReview(event, destinationId, reviewId)}>Delete</Button>
                                 <Link to={`/edit-review/${destinationId}/${reviewId}`} className='btn btn-primary'>Edit Review</Link>
                               </div>  
-                              {/*}                         */}
+                              }                         
                             </Card.Body>
                           </Card>          
                         )

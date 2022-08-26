@@ -9,7 +9,6 @@ import Form from 'react-bootstrap/Form';
 
 
 const Login = () => {
-
   const navigate = useNavigate() 
   const [ errors, setErrors ] = useState(false)
   const [ loginData, setLoginData ] = useState({
@@ -37,19 +36,16 @@ const Login = () => {
 
   return  ( 
     <div className='form-login'>
-
       <Form onSubmit={onSubmit} className='login-form'>
       <h1>Login Page</h1>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>User Name</Form.Label>
         <Form.Control type='text' name='userName' placeholder='Username' onChange={handleChange} value={loginData.userName} />   
       </Form.Group>
-
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control type='password' name='password' placeholder='Password' onChange={handleChange} value={loginData.password} />
       </Form.Group>
-   
       <Button variant="primary" type="submit">
         Submit
       </Button>
