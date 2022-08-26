@@ -24,7 +24,6 @@ const Register = () => {
       setLoginData({ ...loginData, [event.target.name]: event.target.value })
     }
     setErrors(true)
-    console.log(error)
   }
 
   const handleSubmit = async (event) => {
