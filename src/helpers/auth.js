@@ -34,5 +34,5 @@ export const userIsAuthenticated = () => {
 export const userIsOwner = (item) => {
   const payload = getPayLoad()
   if (!payload) return
-  return payload.sub === item.createdBy
+  return payload.userId === item.createdBy.toString()
 }

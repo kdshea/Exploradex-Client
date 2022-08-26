@@ -9,7 +9,6 @@ import Form from 'react-bootstrap/Form';
 
 
 const Login = () => {
-
   const navigate = useNavigate() 
   const [ errors, setErrors ] = useState(false)
   const [ loginData, setLoginData ] = useState({

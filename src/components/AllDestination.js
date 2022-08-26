@@ -35,7 +35,6 @@ useEffect(() => {
       <h1 className='text-center mb-4'>All Destinations</h1>
       <Row className='destination-row'>
         { destinationData.map(item => {
-            // console.log(item)
             const { _id } = item
             return (
               <Col key={_id} md="5" lg="4" className='mb-4'>

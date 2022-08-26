@@ -6,8 +6,7 @@ import Container from "react-bootstrap/Container"
 import ListGroup from "react-bootstrap/ListGroup"
 import Spinner from './Spinner.js'
 import  Card  from "react-bootstrap/Card"
-import { getToken } from "../helpers/auth.js"
-// import { getToken, userIsOwner, getPayLoad } from "../helpers/auth.js"
+import { getToken, userIsOwner, getPayLoad, userIsAuthenticated } from "../helpers/auth.js"
 import  Button  from "react-bootstrap/Button"
 import Carousel from "react-bootstrap/Carousel"
 
@@ -75,8 +74,6 @@ const CarouselImages = () => {
       console.log(error.message)
     }
   }
-
-
   
   return (
     <div className='destination-page'>
@@ -117,12 +114,12 @@ const CarouselImages = () => {
                                   <ListGroup.Item>Rating: {rating}</ListGroup.Item>
                                   <ListGroup.Item>Activities: {activities.join(', ')}</ListGroup.Item>
                                 </ListGroup>       
-                            {/* { userIsOwner(review) &&              */}
+                              { userIsOwner(review) &&              
                               <div className="buttons mb-4">
                                 <Button variant="danger" onClick={event => deleteReview(event, destinationId, reviewId)}>Delete</Button>
                                 <Link to={`/edit-review/${destinationId}/${reviewId}`} className='btn btn-primary'>Edit Review</Link>
                               </div>  
-                              {/*}                         */}
+                              }                         
                             </Card.Body>
                           </Card>          
                         )
@@ -133,16 +130,22 @@ const CarouselImages = () => {
                     </>
                   }
               </Container>
+            { userIsAuthenticated() ? 
               <Link to={`/review/${destinationId}`}>
-                <button>Add a review</button>
-              </Link>            
+                <button className='back-button btn btn-primary'>Add a review</button>
+              </Link>
+              :
+              <Link to={'/'}>
+                <button className='btn btn-primary'>Login to add a review</button>
+              </Link>
+}               
           </div>
           :
           <h2 className="text-center">
             { errors ? 'Something went wrong. Please try again later' : <Spinner />}
           </h2>
         } 
-        <Link to="/travel" className='back-button btn dark'>Back to all Destination</Link>
+        <Link to="/travel" className='back-button btn btn-primary'>Back to all destinations</Link>
       </Container>
     </div>
   )

@@ -53,16 +53,13 @@ const EditReview = () => {
     formData.append('file', imageSelect)
     formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
     const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
-    // ! this is my (serhan miah) login for the cloudinary - for destination images
     setNewReviewImg(data.url)
     setUpdatedReview({ ...updatedReview, reviewImgUrl: [data.url] })
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log('submit')
     try {
-      console.log('updated review', updatedReview)
       const { data } = await axios.put(`${API_URL}/travel/${destinationId}/${reviewId}`, updatedReview, {
         headers: {
           Authorization: `Bearer ${getToken()}`,  
@@ -109,7 +106,7 @@ const EditReview = () => {
               }} />
               <Button className='btn btn-primary' onClick={uploadImage}>Upload image</Button>
               <hr />
-              <input type="submit"/> 
+              <input className ="bnt btn-primary" type="submit"/> 
               {/* <Button  className='btn btn-primary' variant="primary" type="submit">Submit</Button> */}
               <hr />
               <div className="buttons mb-4">
