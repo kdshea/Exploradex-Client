@@ -4,15 +4,11 @@ import API_URL from '../config.js'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { getToken } from './auth.js'
 import Container from 'react-bootstrap/Container'
-
 import Card  from "react-bootstrap/Card"
 import ListGroup from "react-bootstrap/ListGroup"
 import Spinner from '../components/Spinner.js'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Form'
-
-
-
 
 const EditReview = () => {
 
@@ -40,20 +36,18 @@ const EditReview = () => {
       }
     }
     getUser()
-  })
+  }, [reviewId])
 
   useEffect(() => {
   }, [newReviewImg])
 
   const handleChange = (event) => {
-
     setUpdatedReview({ ...updatedReview, [event.target.name]: event.target.value })
     setErrors({ ...errors, [event.target.name]: '', message: '' })
     
   }
 
   const uploadImage = async (event) => {
-
     event.preventDefault()
     const formData = new FormData()
     formData.append('file', imageSelect)
@@ -62,7 +56,6 @@ const EditReview = () => {
     // ! this is my (serhan miah) login for the cloudinary - for destination images
     setNewReviewImg(data.url)
     setUpdatedReview({ ...updatedReview, reviewImg: data.url })
-
   }
 
   const handleSubmit = async (event) => {
