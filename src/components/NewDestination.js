@@ -28,7 +28,6 @@ const NewDestination = () => {
     formData.append('file', imageSelect)
     formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
     const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
-    // ! this is my (serhan miah) login for the cloudinary - for destination images
     setNewImgUrl(data.url)
     setNewTravel({ ...newTravel, imgUrl: [ data.url ]})
   }
@@ -86,7 +85,6 @@ const NewDestination = () => {
           }} /> 
           <Button onClick={uploadImage}>Upload image</Button>
         </Form.Group> 
-
         <Button className ="button-submit" type="submit">Submit</Button>
         { errors && <p className='text-danger'>{errors}</p>}
       </Form>
