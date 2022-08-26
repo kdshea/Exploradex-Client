@@ -19,8 +19,7 @@ const NewDestination = () => {
 
   const handleChange = (event) => {
     setNewTravel({ ...newTravel, [event.target.name]: event.target.value })
-    setErrors({ ...errors, [event.target.name]: '', message: '' })
-    
+    setErrors(true)
   }
 
   const uploadImage = async (event) => {
@@ -46,7 +45,7 @@ const NewDestination = () => {
       navigate('/travel')
     } catch (error) {
       setErrors(error.message)
-      console.log(error.message)
+      console.log(error)
     }
   } 
 
