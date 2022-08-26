@@ -75,11 +75,12 @@ const EditProfile = () => {
   } 
 
   return (
-<Container className='editUserContainer'>
+  <main className="edit-user-page">  
+    <Container className='editUserContainer'>
 
       { userProfile.email ? 
         <>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="edit-user-form">
         <h1>Name: { userProfile.displayName? userProfile.displayName : userProfile.userName}</h1>
         <h2>Profile</h2>
         <Form.Group className="mb-3" >
@@ -97,7 +98,8 @@ const EditProfile = () => {
         <hr />
         <Form.Group className="mb-3" >
           <Form.Label><h2>About Me</h2></Form.Label>
-          <textarea name="aboutMeText" placeholder="Edit About Me" value={updatedUserProfile.aboutMeText} onChange={handleChange} ></textarea>
+          <Form.Control as="textarea" rows={4} name="aboutMeText" placeholder="Edit About Me" value={updatedUserProfile.aboutMeText} onChange={handleChange} />        
+          
         </Form.Group>
         <hr />
         <Form.Group className="mb-3" >
@@ -125,11 +127,11 @@ const EditProfile = () => {
           { errors ? 'Something went wrong. Please try again later' : <Spinner />}
         </h2>
 
-      }
-    
+      }  
 
 
-  </Container>
+    </Container>
+  </main>
   )
 }
 

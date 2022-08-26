@@ -273,10 +273,6 @@ div.list-group-item {
   justify-content: space-evenly;
 }
 
-.editUserContainer {
-  min-height: 100vh;
-}
-
 .upload-image-destinaion {
   display: flex;
   flex-direction: column;
@@ -318,4 +314,23 @@ div.list-group-item {
 
 .user-profilePage {
   max-width: 50%;
+}
+
+.edit-user-page {
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(rgba(219,233,244,0.3), rgba(219,233,244,0.3)), url(../img/mountain.jpg);
+  background-size: cover;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.editUserContainer {
+  border: 3px solid black;  
+  background-color: rgba(0,0,0,0.5);
+  padding: 20px;
+  color: antiquewhite;
+  border-radius: 8px;
+  width: 30rem;
 }
