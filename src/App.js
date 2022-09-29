@@ -17,8 +17,6 @@ import EditReview from './helpers/EditReview'
 
 
 function App() {
-
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -36,7 +34,6 @@ function App() {
           <Route path="/travel/new" element={<NewDestination />} />
           <Route path='/review/:destinationId' element={<NewReview /> } />
           <Route path='/edit-review/:destinationId/:reviewId' element={<EditReview /> } />
-
         </Routes>
         <Footer />
       </BrowserRouter>
