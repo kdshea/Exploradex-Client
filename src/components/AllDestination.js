@@ -26,7 +26,6 @@ useEffect(() => {
   getData()
 }, [])
 
-
   return (
     <>
     { destinationData[0] ?

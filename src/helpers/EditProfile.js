@@ -102,6 +102,7 @@ const EditProfile = () => {
           
         </Form.Group>
         <hr />
+
         <Form.Group className="mb-3" >
         { newProfileImg ? 
               <img className='w-100' src={newProfileImg} alt={'User Uploaded Profile'} />
@@ -109,12 +110,13 @@ const EditProfile = () => {
               <></>
               }
           <Form.Label><h2>Upload Image</h2></Form.Label>
-          
           <Form.Control type="file" id="image" className="input" onChange={(event) => {
                 setImageSelected(event.target.files[0])
               }} />
         <Button onClick={uploadImage}>Upload image</Button>
         </Form.Group>
+
+        
         <hr />
         <Button variant="primary" type="submit">Submit</Button>
         <hr />

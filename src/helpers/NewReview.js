@@ -30,7 +30,6 @@ const uploadImage = async (event) => {
   formData.append('file', reviewImg)
   formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
   const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
-  // ! this is my (serhan miah) login for the cloudinary - for destination images
   setReviewImg(data.url)
   setReview({ ...review, reviewImgUrl: [ data.url ]})
 }
@@ -53,28 +52,21 @@ const handleSubmit = async (event) => {
 
   return (
 
-    
-    
     <main className="add-review-page justify-content-center">
       <Form className="review-form" onSubmit={handleSubmit}>
         <h1>Add review</h1>
-
         <Form.Group>
           <Form.Label htmlFor="reviewText" >Review Text</Form.Label>          
           <Form.Control as="textarea" rows={4} name="reviewText" placeholder="Type Review Here" value={review.reviewText} onChange={handleChange} />
         </Form.Group>
-
         <Form.Group>
           <Form.Label>Rating</Form.Label>
           <Form.Control type="number" name="rating" placeholder="From 0 to 5" value={review.rating} onChange={handleChange} />
         </Form.Group>
-
         <Form.Group>
           <Form.Label>Activities</Form.Label>
-          
           <Form.Control as="textarea" rows={4} name="Activities" placeholder="Add Activities" value={review.activities} onChange={handleChange} />
         </Form.Group>
-
         <Form.Group className="upload-image-destinaion mb-3"  >
         <Form.Label>Image</Form.Label>
         { reviewImg ? 
@@ -87,7 +79,6 @@ const handleSubmit = async (event) => {
           }} /> 
           <Button onClick={uploadImage}>Upload image</Button>
         </Form.Group> 
-
         <Button variant="primary" type="submit">
           Submit
         </Button>        
