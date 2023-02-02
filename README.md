@@ -1,4 +1,4 @@
-# SEI Project Three, The Travel Library: A MERN Stack Application
+# The Travel Library: A MERN Stack Application
 
 # Table of contents
 * [Project Overview](#project-overview)
