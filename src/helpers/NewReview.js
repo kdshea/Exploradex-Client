@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button"
 import { useNavigate, useParams } from "react-router-dom"
 import API_URL from '../config.js'
 import { getToken } from "./auth"
-import { Container } from "react-bootstrap"
+
 
 
 const NewReview = () => {
@@ -13,6 +13,7 @@ const NewReview = () => {
 const navigate = useNavigate()
 const { destinationId } = useParams()
 const [ review, setReview ] = useState('')
+const [ imageSelect, setImageSelect ] = useState('')
 const [ reviewImg, setReviewImg ] = useState('')
 const [ errors, setErrors ] = useState(false)
 
@@ -27,9 +28,9 @@ const handleChange = async (event) => {
 const uploadImage = async (event) => {
   event.preventDefault()
   const formData = new FormData()
-  formData.append('file', reviewImg)
-  formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
-  const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
+  formData.append('file', imageSelect)
+  formData.append('upload_preset', 'nba9y9sc')
+  const { data } = await axios.post('https://api.cloudinary.com/v1_1/dhblcmzwc/image/upload', formData)
   setReviewImg(data.url)
   setReview({ ...review, reviewImgUrl: [ data.url ]})
 }
@@ -75,7 +76,7 @@ const handleSubmit = async (event) => {
                 <></>
                 }
           <input type="file" id="image" className="input" onChange={(event) => {
-            setReviewImg(event.target.files[0])
+            setImageSelect(event.target.files[0])
           }} /> 
           <Button onClick={uploadImage}>Upload image</Button>
         </Form.Group> 

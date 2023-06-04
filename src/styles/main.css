@@ -90,7 +90,7 @@ card {
 }
 
 .all-destination-page {
-  background-image: linear-gradient(rgba(219, 233, 244, 0.5), rgba(219, 233, 244, 0.5)), url(../img/water.jpg);
+  background-image: linear-gradient(rgba(219, 233, 244, 0.5), rgba(219, 233, 244, 0.5)), url(../img/mountain.jpg);
 }
 .all-destination-page h1 {
   font-size: 80px;
@@ -288,7 +288,7 @@ div.list-group-item {
 }
 
 .profile-page-wrapper {
-  background-image: url(../img/water.jpg);
+  background-image: url(../img/mountain.jpg);
 }
 .profile-page-wrapper h1 {
   padding: 30px;
@@ -317,4 +317,9 @@ div.list-group-item {
   color: antiquewhite;
   border-radius: 8px;
   width: 30rem;
+}
+
+.user-reviews {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: antiquewhite;
 }/*# sourceMappingURL=main.css.map */

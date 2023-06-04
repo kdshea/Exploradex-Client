@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form'
 const NewDestination = () => {
 
   const navigate = useNavigate()
-  const [ imageSelect, setImageSelected ] = useState('')
+  const [ imageSelect, setImageSelect ] = useState('')
   const [ errors, setErrors ] = useState(false)
   const [ newImgUrl, setNewImgUrl ] = useState('')
   const [ newTravel, setNewTravel ] = useState('')
@@ -26,8 +26,8 @@ const NewDestination = () => {
     event.preventDefault()
     const formData = new FormData()
     formData.append('file', imageSelect)
-    formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
-    const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
+    formData.append('upload_preset', 'nba9y9sc')
+    const { data } = await axios.post('https://api.cloudinary.com/v1_1/dhblcmzwc/image/upload', formData)
     setNewImgUrl(data.url)
     setNewTravel({ ...newTravel, imgUrl: [ data.url ]})
   }
@@ -81,7 +81,7 @@ const NewDestination = () => {
             <></>
             }
           <input type="file" id="image" className="input" onChange={(event) => {
-            setImageSelected(event.target.files[0])
+            setImageSelect(event.target.files[0])
           }} /> 
           <Button onClick={uploadImage}>Upload image</Button>
         </Form.Group> 

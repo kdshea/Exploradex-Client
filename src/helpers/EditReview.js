@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import API_URL from '../config.js'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { getToken } from './auth.js'
-import Container from 'react-bootstrap/Container'
 import Card  from "react-bootstrap/Card"
 import ListGroup from "react-bootstrap/ListGroup"
 import Spinner from '../components/Spinner.js'
@@ -14,7 +13,7 @@ const EditReview = () => {
 
   const { destinationId, reviewId } = useParams()
   const navigate = useNavigate()
-  const [ imageSelect, setImageSelected ] = useState('')
+  const [ imageSelect, setImageSelect ] = useState('')
   const [ errors, setErrors ] = useState(false)
   const [ review, setReview ] = useState('')
   const [ updatedReview, setUpdatedReview ] = useState('')
@@ -51,8 +50,8 @@ const EditReview = () => {
     event.preventDefault()
     const formData = new FormData()
     formData.append('file', imageSelect)
-    formData.append('upload_preset', 'djssiss0') //? djssiss0 is the key + danedskby is the name 
-    const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData)
+    formData.append('upload_preset', 'nba9y9sc')
+    const { data } = await axios.post('https://api.cloudinary.com/v1_1/dhblcmzwc/image/upload', formData)
     setNewReviewImg(data.url)
     setUpdatedReview({ ...updatedReview, reviewImgUrl: [data.url] })
   }
@@ -85,7 +84,7 @@ const EditReview = () => {
             <Card.Body>
               <Card.Title className='text-center mb-0'>{/*{reviewText}*/}</Card.Title>
               <Card.Text>
-                {review.reviewText}
+                {/* {review.reviewText} */}
                 <Form.Label htmlFor="reviewText">Review Text</Form.Label>
                 <Form.Control as="textarea" rows={4} name="reviewText" placeholder="Edit review text" value={updatedReview.reviewText} onChange={handleChange} />
               </Card.Text>  
@@ -102,7 +101,7 @@ const EditReview = () => {
               <></>
               }
               <Form.Control type="file" id="image" className="input" onChange={(event) => {
-                setImageSelected(event.target.files[0])
+                setImageSelect(event.target.files[0])
               }} />
               <Button className='btn btn-primary' onClick={uploadImage}>Upload image</Button>
               <hr />

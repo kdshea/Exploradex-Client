@@ -6,8 +6,8 @@ const uploadImage = async (event) => {
 try {
     const formData = new FormData()
     formData.append('file', event.target.files[0])
-    formData.append('upload_preset', 'djssiss0')
-    const { data } = await axios.post('https://api.cloudinary.com/v1_1/danedskby/image/upload', formData).then((response) => {
+    formData.append('upload_preset', 'nba9y9sc')
+    const { data } = await axios.post('https://api.cloudinary.com/v1_1/dhblcmzwc/image/upload', formData).then((response) => {
       console.log(response)
   })
   } catch (error) {

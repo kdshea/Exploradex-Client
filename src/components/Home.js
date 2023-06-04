@@ -23,6 +23,9 @@ const Home = () => {
               <button>Explore the World's Best Destinations</button>
             </Link>
           <p className='lead'>To add destinations and reviews, please register below or login</p>
+          <p className="demo">Feel free to explore our platform with these demo account credentials
+          <br />
+          Username: demo  Password: demo</p>
           {buttons.map((button, index) => (
             <Link key={index} to={button.path}>
               <button>{button.label}</button>

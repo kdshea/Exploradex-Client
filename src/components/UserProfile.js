@@ -72,13 +72,13 @@ const UserProfile = () => {
             <ListGroup className="list-group-flush ">
               <ListGroup.Item><span>👤</span> {userProfile.userName}</ListGroup.Item>
               <ListGroup.Item><span>📧</span> {userProfile.email}</ListGroup.Item>
-              <ListGroup.Item><span>📧</span> {userProfile.aboutMeText}</ListGroup.Item>
+              <ListGroup.Item>{userProfile.aboutMeText}</ListGroup.Item>
             </ListGroup>
             <Card.Body>
               <Link to={`/edit-profile/${userId}`} className='btn btn-primary'>Edit Profile</Link>
             </Card.Body>
           </Card>
-        <Col md="6">
+        <Col className='user-reviews'>
         <hr />
         <h3>User Reviews</h3>
           <Container as='section' className='user-reviewCard'>
@@ -88,7 +88,7 @@ const UserProfile = () => {
                 userProfile.reviews.map(review => {
                   const { reviewId, reviewText, destinationId, destinationName, rating, reviewImgUrl, activities } = review
                   return (
-                    <Col key={reviewId} md="6" lg="4" className='mb-4'>
+                    <Col key={reviewId} md="8" lg="6" className='mb-4'>
                       {/* review card section */}
                       <Card >
                         <Card.Img  variant='top' src={reviewImgUrl[0] ? reviewImgUrl[0] : 'https://sei65-destinations.s3.eu-west-1.amazonaws.com/users/default-image.jpg' }></Card.Img>
