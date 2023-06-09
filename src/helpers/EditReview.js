@@ -35,7 +35,7 @@ const EditReview = () => {
       }
     }
     getUser()
-  }, [reviewId])
+  }, [reviewId, destinationId])
 
   useEffect(() => {
   }, [newReviewImg])

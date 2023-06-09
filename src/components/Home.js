@@ -18,7 +18,7 @@ const Home = () => {
     <>
       <main className="hero text-center">
       <div className="hero-container">
-          <h1 className='display-3'>Welcome to the Travel Library</h1>
+          <h1 className='display-3'>Welcome to Exploradex</h1>
           <Link to='/travel'>
               <button>Explore the World's Best Destinations</button>
             </Link>

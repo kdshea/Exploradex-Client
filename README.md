@@ -1,4 +1,4 @@
-# The Travel Library: A MERN Stack Application
+# Exploradex: A MERN Stack Application
 
 ## Table of contents
 * [Project Overview](#project-overview)
@@ -16,7 +16,7 @@
 
 ## Project Overview
 
-This is the third project I did for a Software Engineering Immersive course through General Assembly London. I worked with Serhan Miah and Chris Rainey. The Travel Library is a travel site where users can explore destinations, leave reviews, and upload photos of destinations they have explored. Users register and create a profile. Their reviews are displayed on their profile page to show where they’ve traveled, as well as on the destination’s page. 
+I worked on this project with Serhan Miah and Chris Rainey. Exploradex is a travel site where users can explore destinations, leave reviews, and upload photos of destinations they have explored. Users register and create a profile. Their reviews are displayed on their profile page to show where they’ve traveled, as well as on the destination’s page. 
 
 ## Deployment Link
 
