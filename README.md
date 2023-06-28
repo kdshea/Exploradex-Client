@@ -16,7 +16,7 @@
 
 ## Project Overview
 
-I worked on this project with Serhan Miah and Chris Rainey. Exploradex is a travel site where users can explore destinations, leave reviews, and upload photos of destinations they have explored. Users register and create a profile. Their reviews are displayed on their profile page to show where they’ve traveled, as well as on the destination’s page. 
+Exploradex is a travel site where users can explore destinations, leave reviews, and upload photos of destinations they have explored. Users register and create a profile. Their reviews are displayed on their profile page to show where they’ve traveled, as well as on the destination’s page. 
 
 ## Deployment Link
 
